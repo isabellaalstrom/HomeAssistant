@@ -1,0 +1,73 @@
+
+  night_mode:
+    name: Nattläge
+  #  initial: off
+    icon: mdi:weather-night
+
+  away_mode:
+    name: Bortaläge
+  #  initial: off
+    icon: mdi:shield-home
+
+  evening:
+    name: Kvällsläge
+  #  initial: off
+    icon: mdi:movie
+
+  service:
+    name: Serviceläge
+  #  initial: off
+    icon: mdi:wrench
+
+  semester:
+    name: Semester
+  #  initial: off
+    icon: mdi:home-heart
+
+  media:
+    name: TV and Music at the same time?
+  #  initial: off
+    icon: mdi:speaker-wireless
+
+  maintenance:
+    name: Maintenance mode
+  #  initial: off
+    icon: mdi:wrench
+
+
+  dark_mode:
+    name: Dark mode
+    initial: off
+    icon: mdi:close-circle-outline
+
+
+  vacuum:
+
+
+  lovelace_maintenance:
+  hass_update:
+  lovelace_hemmet:
+
+
+# Test
+
+  test:
+    name: Test 1
+  #  initial: off
+
+
+  test2:
+    name: Test 2
+  #  initial: off
+    icon: mdi:test-tube
+
+
+#  test1:
+#    name: Test
+#    initial: off
+#    icon: mdi:test-tube
+
+#  test2:
+#    name: Test
+#    initial: off
+#    icon: mdi:test-tube

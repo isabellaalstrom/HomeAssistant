@@ -1,0 +1,30 @@
+
+ include:
+   domains:
+     - sensor
+     - switch
+     - light
+ exclude:
+   domains:
+     - automation
+     - group
+     - media_player
+     - persisten_notifications
+     - shell_command
+     - homeassistant
+     - sun
+     - device_tracker
+   entities:
+     - sensor.mot_goteborg
+     - sensor.mot_goteborg_10min
+     - sensor.mot_goteborg_20min
+     - sensor.mot_goteborg_30min
+     - sensor.mot_goteborg_40min
+     - sensor.albins_birthday
+     - sensor.albins_birthday_days
+     - sensor.hannas_birthday
+     - sensor.hannas_birthday_days
+     - sensor.niklas_birthday
+     - sensor.niklas_birthday_days
+     - sensor.christmas_eve
+     - sensor.christmas_eve_days

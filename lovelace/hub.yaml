@@ -1,0 +1,1158 @@
+title: HUB
+path: information
+#background: center / cover no-repeat url("/local/images/papers.co-si27r.jpg") fixed
+cards:
+
+# Main menu
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:button-card'
+                color_type: blank-card
+                styles:
+                  card:
+                    - width: 10px
+
+# Hem knappen
+
+              - type: 'custom:decluttering-card'
+                template: switch_button_card
+                variables:
+                  - entity: input_boolean.lovelace_maintenance
+                  - name: Home
+                  - icon: home
+                  - aspect_ratio: 4/1
+                  - show_label: false
+                  - show_state: false
+                  - show_icon: false
+                  - opacity: 0.9
+                  - tap_action:
+                      action: call-service
+                      service: input_select.select_option
+                      service_data:
+                        option: Hem
+                        entity_id: input_select.ovrigtmenyn
+              - type: 'custom:button-card'
+                color_type: blank-card
+                styles:
+                    card:
+                    - width: 10px
+
+## Rad 1
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Hem
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+## Rad 1 - Kort 1
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.lovelace_maintenance
+                    - name: Klimat
+                    - icon: thermometer
+                    - show_state: false
+                    - opacity: 0.9
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Klimat
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+## Rad 1 - Kort 2
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.lovelace_maintenance
+                    - name: Blommor
+                    - label: status
+                    - icon: flower
+                    - show_state: false
+                    - opacity: 0.9
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Blommor
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+## Rad 1 - Koer 3
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.lovelace_maintenance
+                    - name: Home Assistant
+                    - label: Intel Nuc
+                    - icon: home-assistant
+                    - show_state: false
+                    - opacity: 0.9
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: IntelNuc
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+## Rad 2
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+# Rad 2 - Kort 1
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.lovelace_maintenance
+                    - name: Lägenheten
+                    - icon: home
+                    - show_state: false
+                    - opacity: 0.9
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Lagenheten
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+# Rad 2 - Kort 2
+
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: vacuum.wowite
+                    - name: Damsugaren
+                    - label: Wowite
+                    - icon: robot-vacuum
+                    - show_state: false
+                    - opacity: 0.9
+                    - color: gray
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+
+
+
+# Rad 2 - Kort 3
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.all_lights_check
+                    - name: Varningar
+                    - icon: alert-outline
+                    - show_state: false
+                    - opacity: 0.9
+                    - color: gray
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Varningar
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+
+
+#                - type: custom:decluttering-card
+#                  template: switch_button_card
+#                  variables:
+#                    - entity: input_boolean.lovelace_maintenance
+#                    - name: Laundry
+#                    - label: Room
+#                    - icon: washing-machine
+#                    - show_state: false
+#                    - opacity: 0.9
+#                    - tap_action:
+#                        action: call-service
+#                        service: input_select.select_option
+#                        service_data:
+#                          option: Washok
+#                          entity_id: input_select.ovrigtmenyn
+#                        haptic: light
+#                - type: 'custom:button-card'
+#                  color_type: blank-card
+#                  styles:
+#                    card:
+#                      - width: 10px
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+#
+#
+# Huvudsidorna
+#
+#
+
+
+# Rad 1, Kort 1
+# Klimat
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Klimat
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: temp_ute
+                    - name: Utomhus
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: temp_inne
+                    - name: Inomhus
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: albin_temp
+                    - name: Albins rum
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: sovrum_temp
+                    - name: Sovrummet
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: vardagsrumet_temp
+                    - name: Vardagsrummet
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: framsidan_temperature
+                    - name: Framsidan
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: baksidan_temperature
+                    - name: Baksidan
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: 'Maxtemperaturer utomhus'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_max_temp
+                    - name: Max
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_max_for_last_24h
+                    - name: 24 timmar
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_max_for_last_week
+                    - name: 1 vecka
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_max_for_last_months
+                    - name: 1 månad
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: 'Minitemperaturer utomhus'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_min_temp
+                    - name: Mini
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_min_for_last_24h
+                    - name: 24 timmar
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_min_for_last_week
+                    - name: 1 vecka
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_min_for_last_months
+                    - name: 1 månad
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: 'Medeltemperatur utomhus'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_ute_medel_1_dygn
+                    - name: 1 dygn
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_ute_medel_7dagar
+                    - name: 7 dagar
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.influxdb_ute_medel_30dagar
+                    - name: 1 månad
+                    - icon: thermometer
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+# Rad 1, Kort 2
+# Blommor
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Blommor
+        card:
+          type: vertical-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: '##### Tomatblomman'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: plant.tomaten
+                    - name: Tomaten
+                    - icon: flower-outline
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.flower_moisture
+                    - name: Vatten
+                    - icon: water-percent
+                    - show_last_changed: true
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.flower_conductivity
+                    - name: Näring
+                    - icon: emoticon-poop-outline
+                    - show_last_changed: true
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.flower_light_intensity
+                    - name: Ljus
+                    - icon: white-balance-sunny
+                    - show_last_changed: true
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.flower_temperature
+                    - name: Temperatur
+                    - icon: temperature-celsius
+                    - show_last_changed: true
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.flower_battery
+                    - name: Batteri
+                    - icon: battery-outline
+                    - show_last_changed: true
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: flower_moisture
+                    - name: Vatten
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: custom:decluttering-card
+                  template: mini-graph-card
+                  variables:
+                    - entity: flower_conductivity
+                    - name: Näring
+                    - line_color: '#00d8ff'
+                    - font_size: 53
+                    - height: 120
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+# Rad 1, Kort 3
+# HASS / Server
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: IntelNuc
+        card:
+          type: vertical-stack
+          cards:
+
+
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: '##### Home Assistant'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: entities
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  entities:
+                    - entity: sensor.current_version
+                      name: Nuvarande version
+                      icon: mdi:information-outline
+                    - entity:  sensor.ha_latest_version
+                      name: Senaste versionen
+                      icon: mdi:update
+                    - entity: sensor.uptime
+                      name: HASS Uptime
+                      icon: mdi:home-assistant
+                    - entity:  sensor.ipv4_address_eno1
+                      name: Intern IP
+                      icon: mdi:dns-outline
+                    - entity:  sensor.myip
+                      name: Extern IP
+                      icon: mdi:dns-outline
+
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: '##### Server - IntelNuc'
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+                - type: entities
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+
+                  entities:
+                    - entity: sensor.glances_cpu_used
+                      name: CPU belastning
+                      icon: mdi:chip
+                    - entity:  sensor.glances_cpu_temp
+                      name: CPU Temperatur
+                      icon: mdi:thermometer
+                    - entity: sensor.glances_disk_used_percent
+                      name: SSD
+                      icon: mdi:harddisk
+                    - entity:  sensor.glances_ram_used_percent
+                      name: RAM
+                      icon: mdi:memory
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: '##### Uppdateringar'
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+                - type: entities
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  entities:
+                    - entity: input_boolean.hass_update
+                      icon: mdi:update
+                      name: Home Assistant tillgänglig
+
+                    - entity: sensor.hacs
+                      icon: mdi:update
+                      name: Home Assistant Community Store
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+
+
+## Lägenheten
+# Rad 2, Kort 1
+
+
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Lagenheten
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:calendar-card
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  numberOfDays: 14
+                  title: Servicekalender
+                  entities:
+                    - calendar.niklasvilnerssongmailcom
+                    - calendar.ledigt
+                  showColors: true
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.service
+                    - name: Serviceläge
+                    - icon: toolbox-outline
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.semester
+                    - name: Semesterläge
+                    - icon: sunglasses
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.vardagsrummet_lux
+                    - name: Vardagsrummet
+                    - icon: weather-sunny
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: sensor.sovrummet_lux
+                    - name: Sovrummet
+                    - icon: weather-sunny
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                  card:
+                  - width: 10px
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+
+#                - type: 'custom:home-feed-card'
+#                    title: Home Feed
+#                    entities:
+
+                - type: 'custom:home-feed-card'
+                  show_empty: false
+                  entities:
+                    - sensor.frontdoor
+                    - sensor.backdoor
+                    - sensor.beedrom_window
+                    - sensor.office_window
+                    - sensor.albins_window
+                    - sensor.kitchen_window
+                    - sensor.kitchen_small_window
+                    - sensor.livingroom_window
+                    - sensor.larm
+                    - device_tracker.niklas_presence
+                    - device_tracker.hanna_presence
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+
+
+## Varnignar
+# Rad 2, Kort 3
+
+
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Varningar
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+#                - type: 'custom:decluttering-card'
+#                  template: switch_button_card
+#                  variables:
+#                    - entity: sensor.all_unknow_check
+#                    - name: Unknow
+#                    - lable: alla entities
+#                    - icon: lightbulb-off-outline
+#                    - show_last_changed: false
+#                    - show_label: true
+#                    - show_state: true
+#                    - show_icon: true
+#                    - opacity: 0.9
+#                    - tap_action:
+#                        action: more-info
+#                        haptic: light
+
+#                - type: 'custom:decluttering-card'
+#                  template: switch_button_card
+#                  variables:
+#                    - entity: sensor.all_lights_check
+#                    - name: Lampor
+#                    - lable: Onåbara
+#                    - icon: lightbulb-off-outline
+#                    - show_last_changed: false
+#                    - show_label: true
+#                    - show_state: true
+#                    - show_icon: true
+#                    - opacity: 0.9
+#                    - tap_action:
+#                        action: more-info
+#                        haptic: light
+
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: alert.front_door
+                    - name: Ytterdörren
+                    - lable: öppen?
+                    - icon: door-open
+                    - show_last_changed: false
+                    - show_label: true
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+
+
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+                - type: custom:auto-entities
+                  card:
+                    type: entities
+                    show_header_toggle: false
+                    style: |
+                      ha-card {
+                        background: var(--homekit-card-off);
+                        --paper-item-icon-color: var(--icon-color-off);
+                        color: var(--name-color-off);
+                        border-radius: var(--border-radius);
+                        font-family: Helvetica;
+                        font-size: 12px;
+                        opacity: 0.8;
+                      }
+                  filter:
+                    include:
+                      - domain: light
+                        state: "unavailable"
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: custom:auto-entities
+                  card:
+                    type: entities
+                    show_header_toggle: false
+                    style: |
+                      ha-card {
+                        background: var(--homekit-card-off);
+                        --paper-item-icon-color: var(--icon-color-off);
+                        color: var(--name-color-off);
+                        border-radius: var(--border-radius);
+                        font-family: Helvetica;
+                        font-size: 12px;
+                        opacity: 0.8;
+                      }
+                  filter:
+                    include:
+                      - state: "unknown"
+                    exclude:
+                      - domain: group
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px

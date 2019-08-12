@@ -1,0 +1,260 @@
+title: Home
+icon: mdi:home-assistant
+path: home
+#popup_cards:
+#  !include popup-cards/test.yaml
+#  !include popup-cards/test2.yaml
+
+type: custom:card-loader
+wait:
+  - state-switch
+  - swipe-card
+  - decluttering-card
+  - button-card
+
+
+cards:
+  - type: vertical-stack
+    cards:
+
+# Weather Panel
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: custom:simple-weather-card
+            entity:  weather.smhi_home
+            style: |
+             ha-card {
+                border-radius: 12px;
+              }
+            name: "Göteborg"
+            backdrop: false
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+## Hemma?
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: picture-entity
+            entity: device_tracker.hanna_presence
+            style: |
+             ha-card {
+                border-radius: 12px;
+              }
+            image: /local/hanna_away.jpg
+            name: ' '
+            state_image:
+              Home: /local/hanna_home.jpg
+              Just arrived: /local/hanna_home.jpg
+
+          - type: picture-entity
+            entity: device_tracker.niklas_presence
+            style: |
+             ha-card {
+                border-radius: 12px;
+              }
+            image: /local/niklas_away.jpg
+            name: ' '
+            state_image:
+              Home: /local/niklas_home.jpg
+              Just arrived: /local/niklas_home.jpg
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: custom:krisinfo-card
+        only_alerts: true
+        entity: sensor.krisinformation
+
+
+# Row 1
+# Alarm
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Larm
+              - label: Larm
+              - icon: shield-check
+              - show_label: false
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: alarm_control_panel.house
+              - margin-right: 40px
+              - opacity: 0.7
+
+# Row 1
+# Lägenheten
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Media
+              - label: Media
+              - icon: itunes
+              - show_label: true
+              - show_state: false
+              - color: grey
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: input_boolean.lovelace_hemmet
+              - margin-right: 40px
+              - opacity: 0.7
+
+# Row 1
+# Kvällsläge
+
+
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Kvällsläge
+              - label: Turn On/Off
+              - icon: sofa
+              - show_label: false
+              - tap_action:
+                  action: toggle
+                  haptic: light
+              - entity: input_boolean.evening
+              - margin-right: 40px
+              - opacity: 0.7
+
+# Row 1
+# Dark mode
+
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Dark mode
+              - label: Darkmode
+              - icon: lightbulb-off-outline
+              - show_label: false
+              - tap_action:
+                  action: toggle
+                  haptic: light
+              - entity: input_boolean.dark_mode
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Inomhus
+              - label: Inomhus
+              - icon: thermometer
+              - color: grey
+
+              - show_label: false
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: sensor.temp_inne_filtrerad
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Utomhus
+              - label: Utomhus
+              - icon: thermometer
+              - color: grey
+
+              - show_label: false
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: sensor.temp_ute_filtrerad
+              - margin-right: 40px
+              - opacity: 0.7
+
+
+
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - size: 25%
+              - name: Blommor
+              - label: Tomatblomman
+              - icon: flower-poppy
+              - color: grey
+              - show_label: false
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: plant.tomaten
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Wowite
+              - label: Wowite
+              - icon: robot-vacuum
+              - color: grey
+              - show_label: false
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: vacuum.wowite
+              - margin-right: 40px
+              - opacity: 0.7
+
+
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+
+
+  # Notifications Panel
+      - !include notifications/notifications.yaml

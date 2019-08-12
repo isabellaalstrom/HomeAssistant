@@ -1,0 +1,17 @@
+sensor:
+  - platform: pollenniva
+    scan_interval: 14400 # (default, optional)
+    state_as_string: false # (default, optional, show states as strings as per STATES above)
+    sensors:
+      - city: Göteborg
+        days_to_track: 3 # (0-4, optional)
+        allergens:
+          - Gräs
+          - Gråbo
+          - Björk
+          - Alm
+          - Ambrosia
+          - Bok
+          - Ek
+          - Hassel
+          - Sälg / Vide

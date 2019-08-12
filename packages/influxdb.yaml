@@ -1,0 +1,187 @@
+homeassistant:
+  customize:
+    sensor.influxdb_max_for_last_week:
+      friendly_name: 1 vecka
+      icon: mdi:thermometer
+    sensor.influxdb_min_for_last_week:
+      friendly_name: 1 vecka
+      icon: mdi:thermometer
+
+    sensor.influxdb_max_for_last_24h:
+      friendly_name: 24h
+      icon: mdi:thermometer
+    sensor.influxdb_min_for_last_24h:
+      friendly_name: 24h
+      icon: mdi:thermometer
+    sensor.influxdb_max_for_last_months:
+      friendly_name: 1 mån
+      icon: mdi:thermometer
+    sensor.influxdb_min_for_last_months:
+      friendly_name: 1 mån
+      icon: mdi:thermometer
+    sensor.influxdb_max_temp:
+      friendly_name: Max
+      icon: mdi:thermometer
+    sensor.influxdb_min_temp:
+      friendly_name: Min
+      icon: mdi:thermometer
+    sensor.influxdb_utomhus:
+      friendly_name: InfluxDB Utetemp
+      icon: mdi:thermometer
+    sensor.influxdb_inside:
+      friendly_name: InfluxDB Innetemp
+      icon: mdi:thermometer
+
+
+influxdb:
+  host: 192.168.156.2
+  port: 8086
+  database: home_assistant
+  username: !secret influxdbuser
+  password: !secret influxdbpw
+  ssl: false
+  verify_ssl: false
+  max_retries: 3
+  default_measurement: state
+  include:
+    entities:
+       - sensor.inside_filtered_realistic_temperature
+       - sensor.outside_filtered_realistic_temperature
+       - sensor.albin_temp
+       - sensor.sovrum_temp
+       - sensor.vardagsrumet_temp
+       - sensor.baksidan_temperature
+       - sensor.framsidan_temperature
+       - sensor.vardagsrummet_lux
+       - sensor.daggpunkt
+  tags:
+    instance: prod
+    source: hass
+
+
+
+sensor:
+  - platform: influxdb
+    host: 192.168.156.2
+    port: 8086
+#    database: home_assistant
+    username: !secret influxdbuser
+    password: !secret influxdbpw
+    queries:
+      - name: Influxdb Min for last week
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: min
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 1w'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Max for last week
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: max
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 1w'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Min for last 24h
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: min
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 24h'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Max for last 24h
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: max
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 24h'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Min for last months
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: min
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 30d'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Max for last months
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: max
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 30d'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+
+      - name: Influxdb Min temp
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: min
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'''
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Max temp
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: max
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'''
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Utomhus
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: last
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'''
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb Inside
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: last
+        where: '"entity_id" = ''inside_filtered_realistic_temperature'''
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb ute medel 1 dygn
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: mean
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 24h'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb ute medel 7dagar
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: mean
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 1w'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant
+
+      - name: Influxdb ute medel 30dagar
+        unit_of_measurement: °C
+        value_template: '{{ value | round(1) }}'
+        group_function: mean
+        where: '"entity_id" = ''outside_filtered_realistic_temperature'' and time > now() - 30d'
+        measurement: '"°C"'
+        field: value
+#        database: home_assistant

@@ -1,0 +1,12 @@
+/*
+/*/
+.*
+._*
+!.gitignore
+!configuration.yaml
+!entities/
+!logging/
+!lovelace/
+!packages/
+!screenshots/
+!themes/

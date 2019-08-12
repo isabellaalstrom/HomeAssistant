@@ -1,0 +1,167 @@
+
+
+
+input_select:
+  vacuum_mode:
+    name: Ska Wowite städa idag?
+    options:
+     - 'Ja'
+     - 'Nej'
+    initial: 'Ja'
+    icon: mdi:robot-vacuum
+  vacuum_dailyreset:
+    name: 'Har Wowite städat idag:'
+    options:
+     - 'Ja'
+     - 'Nej'
+    initial: 'Nej'
+    icon: mdi:check-circle
+  vacuum_zone:
+    name: 'Zone städning:'
+    options:
+      - 'Välj rum'
+      - 'Hela lägenheten'
+      - 'Albins rum'
+      - 'Köket'
+      - 'Vardagsrummet'
+      - 'Sovrummet'
+      - 'Hallen'
+      - 'Kontoret'
+    initial: 'Välj rum'
+    icon: mdi:map-outline
+
+
+
+sensor:
+  - platform: template
+    sensors:
+      vacuum_time:
+        friendly_name: "Städningstid"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'minuter'
+        value_template: "{{ states.vacuum.wowite.attributes.cleaning_time }}"
+
+  - platform: template
+    sensors:
+      vacuum_count:
+        friendly_name: "Städningar"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'st'
+        value_template: "{{ states.vacuum.wowite.attributes.cleaning_count }}"
+
+  - platform: template
+    sensors:
+      vacuum_area:
+        friendly_name: "Städningsyta"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'm²'
+        value_template: "{{ states.vacuum.wowite.attributes.cleaned_area }}"
+
+  - platform: template
+    sensors:
+      vacuum_main_brush:
+        friendly_name: "Huvudborste"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'tim'
+        value_template: "{{ states.vacuum.wowite.attributes.main_brush_left }}"
+
+  - platform: template
+    sensors:
+      vacuum_side_brush:
+        friendly_name: "Sidoborste"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'tim'
+        value_template: "{{ states.vacuum.wowite.attributes.side_brush_left }}"
+
+  - platform: template
+    sensors:
+      vacuum_filter:
+        friendly_name: "Filter"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'tim'
+        value_template: "{{ states.vacuum.wowite.attributes.filter_left }}"
+
+  - platform: template
+    sensors:
+      vacuum_battery:
+         friendly_name: 'Batteri'
+         value_template: '{{ states.vacuum.wowite.attributes.battery_level}}'
+         unit_of_measurement: '%'
+         entity_id: vacuum.wowite
+         icon_template: '{{ states.vacuum.wowite.attributes.battery_icon }}'
+
+  - platform: template
+    sensors:
+      vacuum_total_cleaned_area:
+        friendly_name: "Städningsyta"
+        entity_id: vacuum.wowite
+        unit_of_measurement: 'm²'
+        value_template: "{{ states.vacuum.wowite.attributes.total_cleaned_area }}"
+
+
+
+
+
+script:
+  vacuum_hallen:
+    alias: "Dammsug hallen"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[19445,24927,21545,27627,1]]
+
+  vacuum_kok:
+    alias: "Dammsug köket"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[19569,21999,22769,24849,1]]
+
+  vacuum_vardagsrum:
+    alias: "Dammsug vardagsrummet"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[22683,21546,28033,25946,1]]
+
+  vacuum_sovrum:
+    alias: "Dammsug sovrummet"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[25122,18334,29422,21534,1]]
+
+  vacuum_albins:
+    alias: "Dammsug Albins rum"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[19065,18365,21815,21415,1]]
+
+  vacuum_kontoret:
+    alias: "Dammsug kontoret"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[23430,26213,27780,28313,1]]
+
+  vacuum_lgh:
+    alias: "Hela lägenheten"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[18046,17393,30446,28793,1]]

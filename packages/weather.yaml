@@ -1,0 +1,60 @@
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+
+
+sensor:
+
+  - platform: darksky
+    api_key: !secret darksky
+    language: sv
+    forecast:
+      - 0
+    scan_interval:
+      minutes: 10
+    monitored_conditions:
+      - summary
+      - hourly_summary
+      - temperature_low
+      - temperature_high
+
+  - platform: moon
+  - platform: season
+
+  - platform: yr
+    monitored_conditions:
+      - symbol
+      - dewpointTemperature
+      - cloudiness
+
+  - platform: yr
+    name: YR 9h
+    forecast: 9
+    monitored_conditions:
+      - temperature
+      - dewpointTemperature
+
+  - platform: min_max
+    name: temp_inne
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.albin_temp
+      - sensor.sovrum_temp
+      - sensor.vardagsrumet_temp
+
+  - platform: min_max
+    name: temp_ute
+    type: min
+    round_digits: 1
+    entity_ids:
+      - sensor.baksidan_temperature
+      - sensor.framsidan_temperature
+
+
+camera:
+  - platform: generic
+    name: "Mölnlycke meteogram"
+    still_image_url: https://www.yr.no/sted/Sverige/Västra_Götaland/Mölnlycke/meteogram.svg
+    content_type: 'image/svg+xml'

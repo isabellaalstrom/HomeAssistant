@@ -1,0 +1,396 @@
+title: Rum
+path:  rum
+#background: center / cover no-repeat url("/local/images/papers.co-si27r.jpg") fixed
+
+
+cards:
+  - type: vertical-stack
+    cards:
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Tegnérsgatan'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Tänd allt
+              - label: Kör
+              - icon: lightbulb-on-outline
+              - show_label: true
+              - show_state: false
+              - tap_action:
+                  action: toggle
+                  haptic: light
+              - entity: script.nr_light_on
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Släck allt
+              - label: Kör
+              - icon: lightbulb-off-outline
+              - show_label: true
+              - show_state: false
+
+              - tap_action:
+                  action: toggle
+                  haptic: light
+              - entity: script.nr_light_off
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Albins rum'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.albin_fonster
+              - name: Byrån
+              - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.albin_hylla
+              - name: Hylla
+              - icon: desk-lamp
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Hallen'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.hallen_byra
+              - name: Byrån
+              - icon: floor-lamp
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+
+
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Kontoret'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.kontoret_snehyllan
+              - name: Snehyllan
+              - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.kontoret_hyllan
+              - name: Hyllan
+              - icon: desk-lamp
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+
+
+
+
+
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Köket'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.kok_banken
+              - name: Köksbänken
+              - icon: lamp
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Sovrummet'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.sovrum_fonster
+              - name: Fönstret
+              - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.sovrum_hoger
+              - name: Hannas
+              - icon: desk-lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.sovrum_vanster
+              - name: Niklas
+              - icon: desk-lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: switch.sovrum_tv
+              - name: TVn
+              - icon: television
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Vardagsrummet'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+#          - type: custom:decluttering-card
+#            template: light_button_card
+#            variables:
+#              - entity: light.vardagsrum_fonster
+#              - name: Fönstret
+#              - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.vardagsrum_lampa
+              - name: Lampan
+              - icon: floor-lamp
+
+ #         - type: custom:decluttering-card
+ #           template: light_button_card
+ #           variables:
+ #             - entity: light.vardagsrum_snehylla
+ #             - name: Snehyllan
+ #             - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.vardagsrummet_bokhyllan
+              - name: Bokhylla glob
+              - icon: lamp
+
+#          - type: 'custom:button-card'
+#            color_type: blank-card
+#            styles:
+#              card:
+#                - width: 10px
+
+
+#      - type: horizontal-stack
+#        cards:
+
+#          - type: 'custom:button-card'
+#            color_type: blank-card
+#            styles:
+#              card:
+#                - width: 10px
+
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.vardagsrum_lilla_bokhyllan
+              - name: Bokhyllan
+              - icon: lamp
+
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.vardagsrum_tvbank
+              - name: TV-bänken
+              - icon: lamp
+
+#          - type: custom:button-card
+#            color_type: blank-card
+#            aspect_ratio: 1/1
+
+#          - type: custom:button-card
+#            color_type: blank-card
+#            aspect_ratio: 1/1
+
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px

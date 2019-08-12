@@ -1,0 +1,69 @@
+sensor:
+  - platform: template
+    sensors:
+      all_lights_check:
+        value_template: >-
+          {{ (dict((states.light|list)|groupby('state' | lower))['unknown']| count) + (dict((states.light|list)|groupby('state' | lower))['unavailable']| count) }}
+        entity_id:
+          - sensor.time
+          - light.albin_fonster
+          - light.albin_hylla
+          - light.albins_rum
+          - light.garderoben
+          - light.hall_vagglampa
+          - light.hallen_byra
+          - light.kok
+          - light.kok_banken
+          - light.kontoret
+          - light.kontoret_hyllan
+          - light.kontoret_snehyllan
+          - light.sovrum
+          - light.sovrum_fonster
+          - light.sovrum_hoger
+          - light.sovrum_vanster
+          - light.vardagsrum_lampa
+          - light.vardagsrum_lilla_bokhyllan
+          - light.vardagsrum_tvbank
+          - light.vardagsrummet
+          - light.vardagsrummet_bokhyllan
+
+
+
+      all_unknow_check:
+        value_template: >-
+          {{ (dict((states|list)|groupby('state' | lower))['unknown']| count) + (dict((states|list)|groupby('state' | lower))['unavailable']| count) }}
+        entity_id:
+          - sensor.frontdoor
+          - sensor.backdoor
+          - sensor.beedrom_window
+          - sensor.office_window
+          - sensor.albins_window
+          - sensor.kitchen_window
+          - sensor.kitchen_small_window
+          - sensor.livingroom_window
+
+      nr_open_doors_and_windows:
+        value_template: >-
+          {% set opendoor= namespace(count=0)%}
+          {% for entity in states.binary_sensor %}
+            {% if is_state(entity.entity_id, 'on') and is_state_attr(entity.entity_id, 'device_class', 'opening') %}
+              {% set opendoor.count = opendoor.count +1 %}
+            {% endif %}
+          {% endfor %}
+          {{ opendoor.count }}
+        entity_id:
+          - sensor.frontdoor
+          - sensor.backdoor
+          - sensor.beedrom_window
+          - sensor.office_window
+          - sensor.albins_window
+          - sensor.kitchen_window
+          - sensor.kitchen_small_window
+          - sensor.livingroom_window
+
+      alarm_contolpanel_varning:
+        value_template: >-
+          {{ states('alarm_control_panel.aarlo_arlo') !=  states('alarm_control_panel.house') }}
+        entity_id:
+          - alarm_control_panel.aarlo_arlo
+          - alarm_control_panel.house

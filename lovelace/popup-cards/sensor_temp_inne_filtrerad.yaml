@@ -1,0 +1,92 @@
+  sensor.temp_inne_filtrerad:
+    title: Innetemperatur
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+            - type: custom:decluttering-card
+              template: mini-graph-card
+              variables:
+                - entity: temp_inne_filtrerad
+                - name: Inne
+                - line_color: '#00d8ff'
+                - font_size: 53
+                - height: 120
+
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+        - type: horizontal-stack
+          cards:
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Albins
+                - label: Albins
+                - icon: thermometer
+                - show_label: false
+                - show_last_changed: true
+                - entity: sensor.albin_temp
+                - margin-right: 40px
+                - opacity: 0.7
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Sovrum
+                - label: Sovrum
+                - icon: thermometer
+                - show_label: false
+                - show_last_changed: true
+                - entity: sensor.sovrum_temp
+                - margin-right: 40px
+                - opacity: 0.7
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Vardagsrum
+                - label: Vardagsum
+                - icon: thermometer
+                - show_label: false
+                - show_last_changed: true
+                - entity: sensor.vardagsrumet_temp
+                - margin-right: 40px
+                - opacity: 0.7
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px

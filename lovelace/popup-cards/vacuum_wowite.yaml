@@ -1,0 +1,45 @@
+  input_boolean.test:
+    type: custom:card-loader
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+    wait:
+      - state-switch
+      - swipe-card
+      - decluttering-card
+      - button-card
+#    title: Vacuum Cleaner
+#    style:
+#      border-radius: 12px
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header_text
+          variables:
+            - content: '### Xiaomi Roborock'
+
+
+        - type: custom:swipe-card
+          parameters:
+            effect: 'coverflow'
+            grabCursor: true
+          cards:
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header_text
+                  variables:
+                    - content: '#### Status'
+                - type: custom:decluttering-card
+                  template: header_text
+                  variables:
+                    - content: '##### Current Status'
+
+
+                - type: custom:decluttering-card
+                  template: notification_card
+                  variables:
+                    - color: rgba(0, 0, 0, 0.5)
+                    - icon: robot-vacuum
+                    - content: '[[ vacuum.wowite.state ]]'

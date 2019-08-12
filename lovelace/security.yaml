@@ -1,0 +1,213 @@
+title: Security
+path: security
+#background: center / cover no-repeat url("/local/images/papers.co-si27r.jpg") fixed
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Status'
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: 'custom:decluttering-card'
+            template: switch_button_card
+            variables:
+              - entity: alarm_control_panel.aarlo_arlo
+              - name: Kameror
+              - icon: cctv
+              - aspect_ratio: 4/1
+              - show_label: false
+              - show_state: true
+              - show_icon: true
+              - opacity: 0.9
+              - tap_action:
+                  action: more-info
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Kameror'
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: custom:aarlo-glance
+            style: |
+              ha-card {
+                border-radius: 12px;
+                overflow: hidden;
+              }
+            entity: camera.aarlo_baksidan
+            name: Baksidan
+            aspect_ratio: 16x9
+            show:
+              - snapshot
+              - battery_level
+              - signal_strength
+            top_title: false
+            top_status: false
+            top_date: true
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: custom:aarlo-glance
+            style: |
+              ha-card {
+                border-radius: 12px;
+                overflow: hidden;
+              }
+            entity: camera.aarlo_vardagsrummet
+            name: Vardagsrummet
+            aspect_ratio: 16x9
+            show:
+              - snapshot
+              - battery_level
+              - signal_strength
+            top_title: false
+            top_status: false
+            top_date: true
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Dörrar'
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Ytterdörren
+              - label: status
+              - icon: door
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.frontdoor
+              - margin-right: 40px
+              - opacity: 0.7
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Altandörren
+              - label: status
+              - icon: door
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity:  binary_sensor.backdoor
+              - margin-right: 40px
+              - opacity: 0.7
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+#      - type: custom:decluttering-card
+#        template: header_text
+#        variables:
+#          - content: '##### Fönster'
+#      - type: horizontal-stack
+#        cards:
+#          - type: 'custom:button-card'
+#            color_type: blank-card
+#            styles:
+#              card:
+#                - width: 10px
+#          - type: custom:decluttering-card
+#            template: switch_button_card
+#            variables:
+#              - name: Albins
+#              - label: status
+#              - icon: window-closed
+#              - show_label: false
+#              - show_state: true
+#              - show_last_changed: true
+#              - tap_action:
+#                  action: more-info
+#                  haptic: light
+#              - entity: binary_sensor.albins_fonster
+#              - margin-right: 40px
+#              - opacity: 0.7
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Rörelse'
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Vardagsrummet
+              - label: status
+              - icon: motion-sensor
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.vardagsrummet_motionsensor
+              - margin-right: 40px
+              - opacity: 0.7
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Vardagsrummet
+              - label: status
+              - icon: motion-sensor
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.sovrummet_motionsensor
+              - margin-right: 40px
+              - opacity: 0.7
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1

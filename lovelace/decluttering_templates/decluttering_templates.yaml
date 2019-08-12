@@ -1,0 +1,643 @@
+mini-graph-card:
+  default:
+    - font_size: 70
+    - height: 90
+  card:
+    type: 'custom:mini-graph-card'
+    style: |
+      ha-card {
+        background: var(--homekit-card-off);
+        border-radius: var(--border-radius);
+        color: var(--label-color-off);
+        --paper-item-icon-color: var(--icon-color-off);
+        font-weight: bold;
+        opacity: 0.8;
+      }
+    entities:
+      - sensor.[[entity]]
+    hour24: true
+    animate: true
+    font_size: '[[font_size]]'
+    height: '[[height]]'
+    show:
+      icon: false
+    font_size_header: 9
+    line_color: '[[line_color]]'
+    name: '[[name]]'
+
+laundry_elements:
+  card:
+    type: picture-elements
+    style: |
+      ha-card {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+    image: /local/images/[[image]]
+    elements:
+      - type: state-label
+        entity: sensor.[[entity_status]]
+        style:
+          left: 0
+          bottom: 0
+          pointer-events: none
+          font-size: 16px
+          line-height: 32px
+          color: white
+          background-color: rgba(0, 0, 0, 0.3)
+          width: 100%
+          transform: initial
+          padding: 0 8px
+      - type: state-label
+        entity: switch.[[entity]]
+        style:
+          bottom: 0
+          right: 0
+          pointer-events: none
+          font-size: 16px
+          transform: initial
+          color: white
+          line-height: 32px
+          padding: 0px 44px
+      - type: icon
+        icon: mdi:power
+        tap_action:
+          action: toggle
+        entity: switch.[[entity]]
+        style:
+          bottom: 0
+          right: 0
+          transform: initial
+          color: white
+          line-height: 32px
+          padding: 8px 16px
+      - type: state-label
+        entity: sensor.[[entity_energy]]
+        style:
+          top: 0
+          right: 0
+          pointer-events: none
+          transform: initial
+          font-size: 12px
+          color: rgba(255,255,255,0.8)
+          line-height: 32px
+          padding: 1px 35px
+      - type: icon
+        icon: mdi:flash-circle
+        style:
+          top: 0
+          right: 0
+          pointer-events: none
+          transform: scale(0.8)
+          color: rgba(255,255,255,0.8)
+          line-height: 32px
+          padding: 8px 13px
+      - type: state-label
+        entity: sensor.[[entity_energy_today]]
+        style:
+          top: 0
+          right: 0
+          pointer-events: none
+          transform: initial
+          font-size: 12px
+          color: rgba(255,255,255,0.8)
+          line-height: 32px
+          padding: 30px 35px
+      - type: icon
+        icon: mdi:calendar-import
+        style:
+          top: 0
+          right: 0
+          pointer-events: none
+          transform: scale(0.8)
+          color: rgba(255,255,255,0.8)
+          line-height: 32px
+          padding: 36px 13px
+person_elements:
+  card:
+    type: picture-elements
+    style: |
+      ha-card {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+    image: '[[image]]'
+    elements:
+      - type: image
+        entity: person.[[name]]
+        image: '[[image]]'
+        tap_action:
+          action: more-info
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          heigth: 100%
+      - type: state-label
+        entity: person.[[name]]
+        style:
+          left: 0
+          bottom: 0
+          pointer-events: none
+          font-size: 16px
+          line-height: 24px
+          color: white
+          background-color: rgba(0, 0, 0, 0.3)
+          width: 100%
+          transform: initial
+          padding: 0 8px
+      - type: state-label
+        entity: '[[battery]]'
+        style:
+          top: 0
+          '[[direction]]': 0
+          pointer-events: none
+          transform: initial
+          font-size: 12px
+          color: rgba(0,0,0,0.8)
+          line-height: 32px
+          padding: 1px 35px
+      - type: icon
+        icon: mdi:cellphone-iphone
+        style:
+          top: 0
+          '[[direction]]': 0
+          pointer-events: none
+          transform: scale(0.8)
+          color: rgba(0,0,0,0.8)
+          line-height: 32px
+          padding: 8px 10px
+#      - type: state-label
+#        entity: '[[namesensor]]'
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: initial
+#          font-size: 12px
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#          padding: 30px 35px
+#      - type: icon
+#        icon: mdi:email
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: scale(0.8)
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#           padding: 36px 10px
+#      - type: state-label
+#        entity: '[[postnl]]'
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: initial
+#          font-size: 12px
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#          padding: 58px 35px
+#      - type: icon
+#        icon: mdi:package-variant-closed
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: scale(0.8)
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#          padding: 64px 10px
+#      - type: state-label
+#        entity: '[[reistijd]]'
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: initial
+#          font-size: 12px
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#          padding: 86px 35px
+#      - type: icon
+#        icon: mdi:[[icon]]
+#        style:
+#          top: 0
+#          '[[direction]]': 0
+#          pointer-events: none
+#          transform: scale(0.8)
+#          color: rgba(255,255,255,0.8)
+#          line-height: 32px
+#          padding: 92px 10px
+climate_card:
+  card:
+    type: 'custom:thermostat-card'
+    style: |
+      ha-card {
+        border-radius: 12px;
+        background: var(--homekit-white);
+      }
+    ambient_temperature: '[[ambient_temperature]]'
+    chevron_size: 100
+    pending: 1
+    entity: '[[entity]]'
+    hvac:
+      attribute: operation_mode
+      states:
+        'heat': 'heat'
+        'off': 'off'
+    step: 1
+light_popup_card:
+  card:
+    type: 'custom:light-entity-card'
+    style: |
+      ha-card {
+        background: var(--homekit-white);
+        opacity: 0.7;
+        border-radius: 12px;
+        color: black;
+      }
+    entity: '[[entity]]'
+    group: false
+    persist_features: true
+    header: ' '
+
+
+light_button_card:
+  default:
+    - size: 30%
+    - lock: false
+    - color: auto
+    - spin: false
+    - show_state: true
+    - show_label: true
+    - show_last_changed: false
+    - tap_action: toggle
+    - hold_action: more-info
+    - aspect_ratio: 1/1
+  card:
+    type: custom:button-card
+    name: '[[name]]'
+    deep_press: true
+    icon: 'mdi:[[icon]]'
+    size: '[[size]]'
+    color: '[[color]]'
+    lock: '[[lock]]'
+    aspect_ratio: '[[aspect_ratio]]'
+    entity: '[[entity]]'
+    label_template: >
+      var bri = Math.round(entity.attributes.brightness / 2.55);
+      return (bri ? bri : '0') + '%';
+    show_state: '[[show_state]]'
+    show_label: '[[show_label]]'
+    show_last_changed: '[[show_last_changed]]'
+    tap_action:
+      action: '[[tap_action]]'
+      haptic: light
+    hold_action:
+      action: '[[hold_action]]'
+      haptic: heavy
+    styles:
+      card:
+        - border-radius: var(--border-radius)
+        - --ha-card-background: var(--homekit-card-off)
+      label:
+        - font-size: 11px
+        - font-family: Helvetica
+        - padding: 0px 10px
+        - justify-self: start
+      state:
+        - font-size: 11px
+        - font-family: Helvetica
+        - padding: 0px 10px
+        - justify-self: start
+        - text-transform: capitalize
+        - font-weight: bold
+        - padding-left: 10px
+      grid:
+        - grid-template-areas: '"i" "n" "s" "l"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - margin-right: 60px
+      name:
+        - justify-self: start
+        - padding-left: 10px
+        - font-weight: bold
+        - font-family: Helvetica
+        - font-size: 13px
+    state:
+      - value: "on"
+        spin: '[[spin]]'
+        styles:
+          card:
+            - --ha-card-background: var(--homekit-card-on)
+          name:
+            - color: var(--name-color-on)
+          state:
+            - color: var(--state-color-on)
+          lock:
+            - color: var(--lock-color-on)
+          label:
+            - color: var(--label-color-on)
+      - value: "off"
+        styles:
+          card:
+            - opacity: 0.4
+          icon:
+            - color: var(--icon-color-off)
+          name:
+            - color: var(--name-color-off)
+          state:
+            - color: var(--state-color-off)
+          lock:
+            - color: var(--lock-color-off)
+          label:
+            - color: var(--label-color-off)
+      - value: "unavailable"
+        styles:
+          card:
+            - opacity: 0.2
+          icon:
+            - color: var(--icon-color-off)
+          name:
+            - color: var(--name-color-off)
+          state:
+            - color: var(--state-color-off)
+          lock:
+            - color: var(--lock-color-off)
+
+# Standard Button Card (Used throughout most of my setup)
+switch_button_card:
+
+  default:
+    - size: 25%
+    - lock: false
+    - color: auto
+    - variable: spin
+    - spin: false
+    - off_variable: spin
+    - off_spin: false
+    - show_name: true
+    - show_state: true
+    - show_label: true
+    - show_icon: true
+    - show_last_changed: false
+    - tap_action:
+        action: toggle
+        haptic: light
+    - hold_action:
+        action: more-info
+        haptic: heavy
+    - aspect_ratio: 1/1
+    - margin-right: 60px
+    - margin-left: 0px
+    - label: '&nbsp;'
+    - opacity: 0.4
+    - opacity_on: 1.0
+    - off_icon_color: var(--icon-color-off)
+    - off_name_color: var(--name-color-off)
+    - off_state_color: var(--state-color-off)
+    - off_label_color: var(--label-color-off)
+    - on_name_color: var(--name-color-on)
+    - on_state_color: var(--state-color-on)
+    - on_label_color: var(--label-color-on)
+    - on_card_color: var(--homekit-card-on)
+    - label_font_size: 11px
+    - label_font_weight: normal
+    - justify-self-name: start
+    - padding-left-name: 10px
+  card:
+    type: custom:button-card
+    name: '[[name]]'
+    deep_press: true
+    icon: 'mdi:[[icon]]'
+    size: '[[size]]'
+    color: '[[color]]'
+    lock: '[[lock]]'
+    aspect_ratio: '[[aspect_ratio]]'
+    entity: '[[entity]]'
+    label: '[[label]]'
+    show_name: '[[show_name]]'
+    show_icon: '[[show_icon]]'
+    show_state: '[[show_state]]'
+    show_label: '[[show_label]]'
+    show_last_changed: '[[show_last_changed]]'
+    tap_action: '[[tap_action]]'
+    hold_action: '[[hold_action]]'
+    styles:
+      card:
+        - border-radius: var(--border-radius)
+        - --ha-card-background: var(--homekit-card-off)
+      label:
+        - font-size: 11px
+        - font-family: Helvetica
+        - padding: 0px 10px
+        - justify-self: start
+        - color: var(--label-color-off)
+      state:
+        - font-size: 11px
+        - font-family: Helvetica
+        - padding: 0px 10px
+        - justify-self: start
+        - text-transform: capitalize
+        - font-weight: bold
+        - padding-left: 10px
+        - color: var(--upcoming-color)
+      grid:
+        - grid-template-areas: '"i" "n" "s" "l"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - margin-right: '[[margin-right]]'
+        - margin-left: '[[margin-left]]'
+      name:
+        - color: var(--upcoming-color)
+        - justify-self: '[[justify-self-name]]'
+        - padding-left: '[[padding-left-name]]'
+        - font-weight: bold
+        - font-family: Helvetica
+        - font-size: 13px
+    state:
+      - value: "on"
+        '[[variable]]': '[[spin]]'
+        styles:
+          card:
+            - --ha-card-background: '[[on_card_color]]'
+            - opacity: '[[opacity_on]]'
+          name:
+            - color: '[[on_name_color]]'
+          state:
+            - color: '[[on_state_color]]'
+          lock:
+            - color: var(--lock-color-on)
+          label:
+            - color: '[[on_label_color]]'
+      - value: "off"
+        '[[off_variable]]': '[[off_spin]]'
+        styles:
+          card:
+            - opacity: '[[opacity]]'
+          icon:
+            - color: '[[off_icon_color]]'
+          name:
+            - color: '[[off_name_color]]'
+          state:
+            - color: '[[off_state_color]]'
+          label:
+            - color: '[[off_label_color]]'
+            - font-size: '[[label_font_size]]'
+            - font-weight: '[[label_font_weight]]'
+          lock:
+            - color: var(--lock-color-off)
+      - value: "idle"
+        styles:
+          card:
+            - opacity: 0.8
+          name:
+            - color: var(--name-color-off)
+          label:
+            - color: var(--label-color-off)
+          icon:
+            - color: var(--icon-color-off)
+          lock:
+            - color: var(--lock-color-off)
+      - value: "unavailable"
+        styles:
+          card:
+            - opacity: 0.2
+          name:
+            - color: var(--name-color-off)
+          label:
+            - color: var(--label-color-off)
+          state:
+            - color: var(--state-color-off)
+          icon:
+            - color: var(--icon-color-off)
+          lock:
+            - color: var(--lock-color-off)
+      - value: "disarmed"
+        styles:
+          card:
+            - opacity: 0.8
+            - --ha-card-background: var(--homekit-card-off)
+          name:
+            - color: var(--name-color-off)
+          state:
+            - color: var(--state-color-off)
+            - font-weight: normal
+          icon:
+            - color: green
+      - value: "armed_home"
+        icon: "mdi:alert"
+        styles:
+          name:
+            - color: var(--name-color-on)
+          state:
+            - color: var(--label-color-on)
+            - font-weight: normal
+          icon:
+            - color: red
+            - animation: blink 2s ease infinite
+      - value: "armed_away"
+        icon: "mdi:alert"
+        styles:
+          name:
+            - color: var(--name-color-on)
+          state:
+            - color: var(--label-color-on)
+            - font-weight: normal
+          icon:
+            - color: red
+            - animation: blink 2s ease infinite
+      - value: "pending"
+        icon: "mdi:clock-alert-outline"
+        styles:
+          name:
+            - color: var(--name-color-on)
+          state:
+            - color: var(--label-color-on)
+            - font-weight: normal
+          icon:
+            - color: orange
+            - animation: blink 1s ease infinite
+      - operator: 'default'
+        styles:
+          icon:
+            - color: gray
+      - operator: '<'
+        value: 10
+        styles:
+          icon:
+            - color: red
+      - operator: '<'
+        value: 25
+        styles:
+          icon:
+            - color: orange
+      - operator: '<='
+        value: 100
+        styles:
+          icon:
+            - color: green
+header_text:
+
+  card:
+    type: markdown
+    style: |
+      ha-card {
+        box-shadow: none;
+        height: 33px;
+        background: rgba(0,0,0,0.0);
+        padding: 0px 10px;
+      }
+    content: '[[content]]'
+check_button_card:
+  card:
+    type: 'custom:check-button-card'
+    title: '[[title]]'
+    entity: '[[entity]]'
+    style: |
+      ha-card {
+        border-radius: 12px;
+        background: 'rgba(0, 0, 0, 0.0)';
+        padding-bottom: 2px;
+        padding-top: 2px;
+        font-family: Helvetica;
+      }
+    severity:
+      - value: '[[value 1]]'
+        hue: '140'
+      - value: '[[value 2]]'
+        hue: '55'
+      - value: '[[value 3]]'
+        hue: '345'
+notification_card:
+  card:
+    type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+            - width: 10px
+      - type: markdown
+        style: |
+          ha-card {
+            background: [[color]];
+            border-radius: var(--border-radius);
+            font-size: 13px;
+            font-family: Helvetica;
+          }
+        content: >
+          <ha-icon icon="mdi:[[icon]]"></ha-icon> [[content]]
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+              - width: 10px

@@ -1,0 +1,124 @@
+  device_tracker.niklas_presence:
+    type: custom:card-loader
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+
+    wait:
+      - state-switch
+      - swipe-card
+      - decluttering-card
+      - button-card
+      - map
+
+    title: Niklas
+    style:
+      border-radius: 12px
+    card:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+            - type: entities
+              style: |
+                ha-card {
+                  background: var(--homekit-card-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: var(--border-radius);
+                  font-family: Helvetica;
+                  font-size: 12px;
+                  opacity: 0.8;
+                }
+              entities:
+                - entity: sensor.niklas_battery_level
+                  name: Batteri
+                  icon: mdi:cellphone-iphone
+                - entity: sensor.niklas_battery_state
+                  name: Status
+                  icon: mdi:power-socket-eu
+                - entity: sensor.niklas_geocoded_location
+                  name: Adress
+                  icon: mdi:crosshairs-gps
+                - entity: sensor.niklas_activity
+                  name: Aktivitet
+                  icon: mdi:walk
+                - entity: sensor.niklas_steps
+                  name: Steg
+                  icon: mdi:shoe-print
+                - entity: sensor.niklas_distance
+                  name: Längd
+                  icon: mdi:map-marker-distance
+                - entity: sensor.niklas_last_update_trigger
+                  secondary_info: last-changed
+                  name: Senaste uppdateringen
+                  icon: mdi:update
+                  
+
+
+
+
+
+
+
+
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+            - type: map
+              style: |
+                ha-card {
+                  background: var(--homekit-card-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: var(--border-radius);
+                  font-family: Helvetica;
+                  font-size: 12px;
+                  opacity: 0.8;
+                }
+
+              default_zoom: 15
+              entities:
+                - device_tracker.niklas_iphone_8
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+        - type: 'custom:button-card'
+          color_type: blank-card
+          styles:
+            card:
+              - width: 10px

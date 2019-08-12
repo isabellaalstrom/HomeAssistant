@@ -1,0 +1,33 @@
+
+#homeassistant:
+#  customize:
+#    sensor.processor_use:
+#      friendly_name: CPU
+#      icon: mdi:raspberrypi
+#    sensor.disk_use_percent_home:
+#      friendly_name: SD card
+#      icon: mdi:micro-sd
+#    sensor.memory_free:
+#      friendly_name: RAM available
+#      icon: mdi:memory
+#    sensor.last_boot:
+#      friendly_name: Last boot
+#      icon: mdi:timer
+#    sensor.myipopendnscom:
+#      icon: mdi:network
+#      friendly_name: External IP
+#    sensor.ipv4_address_eno1:
+#      friendly_name: Internal IP
+#      icon: mdi:network
+#    sensor.hass_db_size:
+#      friendly_name: HASS db size
+#      icon: mdi:database
+
+sensor:
+  - platform: dnsip
+
+  - platform: systemmonitor
+    resources:
+      - type: last_boot
+      - type: ipv4_address
+        arg: eno1

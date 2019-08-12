@@ -1,0 +1,14 @@
+
+  - platform: rfxtrx
+    automatic_add: false
+    signal_repetitions: 2
+    devices:
+
+#      0b11000003040d0b01010f80:
+#        name: kontor_hylla
+
+      0b110004038b241e01010f80:
+        name: sovrum_tv
+
+      0710010143030180:
+        name: utebelysningen

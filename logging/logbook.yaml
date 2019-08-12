@@ -1,0 +1,48 @@
+  exclude:
+    domains:
+      - group
+      - updater
+      - automation
+      - device_tracker
+      - script
+
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.time_date
+      - sensor.yr_cloudiness
+      - sensor.yr_low_clouds
+      - sensor.yr_symbol
+      - sensor.volume_used_volume_1
+      - sensor.status_volume_1
+      - sensor.sunrise_time
+      - sensor.sunset_time
+      - sensor.status_smart_sdb
+      - sensor.albins_birthday
+      - sensor.albins_birthday_days
+      - sensor.albins_rum_humidity
+      - sensor.christmas_eve
+      - sensor.christmas_eve_days
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
+      - sensor.disk_use_home
+      - sensor.hannas_birthday
+      - sensor.hannas_birthday_days
+      - sensor.niklas_birthday
+      - sensor.niklas_birthday_days
+      - sensor.last_seen_motion
+      - alarm_control_panel.arlo
+      - binary_sensor.vardagsrummet_motionsensor
+      - sensor.bus_601_mot_goteborg
+      - sensor.buss_601_mot_molnlycke
+      - sensor.mot_goteborg
+      - sensor.mot_goteborg_10min
+      - sensor.mot_goteborg_line_and_time
+      - sensor.mot_goteborg_tag
+      - sensor.mot_molnlycke_tag
+      - sensor.601_mot_goteborg
+      - sensor.601_mot_molnlycke
+      - sensor.tag_goteborg_molnlycke

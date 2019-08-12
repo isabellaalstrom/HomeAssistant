@@ -1,0 +1,22 @@
+
+  ovrigtmenyn:
+    name: 'Övrigt menyn:'
+    options:
+      - 'Hem'
+      - 'Klimat'
+      - 'Blommor'
+      - 'IntelNuc'
+      - 'Lagenheten'
+      - 'Robotdamsugaren'
+      - 'Varningar'
+    initial: 'Hem'
+#    icon: mdi:map-outline
+
+  vacuum_card:
+    name: 'Robotdamsugaren lovelace card'
+    options:
+      - 'Basic'
+      - 'Zone'
+      - 'Schema'
+      - 'Status'
+    initial: 'Basic'

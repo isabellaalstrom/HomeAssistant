@@ -1,0 +1,112 @@
+homeassistant:
+#  customize: customize.yaml
+  packages: !include_dir_named packages
+
+http:
+  base_url: !secret base_url
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+
+hassio:
+cloud:
+map:
+person:
+config:
+updater:
+sun:
+system_health:
+mobile_app:
+
+frontend:
+  themes: !include_dir_merge_named themes
+lovelace:
+  mode: yaml
+
+ssdp:
+zeroconf:
+discovery:
+  ignore:
+    - apple_tv
+    - belkin_wemo
+    - bluesound
+    - bose_soundtouch
+    - denonavr
+    - directv
+    - enigma2
+    - frontier_silicon
+    - google_cast
+    - harmony
+    - igd
+    - logitech_mediaserver
+    - netgear_router
+    - octoprint
+    - openhome
+    - panasonic_viera
+    - philips_hue
+    - plex_mediaserver
+    - roku
+    - sabnzbd
+    - samsung_printer
+    - samsung_tv
+    - sonos
+    - songpal
+    - tellstick
+    - wink
+    - yamaha
+    - yeelight
+    - xiaomi_gw
+
+breaking_changes:
+
+hacs:
+  token: !secret hacs
+
+wwlln:
+
+rfxtrx:
+  device: !secret rfxtrx
+
+#xiaomi_aqara:
+#  discovery_retry: 5
+#  gateways:
+#    - mac: !secret xiaomi_mac
+#      key: !secret xiaomi_key
+
+ifttt:
+  key: !secret ifttt
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+#apple_tv:
+#  - host: 192.168.156.5
+#    login_id: !secret apt_livingroom_login
+#    name: APT Livingroom
+#    credentials: !secret apt_livingroom_credentials
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.156.4
+    name: Wowite
+    token: !secret vacuum_token
+
+media_player:
+  - platform: samsungtv
+    host: 192.168.156.215
+
+recorder: !include logging/recorder.yaml
+history: !include logging/history.yaml
+logbook: !include logging/logbook.yaml
+logger: !include logging/logger.yaml
+notify: !include notify.yaml
+
+
+device_tracker: !include entities/device_tracker.yaml
+light: !include entities/light.yaml
+switch: !include entities/switch.yaml
+script: !include_dir_merge_named scripts
+sensor: !include entities/sensor.yaml
+binary_sensor: !include entities/binary_sensor.yaml
+input_boolean: !include entities/input_boolean.yaml
+input_select: !include entities/input_select.yaml

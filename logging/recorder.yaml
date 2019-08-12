@@ -1,0 +1,46 @@
+  purge_interval: 1
+  purge_keep_days: 7
+  exclude:
+    domains:
+      - updater
+      - automation
+      - device_tracker
+      - group
+      - script
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.time_date
+      - sensor.yr_cloudiness
+      - sensor.yr_low_clouds
+      - sensor.yr_symbol
+      - sensor.volume_used_volume_1
+      - sensor.status_volume_1
+      - sensor.sunrise_time
+      - sensor.sunset_time
+      - sensor.status_smart_sdb
+      - sensor.albins_birthday
+      - sensor.albins_birthday_days
+      - sensor.albins_rum_humidity
+      - sensor.christmas_eve
+      - sensor.christmas_eve_days
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
+      - sensor.disk_use_home
+      - sensor.hannas_birthday
+      - sensor.hannas_birthday_days
+      - sensor.niklas_birthday
+      - sensor.niklas_birthday_days
+      - sensor.mot_goteborg
+      - sensor.mot_goteborg_10min
+      - sensor.mot_goteborg_20min
+      - sensor.mot_goteborg_30min
+      - sensor.mot_goteborg_40min
+      - sensor.mot_goteborg_line_and_time
+      - sensor.mot_goteborg_line_and_time_10min
+      - sensor.mot_goteborg_line_and_time_20min
+      - sensor.mot_goteborg_line_and_time_30min
+      - sensor.mot_goteborg_line_and_time_40min

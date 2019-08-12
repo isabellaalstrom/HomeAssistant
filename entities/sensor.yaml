@@ -1,0 +1,14 @@
+
+  - platform: rfxtrx
+    automatic_add: false
+
+    devices:
+      085007047c00010789:
+        name: baksidan
+        data_type:
+          - Temperature
+
+      0850074b4100011c89:
+        name: framsidan
+        data_type:
+          - Temperature
