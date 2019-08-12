@@ -10,3 +10,5 @@
 !packages/
 !screenshots/
 !themes/
+!ui-lovelace.yaml
+!README.md

@@ -1,0 +1,29 @@
+resources:
+  !include lovelace/resources/resources.yaml
+
+cch:
+  menu: true
+  header: true
+  chevrons: false
+  notify_indicator_color: "#e80000"
+  swipe: true
+  swipe_wrap: false
+#  background: 'rgba(0,0,0,0.3)'
+  default_tab: 0
+
+
+
+decluttering_templates:
+  !include lovelace/decluttering_templates/decluttering_templates.yaml
+
+popup_cards:
+  !include_dir_merge_named lovelace/popup-cards/
+
+
+title: Home
+background: var(--background-image)
+views:
+  - !include lovelace/main_view.yaml
+  - !include lovelace/lights_and_rooms.yaml
+  - !include lovelace/security.yaml
+  - !include lovelace/hub.yaml
