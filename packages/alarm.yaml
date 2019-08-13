@@ -642,16 +642,16 @@ script:
 ## Alerts
 ##################################################
 
-#alert:
-#  front_door:
-#    name: Ytterdörren är öppen
-#    done_message: Ytterdörren har stängts!
-#    entity_id: binary_sensor.frontdoor
-#    state: 'on'
-#    repeat: 2
-#    can_acknowledge: True
-#    skip_first: True
-#    notifiers:
-#      - ios_niklas_iphone_8
-#      - ios_hannas_iphone
-#      - slack
+alert:
+  front_door:
+    name: Ytterdörren är öppen
+    done_message: Ytterdörren har stängts!
+    entity_id: binary_sensor.frontdoor
+    state: 'on'
+    repeat: 2
+    can_acknowledge: True
+    skip_first: True
+    notifiers:
+      - ios_niklas_iphone_8
+      - ios_hannas_iphone
+      - slack
