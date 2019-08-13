@@ -1,15 +1,3 @@
-##################################################
-## Customize
-##################################################
-
-#homeassistant:
-#  customize:
-#    sensor.inside_filtered_realistic_temperature:
-#      friendly_name: Inomhus
-#      icon: mdi:thermometer
-#    sensor.outside_filtered_realistic_temperature:
-#      friendly_name: Utomhus
-#      icon: mdi:thermometer
 
 
 ##################################################
@@ -64,9 +52,3 @@ sensor:
         unit_of_measurement: '°C'
         icon_template: mdi:thermometer
         entity_id: sensor.outside_filtered_realistic_temperature
-
-
-
-##################################################
-## Automations
-##################################################

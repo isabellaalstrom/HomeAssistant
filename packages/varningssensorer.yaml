@@ -27,8 +27,6 @@ sensor:
           - light.vardagsrummet
           - light.vardagsrummet_bokhyllan
 
-
-
       all_unknow_check:
         value_template: >-
           {{ (dict((states|list)|groupby('state' | lower))['unknown']| count) + (dict((states|list)|groupby('state' | lower))['unavailable']| count) }}

@@ -1,13 +1,5 @@
 
 
-#homeassistant:
-#  customize:
-#
-#    script.morning_radio:
-#      icon: mdi:radio
-#    script.music:
-#      icon: mdi:music-circle
-
 
 automation:
   - alias: 'TV off when sonos are started'

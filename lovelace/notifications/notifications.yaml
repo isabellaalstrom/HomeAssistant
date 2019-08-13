@@ -8,6 +8,18 @@ cards:
 
   - type: conditional
     conditions:
+      - entity: binary_sensor.remote_ui
+        state_not: 'on'
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - icon: alert
+        - color: rgba(255, 0, 0, 0.5)
+        - content: 'Remote connection till NabuCasa är nere'
+
+  - type: conditional
+    conditions:
       - entity: sensor.krisinformation
         state: 'Alert'
     card:

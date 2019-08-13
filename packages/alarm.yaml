@@ -79,7 +79,6 @@ sensor:
              and is_state('binary_sensor.kontoret_fonster', 'off')
              and is_state('binary_sensor.albins_fonster', 'off')
              and is_state('binary_sensor.kok_fonster', 'off')
-             and is_state('binary_sensor.kok_lilla_fonster', 'off')
              and is_state('binary_sensor.vardagsrummet_fonster', 'off') }}
         friendly_name: 'Alla Dörrar och Fönster'
         entity_id:
@@ -89,8 +88,8 @@ sensor:
           - sensor.office_window
           - sensor.albins_window
           - sensor.kitchen_window
-          - sensor.kitchen_small_window
           - sensor.livingroom_window
+          - sensor.time
 
 
 
@@ -115,6 +114,7 @@ sensor:
           - sensor.kitchen_window
           - sensor.kitchen_small_window
           - sensor.livingroom_window
+          - sensor.time
 
 
 
@@ -151,388 +151,6 @@ sensor:
               failed
           {%- endif %}
 
-##################################################
-## Automation
-##################################################
-
-#automation:
-#  - alias: 'Alarm - Away mode'
-#    initial_state: 'on'
-#    trigger:
-#      platform: state
-#      entity_id: input_boolean.away_mode
-#      from: 'off'
-#      to: 'on'
-#    action:
-#      - service: alarm_control_panel.alarm_arm_away
-#        entity_id: alarm_control_panel.house
-
-#  - alias: 'Alarm - Home mode'
-#    initial_state: 'on'
-#    trigger:
-#      platform: state
-#      entity_id: input_boolean.night_mode
-#      from: 'off'
-#      to: 'on'
-#    action:
-#      - service: alarm_control_panel.alarm_arm_home
-#        entity_id: alarm_control_panel.house
-
- # - alias: 'Alarm - dissarmed'
- #   initial_state: 'on'
- #   trigger:
- #     - platform: state
- #       entity_id: input_boolean.away_mode
- #       from: 'on'
- #       to: 'off'
- #     - platform: state
- #       entity_id: input_boolean.night_mode
- #       from: 'on'
- #       to: 'off'
- #   action:
- #     - service: alarm_control_panel.alarm_disarm
- #       entity_id: alarm_control_panel.house
-
-## Trigger
-
-#  - alias: 'Alarm away mode trigger - Vaccum on'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: binary_sensor.backdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.frontdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.vardagsrummet_motionsensor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.presence_11
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kontoret_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.albins_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_lilla_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.vardagsrummet_fonster
-#        to: 'on'
-#    condition:
-#      condition: and
-#      conditions:
-#        - condition: state
-#          entity_id: alarm_control_panel.house
-#          state: armed_away
-#        - condition: state
-#          entity_id: vacuum.wowite
-#          state: 'cleaning'
-#    action:
-#      - service: alarm_control_panel.alarm_trigger
-#        entity_id: alarm_control_panel.house
-#      - service: notify.alla
-#        data_template:
-#          message: >
-#            Larmet har triggats av {{ trigger.to_state.name }}
-#      - service: xiaomi_aqara.play_ringtone
-#        data:
-#          gw_mac: 34ce00fb63de
-#          ringtone_id: 10
-#          ringtone_vol: 25
-#      - service: script.alarm_varning
-
-
-
-#  - alias: 'Alarm away mode trigger - Vaccum off'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: binary_sensor.backdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.frontdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.vardagsrummet_motionsensor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.presence_11
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kontoret_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.albins_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_lilla_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.vardagsrummet_fonster
-#        to: 'on'
-#    condition:
-#      condition: and
-#      conditions:
-#        - condition: state
-#          entity_id: alarm_control_panel.house
-#          state: armed_away
-#        - condition: state
-#          entity_id: vacuum.wowite
-#          state: 'docked'
-#    action:
-#      - service: alarm_control_panel.alarm_trigger
-#        entity_id: alarm_control_panel.house
-#      - service: notify.alla
-#        data_template:
-#          message: >
-#            Larmet har triggats av {{ trigger.to_state.name }}
-#      - service: xiaomi_aqara.play_ringtone
-#        data:
-#          gw_mac: 34ce00fb63de
-#          ringtone_id: 10
-#          ringtone_vol: 25
-#      - service: script.alarm_varning
-
-
-
-#  - alias: 'Alarm home mode trigger'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: binary_sensor.backdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.frontdoor
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kontoret_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.albins_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.kok_lilla_fonster
-#        to: 'on'
-#      - platform: state
-#        entity_id: binary_sensor.vardagsrummet_fonster
-#        to: 'on'
-#    condition:
-#      - condition: state
-#        entity_id: alarm_control_panel.house
-#        state: armed_home
-#    action:
-#      - service: alarm_control_panel.alarm_trigger
-#        entity_id: alarm_control_panel.house
-
-#      - service: notify.alla
-#        data_template:
-#          message: >
-#            Larmet har triggats av {{ trigger.to_state.name }}
-#      - service: xiaomi_aqara.play_ringtone
-#        data:
-#          gw_mac: 34ce00fb63de
-#          ringtone_id: 10
-#          ringtone_vol: 25
-#      - service: script.alarm_varning
-
-
-
-#  - alias: 'Larm trigger'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        to: triggered
-#    action:
-#      - service: notify.alla
-#        data_template:
-#          message: >
-#            LARMET ÄR UTLÖST!!
-#      - service: ifttt.trigger
-#        data: {"event":"rec_vardagsrummet"}
-#      - service: ifttt.trigger
-#        data: {"event":"rec_baksidan"}
-#      - service: script.lights_on_all
-
-
-## Notifications
-
-#  - alias: 'Alarm - Notify away mode'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        from: pending
-#        to: armed_away
-#    action:
-#      - service: script.jarvis_larm
-
-#  - alias: 'Alarm - Notify night_mode'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        to: armed_home
-#    action:
-#      - service: script.jarvis_skalskydd
-
-#  - alias: 'Alarm - Notify away mode dissarmed'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        from: armed_away
-#        to: disarmed
-#    action:
-#      - service: script.unlock
-
-#      - service: notify.alla
-#        data:
-#          message: 'Larm av kl {{now().strftime("%H:%M")}}'
-
-
-#  - alias: 'Alarm - Notify home mode dissarmed'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        from: armed_home
-#        to: disarmed
-#    action:
-#      - service: notify.alla
-#        data:
-#          message: 'Skalskyddet av kl {{now().strftime("%H:%M")}}'
-
-#  - alias: 'No one home'
-#    initial_state: 'on'
-#    trigger:
-#      platform: state
-#      entity_id: group.persons
-#      to: 'not_home'
-#      for:
-#        minutes: 5
-#    condition:
-#      condition: state
-#      entity_id: input_boolean.away_mode
-#      state: 'off'
-#
-#    action:
-#      - service: notify.niklas
-#        data:
-#          message: 'Ingen verkar vara hemma, dags att larma på?'
-
-
-## Lights
-
-#  - alias: 'GW light pending'
-#    initial_state: 'on'
-#    trigger:
-#      platform: state
-#      entity_id: alarm_control_panel.house
-#      to: 'pending'
-#    action:
-#      - service: light.turn_on
-#        data:
-#          entity_id: light.gateway_light_34ce00fb63de
-#          brightness: 255
-#          rgb_color:
-#            - 250
-#            - 250
-#            - 0
-
-#  - alias: 'GW light armed'
-#    initial_state: 'on'
-#    trigger:
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        to: 'armed_away'
-#      - platform: state
-#        entity_id: alarm_control_panel.house
-#        to: 'armed_home'
-#    action:
-#      - service: light.turn_on
-#        data:
-#          entity_id: light.gateway_light_34ce00fb63de
-#          brightness: 255
-#          rgb_color:
-#            - 255
-#            - 0
-#            - 0
-#      - delay: 00:01:00
-#      - service: light.turn_off
-#        entity_id: light.gateway_light_34ce00fb63de
-
-#  - alias: 'GW light dissarmed'
-#    initial_state: 'on'
-#    trigger:
-#      platform: state
-#      entity_id: alarm_control_panel.house
-#      to: 'disarmed'
-#    action:
-#      - service: light.turn_on
-#        data:
-#          entity_id: light.gateway_light_34ce00fb63de
-#          brightness: 255
-#          rgb_color:
-#            - 0
-#            - 128
-#            - 0
-#      - delay: 00:02:00
-#      - service: light.turn_off
-#        entity_id: light.gateway_light_34ce00fb63de
-#
-### Reminders
-
-#  - alias: 'Alarm - Reminder home mode off weekdays'
-#    initial_state: 'on'
-#    trigger:
-#      platform: time
-#      at: '06:30:00'
-#    condition:
-#      condition: and
-#      conditions:
-#        - condition: state
-#          entity_id: input_boolean.night_mode
-#          state: 'on'
-#        - condition: state
-#          entity_id: binary_sensor.workday_today
-#          state: 'on'
-#    action:
-#      - service: notify.alla
-#        data:
-#          message: 'Skalskyddet är på, har ni glömt att larma av?'
-
-#  - alias: 'Alarm - Reminder home mode off weekends'
-#    initial_state: 'on'
-#    trigger:
-#      platform: time
-#      at: '08:30:00'
-#    condition:
-#      condition: and
-#      conditions:
-#        - condition: state
-#          entity_id: input_boolean.night_mode
-#          state: 'on'
-#        - condition: state
-#          entity_id: binary_sensor.workday_today
-#          state: 'off'
-#    action:
-#      - service: notify.alla
-#        data:
-#          message: 'Skalskyddet är på, har ni glömt att larma av?'
 
 
 ##################################################
@@ -573,7 +191,6 @@ script:
       sequence:
         - service: notify.ios_niklas_iphone_8
           data:
-#            title: "Lås upp ytterdörren"
             message: 'Larm av kl {{now().strftime("%H:%M")}}'
             data:
               url: "shortcuts://run-shortcut?name=unlock"
@@ -586,7 +203,6 @@ script:
 
         - service: notify.ios_hannas_iphone
           data:
-#            title: "Lås ytterdörren"
             message: 'Larm av kl {{now().strftime("%H:%M")}}'
             data:
               url: "shortcuts://run-shortcut?name=unlock"
@@ -597,45 +213,6 @@ script:
                 content-type: jpg
                 hide-thumbnail: false
 
-
-#lock:
-#    alias: "Lock frontdoor"
-#    sequence:
-#      - service: notify.ios_niklas_iphone_8
-#        data:
-#          title: "Lås ytterdörren"
-#          message: "Klicka här för att låsa ytterdörren"
-#          data:
-#            url: "shortcuts://run-shortcut?name=lock"
-#            push:
-#              badge: 0
-#            attachment:
-#              url: ""
-#              content-type: jpg
-#              hide-thumbnail: false
-
-  alarm_varning:
-    alias: Alarm varning
-    sequence:
-      - delay: '00:00:30'
-
-      - condition: state
-        entity_id: alarm_control_panel.house
-        state: 'pending'
-
-      - service: media_player.volume_set
-        data_template:
-          entity_id: media_player.kok
-          volume_level: 0.8
-      - service: tts.google_translate_say
-        data_template:
-          entity_id: media_player.kok
-          message: "Larmet är aktiverat, nedräkning påbörjad"
-
-      - service: media_player.volume_set
-        data_template:
-          entity_id: media_player.kok
-          volume_level: 0.2
 
 
 ##################################################
@@ -652,6 +229,6 @@ alert:
     can_acknowledge: True
     skip_first: True
     notifiers:
-      - ios_niklas_iphone_8
-      - ios_hannas_iphone
+      - notify.mobile_app_niklas_iphone_8
+      - notify.mobile_app_hannas_iphone
       - slack
