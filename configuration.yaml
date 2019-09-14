@@ -1,5 +1,4 @@
 homeassistant:
-#  customize: customize.yaml
   packages: !include_dir_named packages
 
 http:
@@ -35,7 +34,7 @@ discovery:
     - enigma2
     - frontier_silicon
     - google_cast
-    - harmony
+#    - harmony
     - igd
     - logitech_mediaserver
     - netgear_router
@@ -61,8 +60,6 @@ breaking_changes:
 hacs:
   token: !secret hacs
 
-wwlln:
-
 rfxtrx:
   device: !secret rfxtrx
 
@@ -79,15 +76,21 @@ google:
 #    name: APT Livingroom
 #    credentials: !secret apt_livingroom_credentials
 
+remote:
+  - platform: harmony
+    name: Vardagsrummet
+    host: 192.168.156.6
+
+
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.156.4
     name: Wowite
     token: !secret vacuum_token
 
-media_player:
-  - platform: samsungtv
-    host: 192.168.156.215
+#media_player:
+#  - platform: samsungtv
+#    host: 192.168.156.215
 
 recorder: !include logging/recorder.yaml
 history: !include logging/history.yaml

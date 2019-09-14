@@ -6,9 +6,18 @@
 sensor:
   - platform: version
   - platform: uptime
-  - platform: command_line
-    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
-    name: HA latest Version
+#  - platform: command_line
+#    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+#    name: HA latest Version
+
+
+  - platform: template
+    sensors:
+      hass_senaste_version:
+        friendly_name: 'Senaste versionen'
+        value_template: "{{ states.binary_sensor.updater.attributes.newest_version }}"
+        entity_id: binary_sensor.updater
+
 
 
   - platform: glances
@@ -49,18 +58,18 @@ sensor:
 
 
 automation:
-  - alias: "Update available"
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: sensor.ha_latest_version
-    action:
-      - service: notify.niklas
-        data:
-          title: "HASS System"
-          message: "Home Assistant {{ states.sensor.ha_latest_version.state }} is now available."
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.hass_update
+#  - alias: "Update available"
+#    initial_state: 'on'
+#    trigger:
+#      platform: state
+#      entity_id: sensor.ha_latest_version
+#    action:
+#      - service: notify.niklas
+#        data:
+#          title: "HASS System"
+#          message: "Home Assistant {{ states.sensor.ha_latest_version.state }} is now available."
+#      - service: input_boolean.turn_on
+#        entity_id: input_boolean.hass_update
 
 
 #  - alias: Hass New Device Tracked

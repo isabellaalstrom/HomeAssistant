@@ -21,7 +21,7 @@ sensor:
           - light.sovrum_fonster
           - light.sovrum_hoger
           - light.sovrum_vanster
-          - light.vardagsrum_lampa
+          - light.vardagsrummet_golvlampa
           - light.vardagsrum_lilla_bokhyllan
           - light.vardagsrum_tvbank
           - light.vardagsrummet
@@ -38,7 +38,7 @@ sensor:
           - sensor.albins_window
           - sensor.kitchen_window
           - sensor.kitchen_small_window
-          - sensor.livingroom_window
+          - sensor.franska_balkongen
 
       nr_open_doors_and_windows:
         value_template: >-
@@ -57,7 +57,7 @@ sensor:
           - sensor.albins_window
           - sensor.kitchen_window
           - sensor.kitchen_small_window
-          - sensor.livingroom_window
+          - sensor.franska_balkongen
 
       alarm_contolpanel_varning:
         value_template: >-

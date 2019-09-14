@@ -12,8 +12,6 @@
       - map
 
     title: Niklas
-    style:
-      border-radius: 12px
     card:
       type: vertical-stack
       cards:
@@ -58,7 +56,7 @@
                   secondary_info: last-changed
                   name: Senaste uppdateringen
                   icon: mdi:update
-                  
+
 
 
 

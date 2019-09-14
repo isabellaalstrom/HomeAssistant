@@ -52,7 +52,7 @@ cards:
                 overflow: hidden;
               }
             entity: camera.aarlo_baksidan
-            name: Baksidan
+            name: Hallen
             aspect_ratio: 16x9
             show:
               - snapshot
@@ -124,7 +124,7 @@ cards:
           - type: custom:decluttering-card
             template: switch_button_card
             variables:
-              - name: Altandörren
+              - name: Balkongdörren
               - label: status
               - icon: door
               - show_label: false
@@ -136,35 +136,85 @@ cards:
               - entity:  binary_sensor.backdoor
               - margin-right: 40px
               - opacity: 0.7
-          - type: custom:button-card
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Franska balkongen
+              - label: status
+              - icon: door
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity:  binary_sensor.franska_balkongen
+              - margin-right: 40px
+              - opacity: 0.7
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Fönster'
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
             color_type: blank-card
-            aspect_ratio: 1/1
-#      - type: custom:decluttering-card
-#        template: header_text
-#        variables:
-#          - content: '##### Fönster'
-#      - type: horizontal-stack
-#        cards:
-#          - type: 'custom:button-card'
+            styles:
+              card:
+                - width: 10px
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Kontoret
+              - label: status
+              - icon: window-closed
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.kontoret_fonster
+              - margin-right: 40px
+              - opacity: 0.7
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Köket
+              - label: status
+              - icon: window-closed
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.kok_fonster
+              - margin-right: 40px
+              - opacity: 0.7
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Albins
+              - label: status
+              - icon: window-closed
+              - show_label: false
+              - show_state: true
+              - show_last_changed: true
+              - tap_action:
+                  action: more-info
+                  haptic: light
+              - entity: binary_sensor.albins_fonster
+              - margin-right: 40px
+              - opacity: 0.7
+
+
+#          - type: custom:button-card
 #            color_type: blank-card
-#            styles:
-#              card:
-#                - width: 10px
-#          - type: custom:decluttering-card
-#            template: switch_button_card
-#            variables:
-#              - name: Albins
-#              - label: status
-#              - icon: window-closed
-#              - show_label: false
-#              - show_state: true
-#              - show_last_changed: true
-#              - tap_action:
-#                  action: more-info
-#                  haptic: light
-#              - entity: binary_sensor.albins_fonster
-#              - margin-right: 40px
-#              - opacity: 0.7
+#          - type: custom:button-card
+#            color_type: blank-card
+
+
 
       - type: custom:decluttering-card
         template: header_text
@@ -195,7 +245,7 @@ cards:
           - type: custom:decluttering-card
             template: switch_button_card
             variables:
-              - name: Vardagsrummet
+              - name: Sovrummet
               - label: status
               - icon: motion-sensor
               - show_label: false

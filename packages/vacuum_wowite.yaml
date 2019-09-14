@@ -110,7 +110,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[19445,24927,21545,27627,1]]
+          params: [[20484,17502,25584,21102,1]]
 
   vacuum_kok:
     alias: "Dammsug köket"
@@ -119,7 +119,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[19569,21999,22769,24849,1]]
+          params: [[20501,21053,23151,27703,1]]
 
   vacuum_vardagsrum:
     alias: "Dammsug vardagsrummet"
@@ -128,7 +128,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[22683,21546,28033,25946,1]]
+          params: [[16302,19125,20452,27875,1]]
 
   vacuum_sovrum:
     alias: "Dammsug sovrummet"
@@ -137,7 +137,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[25122,18334,29422,21534,1]]
+          params: [[16393,12604,20443,17454,1]]
 
   vacuum_albins:
     alias: "Dammsug Albins rum"
@@ -146,7 +146,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[19065,18365,21815,21415,1]]
+          params: [[20554,13096,23354,17546,1]]
 
   vacuum_kontoret:
     alias: "Dammsug kontoret"
@@ -155,13 +155,13 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[23430,26213,27780,28313,1]]
+          params: [[23116,23909,26116,27859,1]]
 
-  vacuum_lgh:
-    alias: "Hela lägenheten"
-    sequence:
-      - service: vacuum.send_command
-        data:
-          entity_id: vacuum.wowite
-          command: app_zoned_clean
-          params: [[18046,17393,30446,28793,1]]
+#  vacuum_lgh:
+#    alias: "Hela lägenheten"
+#    sequence:
+#      - service: vacuum.send_command
+#        data:
+#          entity_id: vacuum.wowite
+#          command: app_zoned_clean
+#          params: [[18046,17393,30446,28793,1]]

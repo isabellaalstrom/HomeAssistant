@@ -3,6 +3,7 @@
 aarlo:
   username: !secret arlo_username
   password: !secret arlo_passwd
+#  reconnect_every: 70
 
 
 camera:

@@ -33,13 +33,49 @@
                     service: script.turn_on
                     service_data:
                       entity_id: script.morning_radio
-                
-            - type: custom:button-card
-              color_type: blank-card
-              aspect_ratio: 1/1
-            - type: custom:button-card
-              color_type: blank-card
-              aspect_ratio: 1/1
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Musik
+                - label: Spotify radio
+                - icon: speaker
+                - show_label: true
+                - show_state: false
+                - show_last_changed: false
+                - entity: input_boolean.lovelace_hemmet
+                - margin-right: 40px
+                - opacity: 0.7
+                - tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.event_nr_music
+
+
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Middagsdags
+                - label: Soft musik
+                - icon: food-fork-drink
+                - show_label: true
+                - show_state: false
+                - show_last_changed: false
+                - entity: input_boolean.lovelace_hemmet
+                - margin-right: 40px
+                - opacity: 0.7
+                - tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.event_nr_dinner_time
+
+
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
 
 
 

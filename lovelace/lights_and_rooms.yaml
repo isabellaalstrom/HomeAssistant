@@ -217,8 +217,8 @@ cards:
           - type: custom:decluttering-card
             template: light_button_card
             variables:
-              - entity: light.kok_banken
-              - name: Köksbänken
+              - entity: light.koksfonstret
+              - name: Fönster
               - icon: lamp
 
           - type: custom:button-card
@@ -319,7 +319,7 @@ cards:
           - type: custom:decluttering-card
             template: light_button_card
             variables:
-              - entity: light.vardagsrum_lampa
+              - entity: light.vardagsrummet_golvlampa
               - name: Lampan
               - icon: floor-lamp
 
@@ -368,7 +368,7 @@ cards:
             variables:
               - size: 25%
               - entity: light.vardagsrum_tvbank
-              - name: TV-bänken
+              - name: TV-bänken (H)
               - icon: lamp
 
 #          - type: custom:button-card
@@ -389,6 +389,34 @@ cards:
 
       - type: horizontal-stack
         cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity:  light.vardagsrummet_tv_banken
+              - name: TV-bänken (V)
+              - icon: lamp
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity:  light.vardagsrum_hoga_hyllan
+              - name: Höga hyllan
+              - icon: lamp
+
+
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
           - type: 'custom:button-card'
             color_type: blank-card
             styles:

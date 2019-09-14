@@ -159,7 +159,20 @@
               variables:
                 - color: rgba(255, 255, 0, 0.5)
                 - icon: door-open
-                - content: 'Altandörren är öppen'
+                - content: 'Balkongdörren är öppen'
+
+          - type: conditional
+            conditions:
+              - entity: sensor.franska_balkongen
+                state: Öppet
+            card:
+              type: custom:decluttering-card
+              template: notification_card
+              variables:
+                - color: rgba(255, 255, 0, 0.5)
+                - icon: door-open
+                - content: 'Franska balkongen är öppen'
+
 
           - type: conditional
             conditions:
@@ -208,30 +221,6 @@
                 - color: rgba(255, 255, 0, 0.5)
                 - icon: window-open
                 - content: 'Köksfönster är öppen'
-
-          - type: conditional
-            conditions:
-              - entity: sensor.kitchen_small_window
-                state: Öppet
-            card:
-              type: custom:decluttering-card
-              template: notification_card
-              variables:
-                - color: rgba(255, 255, 0, 0.5)
-                - icon: window-open
-                - content: 'Lilla köksfönster är öppen'
-
-          - type: conditional
-            conditions:
-              - entity: sensor.livingroom_window
-                state: Öppet
-            card:
-              type: custom:decluttering-card
-              template: notification_card
-              variables:
-                - color: rgba(255, 255, 0, 0.5)
-                - icon: window-open
-                - content: 'Vardagsrumms fönstret är öppen'
 
           - type: 'custom:button-card'
             color_type: blank-card

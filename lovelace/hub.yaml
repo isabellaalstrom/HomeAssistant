@@ -724,7 +724,7 @@ cards:
                     - entity: sensor.current_version
                       name: Nuvarande version
                       icon: mdi:information-outline
-                    - entity:  sensor.ha_latest_version
+                    - entity:  sensor.hass_senaste_version
                       name: Senaste versionen
                       icon: mdi:update
                     - entity: sensor.uptime
@@ -816,9 +816,6 @@ cards:
                       opacity: 0.8;
                     }
                   entities:
-                    - entity: input_boolean.hass_update
-                      icon: mdi:update
-                      name: Home Assistant tillgänglig
 
                     - entity: sensor.hacs
                       icon: mdi:update
@@ -982,7 +979,7 @@ cards:
                     - sensor.albins_window
                     - sensor.kitchen_window
                     - sensor.kitchen_small_window
-                    - sensor.livingroom_window
+                    - sensor.franska_balkongen
                     - sensor.larm
                     - device_tracker.niklas_presence
                     - device_tracker.hanna_presence

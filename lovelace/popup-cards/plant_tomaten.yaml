@@ -1,5 +1,5 @@
   plant.tomaten:
-    title: Tommatblomman
+    title: Blommorna
     style:
       border-radius: var(--border-radius)
       background: var(--background-image)

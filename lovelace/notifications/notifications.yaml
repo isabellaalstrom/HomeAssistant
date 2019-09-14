@@ -95,7 +95,7 @@ cards:
 
   - type: conditional
     conditions:
-      - entity: input_boolean.hass_update
+      - entity: binary_sensor.updater
         state: 'on'
     card:
       type: custom:decluttering-card
@@ -103,7 +103,7 @@ cards:
       variables:
         - color: rgba(255, 255, 0, 0.5)
         - icon: home-assistant
-        - content: Home Assistant version [[ sensor.ha_latest_version.state ]] är nu tillgänglig
+        - content: Home Assistant version [[ sensor.hass_senaste_version.state ]] är nu tillgänglig
 
   - type: conditional
     conditions:
@@ -128,7 +128,7 @@ cards:
       variables:
         - color: rgba(255, 255, 0, 0.5)
         - icon: alert-circle-outline
-        - content: 'Det är något problem med tomatblomman'
+        - content: 'Det är något problem med blommorna'
 
 
 ## Gröna

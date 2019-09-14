@@ -6,7 +6,7 @@
 alarm_control_panel:
   - platform: manual
     name: House
-    pending_time: 10
+    pending_time: 60
     trigger_time: 45
     disarm_after_trigger: false
     armed_home:
@@ -63,11 +63,11 @@ sensor:
 #        icon_template: '{% if is_state("binary_sensor.kok_lilla_fonster", "on") %}mdi:window-open{% else %}mdi:window-closed{% endif %}'
 #        entity_id: binary_sensor.kok_lilla_fonster
 
-      livingroom_window:
-        friendly_name: 'Vardagsrumsfönstret'
-        value_template: '{% if is_state("binary_sensor.vardagsrummet_fonster", "on") %}Öppet{% else %}Stängt{% endif %}'
-        icon_template: '{% if is_state("binary_sensor.vardagsrummet_fonster", "on") %}mdi:window-open{% else %}mdi:window-closed{% endif %}'
-        entity_id: binary_sensor.vardagsrummet_fonster
+      franska_balkongen:
+        friendly_name: 'Franska balkongen'
+        value_template: '{% if is_state("binary_sensor.franska_balkongen", "on") %}Öppet{% else %}Stängt{% endif %}'
+        icon_template: '{% if is_state("binary_sensor.franska_balkongen", "on") %}mdi:window-open{% else %}mdi:window-closed{% endif %}'
+        entity_id: binary_sensor.franska_balkongen
 
 
 
@@ -79,7 +79,7 @@ sensor:
              and is_state('binary_sensor.kontoret_fonster', 'off')
              and is_state('binary_sensor.albins_fonster', 'off')
              and is_state('binary_sensor.kok_fonster', 'off')
-             and is_state('binary_sensor.vardagsrummet_fonster', 'off') }}
+             and is_state('binary_sensor.franska_balkongen', 'off') }}
         friendly_name: 'Alla Dörrar och Fönster'
         entity_id:
           - sensor.frontdoor
@@ -88,7 +88,7 @@ sensor:
           - sensor.office_window
           - sensor.albins_window
           - sensor.kitchen_window
-          - sensor.livingroom_window
+          - sensor.franska_balkongen
           - sensor.time
 
 
@@ -113,7 +113,7 @@ sensor:
           - sensor.albins_window
           - sensor.kitchen_window
           - sensor.kitchen_small_window
-          - sensor.livingroom_window
+          - sensor.franska_balkongen
           - sensor.time
 
 
@@ -189,7 +189,7 @@ script:
   unlock:
       alias: "Unlock frontdoor"
       sequence:
-        - service: notify.ios_niklas_iphone_8
+        - service: notify.mobile_app_niklas_iphone_8
           data:
             message: 'Larm av kl {{now().strftime("%H:%M")}}'
             data:
@@ -201,7 +201,7 @@ script:
                 content-type: jpg
                 hide-thumbnail: false
 
-        - service: notify.ios_hannas_iphone
+        - service: notify.mobile_app_hannas_iphone
           data:
             message: 'Larm av kl {{now().strftime("%H:%M")}}'
             data:
