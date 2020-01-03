@@ -2,7 +2,7 @@
     type: custom:card-loader
     style:
       border-radius: var(--border-radius)
-      background: var(--background-image)
+#      background: var(--background-image)
     wait:
       - state-switch
       - swipe-card

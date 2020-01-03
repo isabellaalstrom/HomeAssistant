@@ -396,7 +396,7 @@ switch_button_card:
     - margin-right: 60px
     - margin-left: 0px
     - label: '&nbsp;'
-    - opacity: 0.4
+    - opacity: 0.1
     - opacity_on: 1.0
     - off_icon_color: var(--icon-color-off)
     - off_name_color: var(--name-color-off)

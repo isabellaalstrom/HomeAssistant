@@ -151,6 +151,14 @@ cards:
               - entity:  binary_sensor.franska_balkongen
               - margin-right: 40px
               - opacity: 0.7
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+      
+      
+      
       - type: custom:decluttering-card
         template: header_text
         variables:
@@ -207,6 +215,12 @@ cards:
               - entity: binary_sensor.albins_fonster
               - margin-right: 40px
               - opacity: 0.7
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+      
 
 
 #          - type: custom:button-card
@@ -261,3 +275,9 @@ cards:
           - type: custom:button-card
             color_type: blank-card
             aspect_ratio: 1/1
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+      

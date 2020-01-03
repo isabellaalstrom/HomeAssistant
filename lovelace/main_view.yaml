@@ -1,9 +1,6 @@
 title: Home
 icon: mdi:home-assistant
 path: home
-#popup_cards:
-#  !include popup-cards/test.yaml
-#  !include popup-cards/test2.yaml
 
 type: custom:card-loader
 wait:
@@ -49,7 +46,7 @@ cards:
               card:
                 - width: 10px
           - type: picture-entity
-            entity: device_tracker.hanna_presence
+            entity: person.hanna
             style: |
              ha-card {
                 border-radius: 12px;
@@ -57,11 +54,11 @@ cards:
             image: /local/hanna_away.jpg
             name: ' '
             state_image:
-              Home: /local/hanna_home.jpg
-              Just arrived: /local/hanna_home.jpg
+              home: /local/hanna_home.jpg
+#              Just arrived: /local/hanna_home.jpg
 
           - type: picture-entity
-            entity: device_tracker.niklas_presence
+            entity: person.niklas
             style: |
              ha-card {
                 border-radius: 12px;
@@ -69,8 +66,8 @@ cards:
             image: /local/niklas_away.jpg
             name: ' '
             state_image:
-              Home: /local/niklas_home.jpg
-              Just arrived: /local/niklas_home.jpg
+              home: /local/niklas_home.jpg
+#              Just arrived: /local/niklas_home.jpg
           - type: 'custom:button-card'
             color_type: blank-card
             styles:

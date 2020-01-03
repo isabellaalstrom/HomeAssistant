@@ -27,6 +27,7 @@ sensor:
       - symbol
       - dewpointTemperature
       - cloudiness
+      - precipitation
 
   - platform: yr
     name: YR 9h
@@ -34,6 +35,9 @@ sensor:
     monitored_conditions:
       - temperature
       - dewpointTemperature
+      - precipitation
+
+
 
   - platform: min_max
     name: temp_inne
@@ -52,9 +56,17 @@ sensor:
       - sensor.baksidan_temperature
       - sensor.framsidan_temperature
 
+  - platform: smhialert
+    district: '007'
+    language: 'sv'
+
+  - platform: template
+    sensors:
+      smhi_event:
+        value_template: "{{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['event'] }}  {{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('Intensitet: |När:.*|Var:.*|Kommentar:.*', '') }}{{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('När: |Intensitet:.*|Var:.*|Kommentar:.*', '') }}"
 
 camera:
   - platform: generic
-    name: "Mölnlycke meteogram"
-    still_image_url: https://www.yr.no/sted/Sverige/Västra_Götaland/Mölnlycke/meteogram.svg
+    name: "Göteborg meteogram"
+    still_image_url: https://www.yr.no/sted/Sverige/V%C3%A4stra_G%C3%B6taland/G%C3%B6teborg/meteogram.svg
     content_type: 'image/svg+xml'

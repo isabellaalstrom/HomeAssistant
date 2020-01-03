@@ -18,8 +18,8 @@
   - url: /community_plugin/krisinfo-card/krisinfo-card.js
     type: js
 
-  - url: /community_plugin/lovelace-card-loader/card-loader.js
-    type: js
+#  - url: /community_plugin/lovelace-card-loader/card-loader.js
+#    type: js
 
   - url: /local/custom-lovelace/pollenkoll/pollenkoll-card.js
     type: js
@@ -57,8 +57,8 @@
   - url: /community_plugin/decluttering-card/decluttering-card.js
     type: module
 
-  - url: /community_plugin/compact-custom-header/compact-custom-header.js
-    type: module
+#  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+#    type: module
 
   - url: /community_plugin/weather-card/weather-card.js
     type: module
@@ -69,5 +69,8 @@
   - url: /community_plugin/swipe-card/swipe-card.js
     type: module
 
-#  - url: /community_plugin/deep-press/deep-press.js
-#    type: module
+  - url: /community_plugin/deep-press/deep-press.js
+    type: module
+
+  - url: /community_plugin/custom-header/custom-header.js
+    type: module

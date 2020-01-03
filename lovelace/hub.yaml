@@ -216,6 +216,57 @@ cards:
                     card:
                       - width: 10px
 
+
+
+## Rad 3
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Hem
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+## Rad 3 - Kort 1
+
+                - type: custom:decluttering-card
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.lovelace_maintenance
+                    - name: Underhåll
+                    - icon: settings-outline
+                    - show_state: false
+                    - opacity: 0.9
+                    - tap_action:
+                        action: call-service
+                        service: input_select.select_option
+                        service_data:
+                          option: Underhall
+                          entity_id: input_select.ovrigtmenyn
+                        haptic: light
+
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
 #
 #
 # Huvudsidorna
@@ -946,6 +997,7 @@ cards:
                     - tap_action:
                         action: more-info
                         haptic: light
+      
 
 
             - type: 'custom:button-card'
@@ -953,6 +1005,39 @@ cards:
               styles:
                   card:
                   - width: 10px
+
+
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: 'custom:decluttering-card'
+                  template: switch_button_card
+                  variables:
+                    - entity: input_boolean.light_service
+                    - name: Light service
+                    - icon: toolbox-outline
+                    - show_last_changed: false
+                    - show_label: false
+                    - show_state: true
+                    - show_icon: true
+                    - opacity: 0.9
+                    - tap_action:
+                        action: more-info
+                        haptic: light
+
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1
 
 
             - type: horizontal-stack
@@ -1148,6 +1233,94 @@ cards:
                       - state: "unknown"
                     exclude:
                       - domain: group
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+
+# Rad 3, Kort 1
+# Underhåll
+
+      - type: conditional
+        conditions:
+          - entity: input_select.ovrigtmenyn
+            state: Underhall
+        card:
+          type: vertical-stack
+          cards:
+
+
+            - type: custom:decluttering-card
+              template: header_text
+              variables:
+                - content: '##### Input Booleas'
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  color_type: blank-card
+                  styles:
+                    card:
+                      - width: 10px
+                - type: entities
+                  style: |
+                    ha-card {
+                      background: var(--homekit-card-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: var(--border-radius);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  entities:
+
+
+                    - entity: input_boolean.away_mode
+#                      name:
+#                      icon: mdi:information-outline
+
+                    - entity: input_boolean.dark_mode
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.evening
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.guest_mode
+#                      name:
+                    - entity: input_boolean.hass_update
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.light_service
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.lovelace_hemmet
+#                      name:
+                    - entity: input_boolean.lovelace_maintenance
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.maintenance
+#                      name:
+                    - entity: input_boolean.media
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.night_mode
+#                      name:
+                    - entity: input_boolean.semester
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.service
+#                      name:
+                    - entity: input_boolean.test
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.test2
+#                      name:
+#                      icon: mdi:information-outline
+                    - entity: input_boolean.vacuum
+#                      icon: mdi:information-outline
+
+
                 - type: 'custom:button-card'
                   color_type: blank-card
                   styles:

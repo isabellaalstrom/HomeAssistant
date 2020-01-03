@@ -2,7 +2,7 @@
     title: Media
     style:
       border-radius: var(--border-radius)
-      background: var(--background-image)
+#      background: var(--background-image)
     card:
       type: vertical-stack
       cards:
@@ -19,8 +19,8 @@
             - type: custom:decluttering-card
               template: switch_button_card
               variables:
-                - name: Morgonradio
-                - label: Mix Megapol
+                - name: Radio
+                - label: Rix FM
                 - icon: radio
                 - show_label: true
                 - show_state: false
@@ -32,7 +32,10 @@
                     action: call-service
                     service: script.turn_on
                     service_data:
-                      entity_id: script.morning_radio
+                      entity_id: script.event_nr_radio
+
+
+
 
             - type: custom:decluttering-card
               template: switch_button_card
@@ -85,6 +88,45 @@
                 card:
                   - width: 10px
 
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+
+
+            - type: custom:decluttering-card
+              template: switch_button_card
+              variables:
+                - name: Julmusik
+                - label: Rix FM
+                - icon: pine-tree
+                - show_label: false
+                - show_state: false
+                - show_last_changed: false
+                - entity: input_boolean.lovelace_hemmet
+                - margin-right: 40px
+                - opacity: 0.7
+                - tap_action:
+                    action: call-service
+                    service: script.turn_on
+                    service_data:
+                      entity_id: script.event_nr_jul
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
 
 
 

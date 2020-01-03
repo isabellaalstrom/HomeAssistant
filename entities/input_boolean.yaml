@@ -40,6 +40,21 @@
     initial: off
     icon: mdi:close-circle-outline
 
+  light_service:
+    name: Light in service
+    initial: off
+    icon: mdi:close-circle-outline
+
+  guest_mode:
+    name: Gäster
+    initial: off
+    icon: mdi:close-circle-outline
+
+  dark_bedroom:
+    name: Automatik
+    initial: on
+    icon: mdi:close-circle-outline
+
 
   vacuum:
 

@@ -2,7 +2,7 @@
     title: Innetemperatur
     style:
       border-radius: var(--border-radius)
-      background: var(--background-image)
+#      background: var(--background-image)
     card:
       type: vertical-stack
       cards:
@@ -81,7 +81,6 @@
               styles:
                 card:
                   - width: 10px
-
 
         - type: horizontal-stack
           cards:

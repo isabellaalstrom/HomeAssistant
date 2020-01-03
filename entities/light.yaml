@@ -24,6 +24,8 @@
         name: sovrum_vanster
 
 
-  - platform: switch
-    name: Kontoret hyllan
-    entity_id: switch.kontoret_hyllan
+  - platform: group
+    name: Bollarna
+    entities:
+      - light.vardagsrum_boll_hoger
+      - light.vardagsrum_boll_vanster

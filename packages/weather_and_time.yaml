@@ -27,8 +27,10 @@ sensor:
           natt
           {% elif now().strftime("%H")|int < 10 %}
           morgon
-          {% elif now().strftime("%H")|int < 17 %}
+          {% elif now().strftime("%H")|int < 16 %}
           dag
+          {% elif now().strftime("%H")|int < 20 %}
+          eftermiddag
           {% elif now().strftime("%H")|int < 23 %}
           kväll
           {% else %}

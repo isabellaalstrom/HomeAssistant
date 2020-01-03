@@ -1,8 +1,9 @@
-  device_tracker.niklas_presence:
+#  device_tracker.niklas_presence:
+  person.niklas:
     type: custom:card-loader
     style:
       border-radius: var(--border-radius)
-      background: var(--background-image)
+#      background: var(--background-image)
 
     wait:
       - state-switch
@@ -34,28 +35,45 @@
                   opacity: 0.8;
                 }
               entities:
-                - entity: sensor.niklas_battery_level
-                  name: Batteri
-                  icon: mdi:cellphone-iphone
-                - entity: sensor.niklas_battery_state
-                  name: Status
-                  icon: mdi:power-socket-eu
-                - entity: sensor.niklas_geocoded_location
-                  name: Adress
-                  icon: mdi:crosshairs-gps
-                - entity: sensor.niklas_activity
-                  name: Aktivitet
-                  icon: mdi:walk
-                - entity: sensor.niklas_steps
-                  name: Steg
-                  icon: mdi:shoe-print
-                - entity: sensor.niklas_distance
-                  name: Längd
-                  icon: mdi:map-marker-distance
-                - entity: sensor.niklas_last_update_trigger
-                  secondary_info: last-changed
-                  name: Senaste uppdateringen
-                  icon: mdi:update
+                - entity: device_tracker.niklas_iphone_8
+                  name: iOS App
+                  icon: mdi:map-marker
+
+                - entity: person.niklas
+                  name: person.niklas
+                  icon: mdi:map-marker
+
+                - entity: device_tracker.niklas_presence
+                  name: add on
+                  icon: mdi:map-marker
+
+
+
+
+
+
+#                - entity: sensor.niklas_battery_level
+#                  name: Batteri
+#                  icon: mdi:cellphone-iphone
+#                - entity: sensor.niklas_battery_state
+#                  name: Status
+#                  icon: mdi:power-socket-eu
+#                - entity: sensor.niklas_geocoded_location
+#                  name: Adress
+#                  icon: mdi:crosshairs-gps
+#                - entity: sensor.niklas_activity
+#                  name: Aktivitet
+#                  icon: mdi:walk
+#                - entity: sensor.niklas_steps
+#                  name: Steg
+#                  icon: mdi:shoe-print
+#                - entity: sensor.niklas_distance
+#                  name: Längd
+#                  icon: mdi:map-marker-distance
+#                - entity: sensor.niklas_last_update_trigger
+#                  secondary_info: last-changed
+#                  name: Senaste uppdateringen
+#                  icon: mdi:update
 
 
 

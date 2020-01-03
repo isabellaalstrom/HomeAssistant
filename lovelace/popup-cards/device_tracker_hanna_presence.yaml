@@ -1,8 +1,9 @@
-  device_tracker.hanna_presence:
+#  device_tracker.hanna_presence:
+  person.hanna:
     title: Hanna
     style:
       border-radius: var(--border-radius)
-      background: var(--background-image)
+#      background: var(--background-image)
     card:
       type: vertical-stack
       cards:
@@ -25,18 +26,32 @@
                   opacity: 0.8;
                 }
               entities:
-                - entity: sensor.hanna_battery_level
-                  name: Batteri
-                  icon: mdi:cellphone-iphone
-                - entity: sensor.hanna_battery_state
-                  name: Status
-                  icon: mdi:power-socket-eu
+
                 - entity: device_tracker.hannas_iphone
-                  name: Tracking GPS
-                  icon: mdi:crosshairs-gps
-                - entity: device_tracker.hannas_iphone_lan
-                  name: Tracking LAN
-                  icon: mdi:crosshairs
+                  name: iOS App
+                  icon: mdi:map-marker
+
+                - entity: person.hanna
+                  name: person.niklas
+                  icon: mdi:map-marker
+
+                - entity: device_tracker.hanna_presence
+                  name: add on
+                  icon: mdi:map-marker
+
+
+#                - entity: sensor.hanna_battery_level
+#                  name: Batteri
+#                  icon: mdi:cellphone-iphone
+#                - entity: sensor.hanna_battery_state
+#                  name: Status
+#                  icon: mdi:power-socket-eu
+#                - entity: device_tracker.hannas_iphone
+#                  name: Tracking GPS
+#                  icon: mdi:crosshairs-gps
+#                - entity: device_tracker.hannas_iphone_lan
+#                  name: Tracking LAN
+#                  icon: mdi:crosshairs
             - type: 'custom:button-card'
               color_type: blank-card
               styles:

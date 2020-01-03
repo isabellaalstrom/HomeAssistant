@@ -9,6 +9,7 @@
       - 'Lagenheten'
       - 'Robotdamsugaren'
       - 'Varningar'
+      - 'Underhall'
     initial: 'Hem'
 #    icon: mdi:map-outline
 

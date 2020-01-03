@@ -18,6 +18,9 @@ cards:
         - color: rgba(255, 0, 0, 0.5)
         - content: 'Remote connection till NabuCasa är nere'
 
+
+
+
   - type: conditional
     conditions:
       - entity: sensor.krisinformation
@@ -26,8 +29,23 @@ cards:
       type: custom:decluttering-card
       template: notification_card
       variables:
+        - icon: alert
         - color: rgba(255, 0, 0, 0.5)
         - content: 'Det finns ett VMA i ditt område https://www.krisinformation.se/'
+
+
+  - type: conditional
+    conditions:
+      - entity: sensor.smhialert
+        state_not: 'Inga varningar'
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - icon: alert
+        - color: rgba(255, 0, 0, 0.5)
+        - content: '[[ sensor.smhi_event.state ]]'
+
 
 
   - type: conditional

@@ -53,23 +53,23 @@ automation:
 
 
 script:
-  morning_radio:
-    alias: Morning Radio
-    sequence:
-
-      - service: sonos.unjoin
-        entity_id:
-         - media_player.kok
-         - media_player.vardagsrum
-         - media_player.tv
-      - service: media_player.volume_set
-        data_template:
-          entity_id: media_player.kok
-          volume_level: 0.09
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.kok
-          source: 'Mix Megapol Göteborg 107.3 (Populärmusik)'
+#  morning_radio:
+#    alias: Morning Radio
+#    sequence:
+#
+#      - service: sonos.unjoin
+#        entity_id:
+#         - media_player.kok
+#         - media_player.vardagsrum
+#         - media_player.tv
+#      - service: media_player.volume_set
+#        data_template:
+#          entity_id: media_player.kok
+#          volume_level: 0.09
+#      - service: media_player.select_source
+#        data:
+#          entity_id: media_player.kok
+#          source: 'RIX FM 107.1 (Populärmusik)'
 
 
   stop_all_sonos:

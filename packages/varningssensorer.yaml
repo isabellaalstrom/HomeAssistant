@@ -15,7 +15,7 @@ sensor:
           - light.kok
           - light.kok_banken
           - light.kontoret
-          - light.kontoret_hyllan
+          - light.kontor_hylla
           - light.kontoret_snehyllan
           - light.sovrum
           - light.sovrum_fonster

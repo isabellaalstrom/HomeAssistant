@@ -2,7 +2,7 @@ homeassistant:
   packages: !include_dir_named packages
 
 http:
-  base_url: !secret base_url
+#  base_url: !secret base_url
   ip_ban_enabled: true
   login_attempts_threshold: 3
 
@@ -15,6 +15,7 @@ updater:
 sun:
 system_health:
 mobile_app:
+ios:
 
 frontend:
   themes: !include_dir_merge_named themes
