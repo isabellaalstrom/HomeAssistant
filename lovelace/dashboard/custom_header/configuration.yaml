@@ -1,0 +1,38 @@
+compact_mode: true
+hide_unused: true
+hide_config: true
+hide_raw: true
+hide_help: true
+hidden_tab_redirect: false
+#background: rgb(99,107,117)
+shadow: false
+exceptions:
+  - conditions:
+  - conditions:
+      user_agent: Mobile
+    config:
+      footer_mode: true
+      disable_sidebar: false
+      menu_hide: true
+      chevrons: false
+      indicator_top: true
+
+  - conditions:
+      user_agent: Home Assistant
+    config:
+      footer_mode: true
+      disable_sidebar: false
+      menu_hide: true
+      chevrons: false
+      indicator_top: true
+
+
+  - conditions:
+      user_agent: Android
+    config:
+      footer_mode: true
+      disable_sidebar: true
+      menu_hide: true
+      chevrons: false
+      indicator_top: true
+      kiosk_mode: true

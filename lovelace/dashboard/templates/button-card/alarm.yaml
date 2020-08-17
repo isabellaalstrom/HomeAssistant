@@ -1,0 +1,116 @@
+
+alarm_head:
+  show_entity_picture: true
+  show_state: true
+  show_label: false
+  show_name: true
+  styles:
+    grid:
+      - grid-template-areas: '"i""n""s"'
+      - grid-template-columns: min-content
+      - grid-template-rows: auto auto auto
+      - justify-self: center
+      - width: auto
+    card:
+      - box-shadow: none
+      - padding-left: 10px
+      - width: 120px
+      - background: rgb(0, 0, 0, 0)
+
+    name:
+      - justify-self: center
+      - font-size: 13px
+    state:
+      - font-size: 12px
+      - justify-self: center
+  state:
+    - value: 'disarmed'
+      icon: mdi:shield-check
+      styles:
+        icon:
+          - color: green
+          - width: 40px
+          - height: 40px
+    - value: 'arming'
+      icon: mdi:clock-alert-outline
+      styles:
+        icon:
+          - color: orange
+          - animation: blink 1s ease infinite
+          - width: 40px
+    - value: 'armed_home'
+      icon: mdi:shield-alert
+      styles:
+        icon:
+          - color: red
+          - animation: blink 2s ease infinite
+          - width: 40px
+          - height: 40px
+    - value: 'armed_away'
+      icon: mdi:shield-alert
+      styles:
+        icon:
+          - color: red
+          - animation: blink 2s ease infinite
+          - width: 40px
+          - height: 40px
+
+
+
+
+
+alarm_button:
+  size: 25%
+  aspect_ratio: 1/1
+#  color_type: card
+  styles:
+    card:
+      - border-radius: 12px
+      - color: rgb(0, 0, 0)
+      - background-color: rgb(255, 255, 255)
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+    name:
+      - justify-self: start
+      - padding-left: 10px
+      - font-weight: bold
+      - font-family: Helvetica
+      - font-size: 10px
+    state:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - text-transform: capitalize
+      - font-weight: bold
+      - padding-left: 13px
+    label:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - padding-left: 10px
+
+  state:
+    - value: 'disarmed'
+      icon: mdi:shield-check
+      styles:
+        icon:
+          - color: green
+    - value: 'pending'
+      styles:
+        icon:
+          - color: orange
+          - animation: blink 1s ease infinite
+    - value: 'armed_home'
+      styles:
+        icon:
+          - color: red
+
+    - value: 'armed_away'
+      styles:
+        icon:
+          - color: red
+          - animation: blink 1s ease infinite

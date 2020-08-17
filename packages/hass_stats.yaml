@@ -1,33 +1,5 @@
 
 
-glances:
-  - host: 192.168.156.2
-#    port: 61208
-#    ssl: true
-#    verify_ssl: false
-#    username: !secret usernamne
-#    password: !secret passwd
-#    version: 3
-#    resources:
-#      - 'disk_use_percent'
-#      - 'disk_use'
-#      - 'disk_free'
-#      - 'memory_use_percent'
-#      - 'memory_use'
-#      - 'memory_free'
-#      - 'swap_use_percent'
-#      - 'swap_use'
-#      - 'swap_free'
-#      - 'processor_load'
-#      - 'process_running'
-#      - 'process_total'
-#      - 'process_thread'
-#      - 'process_sleeping'
-#      - 'cpu_use_percent'
-#      - 'cpu_temp'
-#      - 'docker_active'
-#      - 'docker_cpu_use'
-#      - 'docker_memory_use'
 
 ##################################################
 ## Sensors
@@ -35,20 +7,26 @@ glances:
 
 sensor:
   - platform: version
-  - platform: uptime
-#  - platform: command_line
-#    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
-#    name: HA latest Version
+    name: hass_version_installed
 
+  - platform: version
+    name: hass_version_latest
+    source: hassio
+
+  - platform: uptime
 
   - platform: template
     sensors:
-      hass_senaste_version:
-        friendly_name: 'Senaste versionen'
-        value_template: "{{ states.binary_sensor.updater.attributes.newest_version }}"
-        entity_id: binary_sensor.updater
-
-
+      hass_version_template:
+        icon_template: 'mdi:home-assistant'
+        friendly_name_template: >-
+          Installerad {{ states('sensor.hass_version_installed') }}
+        value_template: >-
+          {% if states('sensor.hass_version_installed') == states('sensor.hass_version_latest') %}
+            Ja
+          {% else %}
+            {{ states('sensor.hass_version_latest') }}
+          {% endif %}
 
 
 ##################################################

@@ -8,6 +8,27 @@ sensor:
       - 'time_date'
       - 'time_utc'
 
+#  - platform: template
+#    sensors:
+#      dag:
+#        entity_id: sensor.date
+#        icon_template: mdi:calendar
+#        value_template: >
+#          {% set days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
+#          {{ days[now().weekday()] }}
+
+#  - platform: template
+#    sensors:
+#      datum:
+#        icon_template: mdi:calendar
+#        value_template: >
+#          {% set months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
+#          'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
+#          {{ strptime(states('sensor.date'), '%Y-%m-%d').day }}
+#          {{ months[now().month-1] }}
+
+
+
   - platform: template
     sensors:
       sunset_time:

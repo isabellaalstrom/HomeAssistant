@@ -1,0 +1,43 @@
+#group:
+  albins_rum:
+    entities:
+      - light.albin_fonster
+      - light.albin_hylla
+      - light.nattlampa
+
+  sovrummet:
+    entities:
+      - light.sovrum_fonster
+      - light.sovrum_hoger
+      - light.sovrum_vanster
+
+  hallen:
+    entities:
+      - light.hall_vagglampa
+      - light.hallen_tak
+
+  koket:
+    entities:
+      - light.koksfonstret
+
+  kontoret:
+    entities:
+     - light.kontor_banken
+     - light.kontor_fatolj
+     - light.kontor_hylla
+     - light.kontor_skrivbordet
+
+  vardagsrummet:
+    entities:
+      - light.vardagsrum_bokhyllan
+      - light.bollarna
+      - light.vardagsrum_bord
+      - light.vardagsrum_golvlampa
+      - light.vardagsrum_hoga_hyllan
+      - light.vardagsrum_tv_bank_vanster
+      - light.vardagsrum_tvbank
+
+  fan:
+    entities:
+      - fan.vardagsrum
+      - fan.xiaomi_smart_fan

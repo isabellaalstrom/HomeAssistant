@@ -1,0 +1,13 @@
+rest_command:
+#  kiosk_command:
+#    url: !secret rest_url_kiosk_command
+  reload_kiosk:
+    url: !secret reload_kiosk
+  restart_kiosk:
+    url: !secret restart_kiosk
+
+  motion_on_kiosk:
+    url: !secret motion_on_kiosk
+
+  motion_off_kiosk:
+    url: !secret motion_off_kiosk

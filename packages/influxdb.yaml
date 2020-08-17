@@ -8,10 +8,10 @@ homeassistant:
       icon: mdi:thermometer
 
     sensor.influxdb_max_for_last_24h:
-      friendly_name: 24h
+      friendly_name: Högsta 24 tim
       icon: mdi:thermometer
     sensor.influxdb_min_for_last_24h:
-      friendly_name: 24h
+      friendly_name: Lägsta 24 tim
       icon: mdi:thermometer
     sensor.influxdb_max_for_last_months:
       friendly_name: 1 mån
@@ -31,10 +31,16 @@ homeassistant:
     sensor.influxdb_inside:
       friendly_name: InfluxDB Innetemp
       icon: mdi:thermometer
+    sensor.influxdb_ute_medel_1_dygn:
+      friendly_name: Medel 24 tim
+    sensor.influxdb_ute_medel_7dagar:
+      friendly_name: 7 dygn
+    sensor.influxdb_ute_medel_30dagar:
+      friendly_name: 30 dygn
 
 
 influxdb:
-  host: 192.168.156.2
+  host: 192.168.156.170
   port: 8086
   database: home_assistant
   username: !secret influxdbuser
@@ -49,11 +55,15 @@ influxdb:
        - sensor.outside_filtered_realistic_temperature
        - sensor.albin_temp
        - sensor.sovrum_temp
-       - sensor.vardagsrumet_temp
+       - sensor.vardagsrum_temp
        - sensor.baksidan_temperature
        - sensor.framsidan_temperature
        - sensor.vardagsrummet_lux
-       - sensor.daggpunkt
+       - sensor.speedtest_download
+       - sensor.speedtest_upload
+       - sensor.speedtest_ping
+       - sensor.u_s_air_quality_index
+       - sensor.electricity_price_tegnersgatan_17_lgh_1203
   tags:
     instance: prod
     source: hass
@@ -62,7 +72,7 @@ influxdb:
 
 sensor:
   - platform: influxdb
-    host: 192.168.156.2
+    host: 192.168.156.170
     port: 8086
 #    database: home_assistant
     username: !secret influxdbuser

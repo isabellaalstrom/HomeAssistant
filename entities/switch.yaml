@@ -1,11 +1,13 @@
 
-  - platform: rfxtrx
-    automatic_add: false
-    signal_repetitions: 2
-    devices:
+#  - platform: rfxtrx
+#    automatic_add: false
+#    signal_repetitions: 2
+#    devices:
+#      0b11000399bc0cfe06010f70:
+#        name: ladda tablete
 
-      0710010143030180:
-        name: utebelysningen
+#      0710010143030180:
+#        name: utebelysningen
 
-      0b11000309bc0cfe04010f70:
-        name: utebelysning jul framsidan
+#      0b11000309bc0cfe04010f70:
+#        name: utebelysning jul framsidan

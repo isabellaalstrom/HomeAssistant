@@ -1,0 +1,45 @@
+persons:
+  show_entity_picture: true
+  size: 25%
+  aspect_ratio: 1/1
+  show_name: true
+  show_state: true
+  show_label: false
+  show_last_changed: false
+
+  styles:
+    card:
+      - border-radius: 12px
+      - color: rgb(0, 0, 0)
+      - background-color: rgb(255, 255, 255)
+    icon:
+      - color: rgb(0,0,0)
+      - justify-self: left
+    entity_picture:
+      - width: 50%
+
+
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+    name:
+      - justify-self: start
+      - padding-left: 10px
+      - font-weight: bold
+      - font-family: Helvetica
+      - font-size: 13px
+    state:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - text-transform: capitalize
+      - font-weight: bold
+      - padding-left: 10px
+    label:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - padding-left: 10px

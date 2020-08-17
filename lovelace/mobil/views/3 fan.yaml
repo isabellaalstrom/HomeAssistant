@@ -1,0 +1,1258 @@
+- title: Fläktar
+  icon: mdi:fan
+  path: fan
+  panel: false
+  cards:
+#    - type: entities
+#      title: Entities card sample
+#      show_header_toggle: true
+#      entities:
+#        - entity: input_select.fan_vrum_speed
+#        - entity: input_select.fan_vrum_rotation
+
+
+
+    - type: custom:stack-in-card
+      cards:
+        - type: entities
+          title: Fläktar
+          header:
+            type: picture
+            image: 'local/fan.jpg'
+          show_header_toggle: false
+          entities:
+            - entity: fan.vardagsrum
+
+
+        - type: conditional
+          conditions:
+            - entity: fan.vardagsrum
+              state: "on"
+          card:
+            type: entities
+            show_header_toggle: false
+
+            entities:
+              - entity: input_boolean.fan_vrum_wind
+
+              - type: custom:slider-entity-row
+                entity: input_select.fan_vrum_speed
+
+
+
+
+              - type: divider
+                style:
+                  height: 1px
+                  width: 80%
+                  margin-left: auto
+                  margin-right: auto
+                  background: '#62717b'
+
+
+              - entity: input_boolean.fan_vrum_rotation
+              - entity: input_select.fan_vrum_rotation
+              - type: divider
+                style:
+                  height: 2.5px
+                  width: 95%
+                  margin-left: auto
+                  margin-right: auto
+                  background: '#62717b'
+
+
+
+
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: fan.xiaomi_smart_fan
+
+
+        - type: conditional
+          conditions:
+            - entity: fan.xiaomi_smart_fan
+              state: "on"
+          card:
+            type: entities
+            show_header_toggle: false
+
+            entities:
+              - entity: input_boolean.fan_sovrum_wind
+
+              - type: custom:slider-entity-row
+                entity: input_select.fan_sovrum_speed
+              - type: divider
+                style:
+                  height: 1px
+                  width: 80%
+                  margin-left: auto
+                  margin-right: auto
+                  background: '#62717b'
+              - entity: input_boolean.fan_sovrum_rotation
+              - entity: input_select.fan_sovrum_rotation
+                name: Grader
+
+
+
+
+    - type: 'custom:air-filter'
+      modes:
+       - Auto
+       - Silent
+       - Favorite
+      entity: fan.mi_air_purifier_2h
+      title: Luftrenaren
+      aspect_ratio: '.6'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#    - type: markdown
+#      style: |
+#        ha-card {
+#          box-shadow: none;
+#          height: 50px;
+#          background: rgba(0,0,0,0.0);
+#          padding: 0px 10px;
+#      content: |
+#        ## Sovrummet
+#
+#    - type: vertical-stack
+#      cards:
+#        - type: horizontal-stack
+#          cards:
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#            - type: 'custom:air-filter'
+#              modes:
+#                - Auto
+#                - Silent
+#                - Favorite
+#              entity: fan.mi_air_purifier_2h
+#              title: Luftrenaren
+#              aspect_ratio: '.6'
+#
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#
+#            - type: custom:button-card
+#              entity: fan.xiaomi_smart_fan
+#              template: fan_button
+#              name: Sovrummet
+#              icon: mdi:power-cycle
+#            - type: custom:button-card
+#              entity: input_select.fan_sovrummet_hastighet
+#              template: fan_button
+#              icon: mdi:fan
+#              tap_action:
+#                action: call-service
+#                service: browser_mod.popup
+#                service_data:
+#                  title: Hastighet
+#                  deviceID:
+#                    - this
+#                  style:
+#                    border-radius: 12px
+#                  card:
+#                    type: vertical-stack
+#                    cards:
+#
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+### Level 1
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 1
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_hastighet
+#                                option: Level 1
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#
+#
+### Level 2
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 2
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_hastighet
+#                                option: Level 2
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#### Level 3
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 3
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_hastighet
+#                                option: Level 3
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### Level 4
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 4
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_hastighet
+#                                option: Level 4
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#                      - type: 'custom:button-card'
+#                        color_type: blank-card
+#                        styles:
+#                          card:
+#                            - width: 10px
+#
+#
+#            - type: custom:button-card
+#              entity: input_select.fan_sovrummet_rotatio
+#              template: fan_button
+#              tap_action:
+#                action: call-service
+#                service: browser_mod.popup
+#                service_data:
+#                  title: Rotation
+#                  deviceID:
+#                    - this
+#                  style:
+#                    border-radius: 12px
+#                  card:
+#                    type: vertical-stack
+#                    cards:
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#
+#
+## oscillating
+#                          - type: conditional
+#                            conditions:
+#                              - entity: sensor.fan_sovrum_rotation_state
+#                                state: "Av"
+#                            card:
+#                              type: custom:button-card
+#                              entity: sensor.fan_sovrum_rotation_state
+#                              template: fan_button
+#                              icon: mdi:fan
+#                              name: Rotation
+#                              show_state: true
+#                              tap_action:
+#                                action: call-service
+#                                service: fan.oscillate
+#                                service_data:
+#                                  entity_id: fan.xiaomi_smart_fan
+#                                  oscillating: on
+#
+#                          - type: conditional
+#                            conditions:
+#                              - entity: sensor.fan_sovrum_rotation_state
+#                                state: "På"
+#                            card:
+#                              type: custom:button-card
+#                              entity: sensor.fan_sovrum_rotation_state
+#                              template: fan_button
+#                              icon: mdi:fan
+#                              name: Rotation
+#                              show_state: true
+#                              tap_action:
+#                                action: call-service
+#                                service: fan.oscillate
+#                                service_data:
+#                                  entity_id: fan.xiaomi_smart_fan
+#                                  oscillating: off
+#
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#
+#
+#
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#
+#
+### 30 grader
+#
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_rotatio
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 30 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_rotatio
+#                                option: 30
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+### 60 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_rotatio
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 60 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_rotatio
+#                                option: 60
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### 90 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_rotatio
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 90 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_rotatio
+#                                option: 90
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### 120 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_sovrummet_rotatio
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 120 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_sovrummet_rotatio
+#                                option: 120
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#                      - type: 'custom:button-card'
+#                        color_type: blank-card
+#                        styles:
+#                          card:
+#                            - width: 10px
+#
+### Wind
+#
+#            - type: conditional
+#              conditions:
+#                - entity: sensor.fan_sovrummet_natural_state
+#                  state: "På"
+#              card:
+#                type: custom:button-card
+#                entity: sensor.fan_sovrummet_natural_state
+#                template: fan_button
+#                icon: mdi:weather-windy
+#                name: Vind
+#                show_state: true
+#                tap_action:
+#                  action: call-service
+#                  service: fan.xiaomi_miio_set_natural_mode_off
+#                  entity: fan.xiaomi_smart_fan
+#
+#            - type: conditional
+#              conditions:
+#                - entity: sensor.fan_sovrummet_natural_state
+#                  state: "Av"
+#              card:
+#                type: custom:button-card
+#                entity: sensor.fan_sovrummet_natural_state
+#                template: fan_button
+#                icon: mdi:weather-windy
+#                name: Vind
+#                show_state: true
+#                tap_action:
+#                  action: call-service
+#                  service: fan.xiaomi_miio_set_natural_mode_on
+#                  entity: fan.xiaomi_smart_fan
+#
+#
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#
+#
+#
+#
+#
+#
+#
+#
+
+
+
+
+
+
+
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 50px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 10px;
+#          content: |
+#            ## Vardagsrummet
+#
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#
+#            - type: custom:button-card
+#              entity: fan.vardagsrum
+#              template: fan_button
+#              name: Vardagsrum
+#              icon: mdi:power-cycle
+#            - type: custom:button-card
+#              entity: input_select.fan_vardagsrummet_hastighet
+#              template: fan_button
+#              icon: mdi:fan
+#              tap_action:
+#                action: call-service
+#                service: browser_mod.popup
+#                service_data:
+#                  title: Hastighet
+#                  deviceID:
+#                    - this
+#                  style:
+#                    border-radius: 12px
+#                  card:
+#                    type: vertical-stack
+#                    cards:
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+### Level 1
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 1
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_hastighet
+#                                option: Level 1
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#
+#
+### Level 2
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 2
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_hastighet
+#                                option: Level 2
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#### Level 3
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 3
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_hastighet
+#                                option: Level 3
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### Level 4
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_hastighet
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: Level 4
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_hastighet
+#                                option: Level 4
+#                              tap_action: light
+#                            state:
+#                              - value: 'Level 1'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 2'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 3'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: 'Level 4'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#                      - type: 'custom:button-card'
+#                        color_type: blank-card
+#                        styles:
+#                          card:
+#                            - width: 10px
+#
+#
+#            - type: custom:button-card
+#              entity: input_select.fan_vardagsrummet_rotation
+#              template: fan_button
+#              tap_action:
+#                action: call-service
+#                service: browser_mod.popup
+#                service_data:
+#                  title: Rotation
+#                  deviceID:
+#                    - this
+#                  style:
+#                    border-radius: 12px
+#                  card:
+#                    type: vertical-stack
+#                    cards:
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#
+#
+## oscillating
+#
+## oscillating
+#                          - type: conditional
+#                            conditions:
+#                              - entity: sensor.fan_vardagsrummet_rotation_state
+#                                state: "Av"
+#                            card:
+#                              type: custom:button-card
+#                              entity: sensor.fan_vardagsrummet_rotation_state
+#                              template: fan_button
+#                              icon: mdi:fan
+#                              name: Rotation
+#                              show_state: true
+#                              tap_action:
+#                                action: call-service
+#                                service: fan.oscillate
+#                                service_data:
+#                                  entity_id: fan.vardagsrum
+#                                  oscillating: on
+#
+#                          - type: conditional
+#                            conditions:
+#                              - entity: sensor.fan_sovrum_rotation_state
+#                                state: "På"
+#                            card:
+#                              type: custom:button-card
+#                              entity: sensor.fan_sovrum_rotation_state
+#                              template: fan_button
+#                              icon: mdi:fan
+#                              name: Rotation
+#                              show_state: true
+#                              tap_action:
+#                                action: call-service
+#                                service: fan.oscillate
+#                                service_data:
+#                                  entity_id: fan.vardagsrum
+#                                  oscillating: off
+#
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#                          - type: custom:button-card
+#                            color_type: blank-card
+#                            aspect_ratio: 1/1
+#
+#
+### 30 grader
+#
+#                      - type: horizontal-stack
+#                        cards:
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_rotation
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 30 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_rotation
+#                                option: 30
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+### 60 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_rotation
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 60 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_rotation
+#                                option: 60
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### 90 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_rotation
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 90 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_rotation
+#                                option: 90
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#### 120 grader
+#                          - type: custom:button-card
+#                            entity: input_select.fan_vardagsrummet_rotation
+#                            template: fan_button
+#                            icon: mdi:fan
+#                            name: 120 grader
+#                            show_state: false
+#                            tap_action:
+#                              action: call-service
+#                              service: input_select.select_option
+#                              service_data:
+#                                entity_id: input_select.fan_vardagsrummet_rotation
+#                                option: 120
+#                              tap_action: light
+#                            state:
+#                              - value: '30'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '60'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '90'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(98, 98, 98)
+#                                  card:
+#                                    - color: rgb(98, 98, 98)
+#                                    - background-color: rgb(202, 199, 193)
+#
+#                              - value: '120'
+#                                styles:
+#                                  icon:
+#                                    - color: rgb(0, 0, 0)
+#                          - type: 'custom:button-card'
+#                            color_type: blank-card
+#                            styles:
+#                              card:
+#                                - width: 10px
+#
+#                      - type: 'custom:button-card'
+#                        color_type: blank-card
+#                        styles:
+#                          card:
+#                            - width: 10px
+#
+### Wind
+#
+#
+#            - type: conditional
+#              conditions:
+#                - entity: sensor.fan_vardagsrummet_natural_state
+#                  state: "På"
+#              card:
+#                type: custom:button-card
+#                entity: sensor.fan_vardagsrummet_natural_state
+#                template: fan_button
+#                icon: mdi:weather-windy
+#                name: Vind
+#                show_state: true
+#                tap_action:
+#                  action: call-service
+#                  service: fan.xiaomi_miio_set_natural_mode_off
+#                  entity: fan.vardagsrum
+#
+#            - type: conditional
+#              conditions:
+#                - entity: sensor.fan_vardagsrummet_natural_state
+#                  state: "Av"
+#              card:
+#                type: custom:button-card
+#                entity: sensor.fan_vardagsrummet_natural_state
+#                template: fan_button
+#                icon: mdi:weather-windy
+#                name: Vind
+#                show_state: true
+#                tap_action:
+#                  action: call-service
+#                  service: fan.xiaomi_miio_set_natural_mode_on
+#                  entity: fan.vardagsrum
+#
+#
+#            - type: 'custom:button-card'
+#              color_type: blank-card
+#              styles:
+#                card:
+#                  - width: 10px
+#
+#
+#
+##        - type: entities
+##          title: Options
+##          entities:
+##            - type: custom:slider-entity-row
+##              entity: fan.xiaomi_smart_fan
+#

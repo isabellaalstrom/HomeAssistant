@@ -1,8 +1,33 @@
+
+speedtestdotnet:
+  server_id: 6062
+  scan_interval:
+    minutes: 30
+    hours: 6
+
+
+
+
 sensor:
   - platform: dnsip
-  
-  - platform: systemmonitor
-    resources:
-      - type: last_boot
-      - type: ipv4_address
-        arg: eno1
+
+#  - platform: systemmonitor
+#    resources:
+#      - type: last_boot
+#      - type: ipv4_address
+#        arg: eno1
+
+
+  - platform: template
+    sensors:
+      amplifi_router_mib_s_received:
+        friendly_name: "MB Recived"
+        unit_of_measurement: "MB/s"
+        value_template: "{{ (states('sensor.amplifi_router_mib_s_received') | float / 1024) | round(2) }}"
+
+  - platform: template
+    sensors:
+      amplifi_router_mib_s_sent:
+        friendly_name: "MB Sent"
+        unit_of_measurement: "MB/s"
+        value_template: "{{ (states('sensor.amplifi_router_mib_s_sent') | float / 1024) | round(2) }}"

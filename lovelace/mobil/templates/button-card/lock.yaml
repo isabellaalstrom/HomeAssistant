@@ -1,0 +1,46 @@
+
+lock:
+  show_entity_picture: true
+  show_state: true
+  show_label: false
+  show_name: true
+  tap_action:
+    action: more-info
+  styles:
+    grid:
+      - grid-template-areas: '"i""n""s"'
+      - grid-template-columns: min-content
+      - grid-template-rows: auto auto auto
+      - justify-self: center
+      - width: auto
+    card:
+      - box-shadow: none
+      - padding-left: 0px
+      - width: 100px
+      - background: rgb(0, 0, 0, 0)
+
+    name:
+      - justify-self: center
+      - font-size: 13px
+    state:
+      - font-size: 12px
+      - justify-self: center
+
+
+  state:
+    - value: 'locked'
+      icon: mdi:lock-check
+      styles:
+        icon:
+          - color: green
+          - width: 40px
+          - height: 40px
+
+
+    - value: 'unlocked'
+      icon: mdi:lock-open-alert
+      styles:
+        icon:
+          - color: red
+          - width: 40px
+          - height: 40px

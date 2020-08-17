@@ -1,0 +1,39 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: false
+                title: Gäst Wifi
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: markdown
+                      style: |
+                       ha-card {
+                         margin-top: 10px;
+                         text-align: left;
+                         height: 100px;
+                         background: rgba(0,0,0,0.0);
+                         box-shadow: none;
+                         font-family: SF Display;
+                         font-size: 16px;
+                         font-weight: 300;
+                         opacity: 0.75;
+                         padding-left: 20px
+                       }
+                      content: >
+                        Gäst Wi-Fi är dolt och heter <b>H&N-Guest</b><br>
+
+                        Scanna QR-koden nedan för att ansluta
+
+
+
+
+
+
+
+                    - type: picture
+                      image: /local/wifi_guest.png

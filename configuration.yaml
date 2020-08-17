@@ -1,10 +1,76 @@
 homeassistant:
-  packages: !include_dir_named packages
+  packages: !include_dir_named packages/
+  customize: !include customize.yaml
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.156.0/24
+        - 10.1.30.0/24
+      trusted_users:
+        192.168.156.216: 7fda7b6f10f741bbaeaf0e6ce1a0908a
 
-http:
-#  base_url: !secret base_url
-  ip_ban_enabled: true
-  login_attempts_threshold: 3
+
+
+lovelace:
+  mode: yaml
+  resources: !include_dir_merge_list lovelace/resources
+  dashboards:
+    my-theme:
+      mode: yaml
+      title: My Theme
+      icon: mdi:alpha-m-box
+      show_in_sidebar: true
+      filename: ui-lovelace.yaml
+      require_admin: false
+
+    my-dashboard:
+      mode: yaml
+      title: Tablete
+      icon: mdi:tablet-dashboard
+      show_in_sidebar: true
+      filename: ui-dashboard.yaml
+      require_admin: false
+
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+
+browser_mod:
+  prefix: "browser_"
+  devices:
+    8c4dd22e_ef196e36:
+      name: tablet
+      camera: true
+
+    eac8cb7d-f29085f2:
+      name: niklas_mbp_safari
+      disable:
+        - light
+        - media_player
+        - sensor
+    0c46f0e8_e1aad3f4:
+      name: niklas_mbp_chrome
+      disable:
+        - light
+        - media_player
+        - sensor
+
+    b9d4a2a1_f3829503:
+      name: Niklas iPhone
+      disable:
+        - light
+        - media_player
+        - sensor
+
+    fa9f4114_6fa501c2:
+      name: Hanna iPhone
+      disable:
+        - light
+        - media_player
+        - sensor
+
 
 hassio:
 cloud:
@@ -16,53 +82,22 @@ sun:
 system_health:
 mobile_app:
 ios:
+#python_script:
 
-frontend:
-  themes: !include_dir_merge_named themes
-lovelace:
-  mode: yaml
+
+#frontend:
+#  themes: !include_dir_merge_named themes
 
 ssdp:
 zeroconf:
-discovery:
-  ignore:
-    - apple_tv
-    - belkin_wemo
-    - bluesound
-    - bose_soundtouch
-    - denonavr
-    - directv
-    - enigma2
-    - frontier_silicon
-    - google_cast
-#    - harmony
-    - igd
-    - logitech_mediaserver
-    - netgear_router
-    - octoprint
-    - openhome
-    - panasonic_viera
-    - philips_hue
-    - plex_mediaserver
-    - roku
-    - sabnzbd
-    - samsung_printer
-    - samsung_tv
-    - sonos
-    - songpal
-    - tellstick
-    - wink
-    - yamaha
-    - yeelight
-    - xiaomi_gw
 
-breaking_changes:
+#breaking_changes:
 
 hacs:
   token: !secret hacs
 
-rfxtrx:
-  device: !secret rfxtrx
+#rfxtrx:
+#  device: !secret rfxtrx
 
 ifttt:
   key: !secret ifttt
@@ -71,27 +106,28 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
-#apple_tv:
-#  - host: 192.168.156.5
-#    login_id: !secret apt_livingroom_login
-#    name: APT Livingroom
-#    credentials: !secret apt_livingroom_credentials
-
-remote:
-  - platform: harmony
-    name: Vardagsrummet
-    host: 192.168.156.6
-
-
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.156.4
     name: Wowite
     token: !secret vacuum_token
 
-#media_player:
-#  - platform: samsungtv
-#    host: 192.168.156.215
+fan:
+  - platform: xiaomi_miio_fan
+    name: sovrum
+    host: 192.168.156.235
+    token: !secret fan_sovrum
+
+  - platform: xiaomi_miio_fan
+    name: vardagsrum
+    host: 192.168.156.154
+    token: !secret fan_vardagsrum
+
+  - platform: xiaomi_miio
+    name: Mi Air Purifier 2H
+    host: 192.168.156.222
+    token: !secret air_purifyer
+
 
 recorder: !include logging/recorder.yaml
 history: !include logging/history.yaml
@@ -99,10 +135,11 @@ logbook: !include logging/logbook.yaml
 logger: !include logging/logger.yaml
 notify: !include notify.yaml
 
-
+group: !include entities/group.yaml
 device_tracker: !include entities/device_tracker.yaml
 light: !include entities/light.yaml
 switch: !include entities/switch.yaml
+#script: !include scripts.yaml
 script: !include_dir_merge_named scripts
 sensor: !include entities/sensor.yaml
 binary_sensor: !include entities/binary_sensor.yaml

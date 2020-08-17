@@ -1,0 +1,596 @@
+- title: Dashboard
+  theme: slate
+  path: home
+  panel: true
+  cards:
+    - type: picture-elements
+      image: /local/background.png
+      elements:
+        - type: image
+          image: local/sidebar.png
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            {top: 50%, left: 10.6%, width: 21.5%}
+
+
+    ############################
+    #
+    #   SIDEBAR
+    #
+    ############################
+
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 6.15%, left: 11.1%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none, --border-radius: 0px,
+            --primary-text-color: 'rgba(255, 255, 255, 0.9)', font-family: SF Display, font-size: 1.5vw, font-weight: 300,
+            letter-spacing: 0.06vw, line-height: 2.05vw, opacity: 0.75, pointer-events: none}
+
+          content: >
+            <b><font size="24">{{ states('sensor.time') }}</font></b>
+
+            <font color='#6a7377'>{{ states('sensor.dag') }}</font><br>
+            <font color='#6a7377'>{{ states('sensor.datum') }}</font><br>
+
+
+            <b>{{states.sensor.greeting.state}}</b>
+
+
+            {{states.sensor.vader_text.state}}
+
+
+            <font color='#6a7377'>
+            {% if is_state('sensor.nr_open_doors', '1') %}
+            {{states.sensor.nr_open_doors.state}} dörr är öppen{% endif %}
+
+            {% if is_state('sensor.nr_open_doors', '2') %}
+            {{states.sensor.nr_open_doors.state}} dörrar är öppna{% endif %}
+
+
+            {% if is_state('sensor.tvatt_countdown_les_then_4_days', 'true') %}
+            {{ states('sensor.tvatta_countdown') }}{% endif %}
+
+
+            {% if is_state('sensor.stadning_countdown_les_then_4_days', 'true') %}
+            {{ states('sensor.stadning_countdown') }}{% endif %}
+
+
+            {% if is_state('sensor.mat_countdown_les_then_3_days', 'true') %}
+            {{ states('sensor.mat_countdown') }}{% endif %}
+
+
+            {% if is_state('input_boolean.nasta_buss', 'on') %}
+            Nästa buss går {{ states('sensor.linje_52') }} från Korsvägen <br>{% endif %}
+            </font>
+
+            {% if is_state('plant.blommorna', 'problem') %}
+            <b>Blommorna behöver vattnas</b>{% endif %}
+
+
+
+        - type: icon
+          icon: mdi:information-outline
+          title: Info
+          style:
+            top: 87.41%
+            left: 4.8%
+            color: rgba(255, 255, 255, 0.10)
+            padding: 0.8vw
+            --mdc-icon-size: 3vw
+          tap_action: !include popup/popup_hem.yaml
+
+        - type: icon
+          icon: mdi:home-assistant
+          title: Home Assistant
+          style:
+            top: 87.41%
+            left: 10.7%
+            color: rgba(255, 255, 255, 0.10)
+            padding: 0.8vw
+            --mdc-icon-size: 3vw
+          tap_action: !include popup/popup_hass.yaml
+
+        - type: icon
+          icon: mdi:alert-outline
+          title: Varningar
+          style:
+            top: 87.41%
+            left: 16.55%
+            color: rgba(255, 255, 255, 0.10)
+            padding: 0.8vw
+            --mdc-icon-size: 3vw
+          tap_action: !include popup/popup_hass.yaml
+
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 6.15%, left: 25%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Lägenheten
+
+
+## Larm
+
+        - type: custom:button-card
+          entity: alarm_control_panel.house
+          style:
+            top: 20.35%
+            left: 30.31%
+            width: 10%
+          template: alarm_button
+          name: Larmet
+          tap_action: !include popup/popup_larm.yaml
+
+## Transport
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 20.35%
+            left: 41.31%
+            width: 10%
+
+          name: Transporter
+          label: Waze / Västtrafik
+          icon: mdi:car-estate
+          template: script_button
+          tap_action: !include popup/popup_transport.yaml
+
+
+## Fläktar
+
+        - type: custom:button-card
+          entity: group.fan
+          style:
+            top: 37.9%
+            left: 30.31%
+            width: 10%
+          template: fan_button
+          icon: mdi:fan
+          name: Fläktar
+          tap_action: !include popup/popup_fan.yaml
+
+
+## Damsugare
+
+        - type: custom:button-card
+          entity: vacuum.wowite
+          style:
+            top: 37.9%
+            left: 41.31%
+            width: 10%
+          template: sensor_button
+          show_name: true
+          show_state: true
+          show_label: false
+          show_last_changed: false
+          tap_action: !include popup/popup_vaccum.yaml
+
+## Media
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 6.15%, left: 50.02%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Media
+
+
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 20.35%
+            left: 55.18%
+            width: 10%
+          template: script_button
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Sonos
+          label: Media spelare
+          icon: mdi:speaker
+          tap_action: !include popup/popup_media.yaml
+
+
+## TV / Fjärrkontrol
+
+        - type: custom:button-card
+          entity: remote.vardagsrummet
+          style:
+            top: 20.35%
+            left: 66.14%
+            width: 10%
+          template: script_button
+          show_name: true
+          show_state: false
+          show_label: true
+          name: TV
+          label: Harmony Remote
+          icon: mdi:television-classic
+          tap_action: !include popup/popup_media.yaml
+
+## Radio / Rix FM
+
+        - type: custom:button-card
+          entity: input_select.sonos
+          style:
+            top: 37.9%
+            left: 55.18%
+            width: 10%
+          template: script_button
+          name: Radio
+          icon: mdi:radio
+          label: Rix FM
+          tap_action:
+            action: call-service
+            service: input_select.select_option
+            service_data:
+              entity_id: input_select.sonos
+              option: RIX FM 107.1 (Populärmusik)
+
+## Spotify blandning
+
+        - type: custom:button-card
+          entity: input_select.sonos
+          style:
+            top: 37.9%
+            left: 66.14%
+            width: 10%
+          template: script_button
+          name: Musik
+          label: Slumpmässig
+          icon: mdi:spotify
+          tap_action:
+            action: call-service
+            service: input_select.select_option
+            service_data:
+              entity_id: input_select.sonos
+              option: mixtape
+
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 50.4%, left: 25.4%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Lampor
+
+
+
+## Tänd alla lampor
+
+        - type: custom:button-card
+          entity: script.nr_light_on
+          style:
+            top: 64.5%
+            left: 30.31%
+            width: 10%
+          template: script_button
+          label: alla lampor
+
+## Släck alla Lampor
+
+        - type: custom:button-card
+          entity: script.nr_light_off
+          style:
+            top: 64.5%
+            left: 41.31%
+            width: 10%
+          template: script_button
+          label: alla lampor
+
+## ljusstyrka
+
+
+
+        - type: conditional
+          conditions:
+            - entity: input_select.ljusstyrka
+              state: 'Ljus'
+          elements:
+            - type: custom:button-card
+              entity: input_select.ljusstyrka
+              style:
+                top: 82.1%
+                left: 30.31%
+                width: 10%
+              template: sensor_button
+              show_name: true
+              show_state: true
+              show_label: true
+              tap_action:
+                action: call-service
+                service: input_select.select_option
+                service_data:
+                  entity_id: input_select.ljusstyrka
+                  option: Svag
+
+
+        - type: conditional
+          conditions:
+            - entity: input_select.ljusstyrka
+              state: 'Svag'
+          elements:
+            - type: custom:button-card
+              entity: input_select.ljusstyrka
+              style:
+                top: 82.1%
+                left: 30.31%
+                width: 10%
+              template: sensor_button
+              show_name: true
+              show_state: true
+              show_label: true
+              tap_action:
+                action: call-service
+                service: input_select.select_option
+                service_data:
+                  entity_id: input_select.ljusstyrka
+                  option: Ljus
+
+
+
+
+## Alla lampor
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 82.1%
+            left: 41.31%
+            width: 10%
+          template: script_button
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Lampor
+          label: status
+          icon: mdi:lamp
+#            tap_action: !include popup/popup_lights.yaml
+          tap_action: !include popup/popup_lights_new.yaml
+
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 50.4%, left: 50.02%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Väder
+
+
+
+## Utetempertur
+
+        - type: custom:button-card
+          entity: sensor.temp_inne_filtrerad
+          style:
+            top: 64.5%
+            left: 55.18%
+            width: 10%
+          template: sensor_button
+          show_name: true
+          show_state: true
+          show_label: false
+          show_last_changed: false
+
+## Innetemperatur
+
+        - type: custom:button-card
+          entity: sensor.temp_ute_filtrerad
+          style:
+            top: 64.5%
+            left: 66.14%
+            width: 10%
+          template: sensor_button
+          show_name: true
+          show_state: true
+          show_label: false
+          show_last_changed: false
+#            tap_action:
+#              action: navigate
+#              navigation_path: /my-theme/vader
+
+
+## Väderprognos
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 82.1%
+            left: 55.18%
+            width: 10%
+          template: script_button
+          show_name: true
+          name: Väderprognos
+          show_state: false
+          show_label: true
+          label: SMHI / YR
+          icon: mdi:weather-partly-rainy
+          show_last_changed: false
+          tap_action: !include popup/popup_vader.yaml
+
+
+
+
+## Varnigar
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 82.1%
+            left: 66.14%
+            width: 10%
+          template: script_button
+          show_name: true
+          name: Varningar
+          show_state: false
+          show_label: true
+          label: VMA / SMHI
+          icon: mdi:alert-octagon-outline
+          show_last_changed: false
+
+## Snabbkommandon
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 6.15%, left: 75.1%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Scener
+
+## God morgon
+
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 20.35%
+            left: 80.05%
+            width: 10%
+          template: script_button
+          show_name: true
+          icon: mdi:weather-sunset-up
+          show_state: false
+          show_label: true
+          name: God morgon
+          label: Kick ass!
+#          icon: mdi:speaker
+          tap_action: !include popup/popup_media.yaml
+
+## God natt
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 20.35%
+            left: 91.05%
+            width: 10%
+          template: script_button
+          icon: mdi:weather-night
+          show_name: true
+          show_state: false
+          show_label: true
+          name: God natt
+          label: Svog gott
+#          icon: mdi:speaker
+          tap_action: !include popup/popup_media.yaml
+
+
+## Gå hemifån
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 37.9%
+            left: 80.05%
+            width: 10%
+          template: script_button
+          icon: mdi:home-lock
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Gå hemifrån
+          label: Hej då!
+#          icon: mdi:speaker
+          tap_action: !include popup/popup_media.yaml
+
+## Fler scener
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 37.9%
+            left: 91.05%
+            width: 10%
+          template: script_button
+          icon: mdi:dots-horizontal
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Flere scener
+          label: klicka för mer
+#          icon: mdi:speaker
+          tap_action: !include popup/popup_media.yaml
+
+
+## Hemma
+
+        - type: custom:hui-element
+          card_type: markdown
+          style:
+            {top: 50.4%, left: 75.01%, width: 15.5vw, height: 1px, --ha-card-background: none, --ha-card-box-shadow: none,
+            --primary-text-color: 'rgba(188, 190, 191, 0.9)', font-family: SF Display, font-size: 2.4vw, font-weight: 500, max-width: 1px, cursor; default}
+          content: >
+            Hemma
+
+## Niklas
+
+        - type: custom:button-card
+          entity: person.niklas
+          entity_picture: /local/images/persons/niklas_emoji_t.gif
+          template: persons
+          style:
+            top: 64.5%
+            left: 80.05%
+            width: 10%
+
+# Hanna
+
+
+        - type: custom:button-card
+          entity: person.hanna
+          entity_picture: /local/images/persons/hanna_emoji_t.gif
+          template: persons
+          style:
+            top: 64.5%
+            left: 91.05%
+            width: 10%
+
+
+
+## Matsedel
+
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 82.1%
+            left: 80.05%
+            width: 10%
+          template: script_button
+          icon: mdi:food-fork-drink
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Matsedel
+          label: Veckans mat
+          tap_action: !include popup/popup_matlista.yaml
+
+## Gäst WiFi
+
+        - type: custom:button-card
+          entity: input_boolean.lovelace_hemmet
+          style:
+            top: 82.1%
+            left: 91.05%
+            width: 10%
+          template: script_button
+          icon: mdi:wifi
+          show_name: true
+          show_state: false
+          show_label: true
+          name: Gäst Wi-Fi
+          label: H&N-guest
+          tap_action: !include popup/popup_wifi.yaml
+          

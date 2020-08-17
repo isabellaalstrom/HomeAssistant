@@ -5,7 +5,6 @@ aarlo:
   password: !secret arlo_passwd
 #  reconnect_every: 70
 
-
 camera:
   - platform: aarlo
     ffmpeg_arguments: '-pred 1 -q:v 2'
@@ -14,7 +13,6 @@ alarm_control_panel:
   - platform: aarlo
     home_mode_name: baksidan
     away_mode_name: armed
-
 
 binary_sensor:
   - platform: aarlo

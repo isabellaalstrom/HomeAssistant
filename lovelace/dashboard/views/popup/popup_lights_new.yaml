@@ -1,0 +1,62 @@
+                action: call-service
+                service: browser_mod.popup
+                service_data:
+                  title: Lampor
+                  large: true
+                  deviceID:
+                    - this
+                  style:
+                    border-radius: 12px
+                  card:
+                    type: custom:layout-card
+                    cards:
+                      - type: entities
+                        title: Albins rum
+                        show_header_toggle: false
+                        entities:
+                          - entity: light.albin_fonster
+                          - entity: light.albin_hylla
+                          - entity: light.nattlampa
+                      - type: entities
+                        title: Hallen
+                        show_header_toggle: false
+                        entities:
+                          - entity: light.hallen_tak
+                          - entity: light.hall_vagglampa
+
+                      - type: entities
+                        title: Vardagsrummet
+                        show_header_toggle: false
+                        entities:
+                          - entity: light.vardagsrum_bokhyllan
+                          - entity: light.vardagsrum_bord
+                          - entity: light.vardagsrum_golvlampa
+                          - entity: light.vardagsrum_hoga_hyllan
+                          - entity: light.vardagsrum_tv_bank_vanster
+                          - entity: light.vardagsrum_tvbank
+                          - entity: light.bollarna
+
+
+                      - type: entities
+                        title: Kontoret
+                        show_header_toggle: false
+                        entities:
+                          - entity: light.kontor_banken
+                          - entity: light.kontor_fatolj
+                          - entity: light.kontor_hylla
+                          - entity: light.kontor_skrivbordet
+
+                      - type: entities
+                        title: Köket
+                        show_header_toggle: false
+                        entities:
+                          - entity: light.koksfonstret
+
+                      - type: entities
+                        title: Sovrummet
+                        show_header_toggle: false
+                        entities:
+                          - entity: input_boolean.dark_bedroom
+                          - entity: light.byran
+                          - entity: light.sovrum_hanna
+                          - entity: light.sovrum_niklas

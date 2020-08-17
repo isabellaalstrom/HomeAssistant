@@ -1,0 +1,573 @@
+- title: Hem
+  icon: mdi:home
+  theme: oxfordblue
+  path: home
+  panel: false
+  cards:
+    - type: vertical-stack
+      cards:
+
+#################################
+##                             ##
+##     Header                  ##
+##                             ##
+#################################
+
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: alarm_control_panel.house
+              template: alarm_head
+              name: Larmet
+              tap_action:
+                action: call-service
+                service: browser_mod.popup
+                service_data:
+                  title: Larmet
+                  deviceID:
+                    - this
+                  style:
+                    border-radius: 12px
+                  card:
+                    type: vertical-stack
+                    cards:
+                      - type: alarm-panel
+                        entity: alarm_control_panel.house
+                        name: Tegnérsgatan
+
+
+            - type: custom:button-card
+              entity: person.niklas
+              entity_picture: /local/images/persons/niklas_emoji_t.gif
+              template: persons
+            - type: custom:button-card
+              entity: person.hanna
+              entity_picture: /local/images/persons/hanna_emoji_t.gif
+              template: persons
+
+
+        - type: horizontal-stack
+          cards:
+            - type: markdown
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  height: 70px;
+                  background: rgba(0,0,0,0.0);
+                  padding: 0px 10px;
+                }
+              content: |
+                ## {{ states.sensor.greeting.state }}</br>
+                *{{ states.sensor.vader_text.state }}*</br>
+        - type: horizontal-stack
+          cards:
+
+            - type: markdown
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  height: 100px;
+                  background: rgba(0,0,0,0.0);
+                  padding: 0px 10px;
+              content: |
+                *{{ states.sensor.vader_prognos_text.state }}*
+
+
+
+
+#################################
+##                             ##
+##     Knappar                 ##
+##                             ##
+#################################
+
+
+## Rad 1
+
+        - type: horizontal-stack
+          cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:button-card
+            entity: lock.ytterdorren
+            template: lock_button
+            name: Dörren
+
+          - type: custom:button-card
+            entity: sensor.nr_open_doors
+            template: sensor_door_button
+            name: Dörrar
+            tap_action:
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Öppna dörrar
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: conditional
+                      conditions:
+                        - entity: binary_sensor.franska_balkongen
+                          state: "on"
+                      card:
+                        type: 'custom:button-text-card'
+                        title: Franska balkongen
+                        subtitle: är öppen
+                        icon: 'mdi:door-open'
+                        large: true
+                        font_color: '#fff'
+                        background_color: '#A81419'
+                    - type: conditional
+                      conditions:
+                        - entity: binary_sensor.backdoor
+                          state: "on"
+                      card:
+                        type: 'custom:button-text-card'
+                        title: Balkongdörren
+                        subtitle: är öppen
+                        icon: 'mdi:door-open'
+                        large: true
+                        font_color: '#fff'
+                        background_color: '#A81419'
+
+                    - type: conditional
+                      conditions:
+                        - entity: binary_sensor.frontdoor
+                          state: "on"
+                      card:
+                        type: 'custom:button-text-card'
+                        title: Ytterdörren
+                        subtitle: är öppen
+                        icon: 'mdi:door-open'
+                        large: true
+                        font_color: '#fff'
+                        background_color: '#A81419'
+
+
+          - type: custom:button-card
+            entity: input_boolean.lovelace_hemmet
+            template: script_button
+            show_name: true
+            show_state: false
+            show_label: true
+            name: Lampor
+            label: status
+            icon: mdi:lamp
+            tap_action:
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Lampor
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                        - type: custom:button-card
+                          entity: script.nr_light_on
+                          template: script_button
+                          label: alla lampor
+                        - type: custom:button-card
+                          entity: script.nr_light_off
+                          template: script_button
+                          label: alla lampor
+                        - type: conditional
+                          conditions:
+                            - entity: input_select.ljusstyrka
+                              state: "Ljus"
+                          card:
+                            type: custom:button-card
+                            entity: input_select.ljusstyrka
+                            template: sensor_button
+                            show_name: true
+                            show_state: true
+                            show_label: true
+                            tap_action:
+                              action: call-service
+                              service: input_select.select_option
+                              service_data:
+                                entity_id: input_select.ljusstyrka
+                                option: Svag
+                              tap_action: light
+                        - type: conditional
+                          conditions:
+                            - entity: input_select.ljusstyrka
+                              state: "Svag"
+                          card:
+                            type: custom:button-card
+                            entity: input_select.ljusstyrka
+                            template: sensor_button
+                            show_name: true
+                            show_state: true
+                            show_label: true
+                            tap_action:
+                              action: call-service
+                              service: input_select.select_option
+                              service_data:
+                                entity_id: input_select.ljusstyrka
+                                option: Ljus
+                              tap_action: light
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                    - type: 'custom:button-card'
+                      color_type: blank-card
+                      styles:
+                        card:
+                          - width: 10px
+
+                    - type: horizontal-stack
+                      cards:
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                        - type: custom:button-card
+                          entity: input_boolean.evening
+                          template: light_button
+
+                        - type: custom:button-card
+                          entity: input_boolean.dark_mode
+                          template: light_button
+                        - type: custom:button-card
+                          color_type: blank-card
+                          aspect_ratio: 1/1
+
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                    - type: 'custom:button-card'
+                      color_type: blank-card
+                      styles:
+                        card:
+                          - width: 10px
+
+
+
+          - type: custom:button-card
+            entity: input_boolean.lovelace_hemmet
+            template: script_button
+            show_name: true
+            show_state: false
+            show_label: true
+            name: Media
+            label: Sonos
+            icon: mdi:music
+            tap_action:
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Sonos
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                        - type: custom:button-card
+                          entity: input_boolean.lovelace_hemmet
+                          template: script_button
+                          name: Radio
+                          label: Rix FM
+                          icon: mdi:radio
+                          tap_action:
+                            action: call-service
+                            service: input_select.select_option
+                            service_data:
+                              entity_id: input_select.sonos
+                              option: RIX FM 107.1 (Populärmusik)
+
+
+                        - type: custom:button-card
+                          entity: input_boolean.lovelace_hemmet
+                          template: script_button
+                          name: Musik
+                          label: Spotify
+                          icon: mdi:spotify
+                          tap_action:
+                            action: call-service
+                            service: input_select.select_option
+                            service_data:
+                              entity_id: input_select.sonos
+                              option: mixtape
+
+
+                        - type: custom:button-card
+                          entity: script.event_nr_dinner_time
+                          template: script_button
+                          label: Spotify
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+                    - type: 'custom:button-card'
+                      color_type: blank-card
+                      styles:
+                        card:
+                          - width: 10px
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+
+### RAD 2
+
+        - type: horizontal-stack
+          cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:button-card
+            entity: sensor.temp_inne_filtrerad
+            template: sensor_button
+            show_name: true
+            show_state: true
+            show_label: false
+            show_last_changed: false
+            tap_action:
+              action: navigate
+              navigation_path: /my-theme/vader
+
+          - type: custom:button-card
+            entity: sensor.temp_ute_filtrerad
+            template: sensor_button
+            show_name: true
+            show_state: true
+            show_label: false
+            show_last_changed: false
+            tap_action:
+              action: navigate
+              navigation_path: /my-theme/vader
+
+
+          - type: custom:button-card
+            entity: plant.blommorna
+            name: Blommor
+            template: sensor_button
+            show_name: true
+            show_state: true
+            show_label: false
+            show_last_changed: false
+            state:
+              - value: 'problem'
+                styles:
+                  icon:
+                    - color: red
+
+            tap_action:
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Blommorna
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: plant-status
+                      entity: plant.blommorna
+
+
+
+
+
+
+          - type: custom:button-card
+            entity: vacuum.wowite
+            template: sensor_button
+            show_name: true
+            show_state: true
+            show_label: false
+            show_last_changed: false
+            tap_action:
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                title: Robotdamsugaren
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: conditional
+                          conditions:
+                            - entity: input_select.vacuum_mode
+                              state: "Ja"
+                          card:
+                            type: custom:button-card
+                            entity: input_select.vacuum_mode
+                            template: script_button
+                            show_name: true
+                            show_state: true
+                            show_label: false
+                            name: Städa idag?
+                            icon: mdi:help-circle-outline
+                            tap_action:
+                              action: call-service
+                              service: input_select.select_option
+                              service_data:
+                                entity_id: input_select.vacuum_mode
+                                option: Nej
+                        - type: conditional
+                          conditions:
+                            - entity: input_select.vacuum_mode
+                              state: "Nej"
+                          card:
+                            type: custom:button-card
+                            entity: input_select.vacuum_mode
+                            template: script_button
+                            show_name: true
+                            show_state: true
+                            show_label: false
+                            name: Städa idag?
+                            icon: mdi:help-circle-outline
+                            tap_action:
+                              action: call-service
+                              service: input_select.select_option
+                              service_data:
+                                entity_id: input_select.vacuum_mode
+                                option: Ja
+
+                        - type: custom:button-card
+                          entity: input_boolean.vacuum
+                          template: script_button
+                          label: Starta
+                          icon: mdi:play-circle-outline
+                          tap_action:
+                            action: call-service
+                            service: vacuum.start
+                            service_data:
+                              entity_id: vacuum.wowite
+                            haptic: light
+
+                        - type: custom:button-card
+                          entity: input_boolean.vacuum
+                          template: script_button
+                          icon: mdi:pause-circle-outline
+                          label: Pausa
+                          tap_action:
+                            action: call-service
+                            service: vacuum.stop
+                            service_data:
+                              entity_id: vacuum.wowite
+                            haptic: light
+
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          entity: input_boolean.vacuum
+                          template: script_button
+                          icon: mdi:chat-sleep-outline
+                          label: Gå tillbaka
+                          tap_action:
+                            action: call-service
+                            service: vacuum.return_to_base
+                            service_data:
+                              entity_id: vacuum.wowite
+                            haptic: light
+
+                        - type: custom:button-card
+                          color_type: blank-card
+                          aspect_ratio: 1/1
+                        - type: custom:button-card
+                          color_type: blank-card
+                          aspect_ratio: 1/1
+
+
+### Rad 3
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+        - type: horizontal-stack
+          cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - type: custom:button-card
+            entity: group.fan
+            template: fan_button
+            icon: mdi:fan
+            name: Fläktar
+
+            tap_action:
+              action: navigate
+              navigation_path: /my-theme/fan
+            state:
+              - value: 'off'
+                styles:
+                  icon:
+                    - color: rgb(98, 98, 98)
+
+              - value: 'on'
+                styles:
+                  icon:
+                    - color: rgb(0, 0, 0)
+                    - animation: spin 2s ease infinite
+
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px

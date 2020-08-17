@@ -1,23 +1,31 @@
 
-  ovrigtmenyn:
-    name: 'Övrigt menyn:'
-    options:
-      - 'Hem'
-      - 'Klimat'
-      - 'Blommor'
-      - 'IntelNuc'
-      - 'Lagenheten'
-      - 'Robotdamsugaren'
-      - 'Varningar'
-      - 'Underhall'
-    initial: 'Hem'
-#    icon: mdi:map-outline
 
-  vacuum_card:
-    name: 'Robotdamsugaren lovelace card'
+  ljusstyrka:
+    name: 'Ljusstyrka på lamporna'
     options:
-      - 'Basic'
-      - 'Zone'
-      - 'Schema'
-      - 'Status'
-    initial: 'Basic'
+      - 'Ljus'
+      - 'Svag'
+    initial: 'Ljus'
+
+
+  sonos:
+    name: 'Spellista / Radio'
+    options:
+      - 'RIX FM 107.1 (Populärmusik)'
+      - 'NRJ Sweden'
+      - 'Mix Megapol Göteborg 107.3 (Populärmusik)'
+      - 'Acoustic Hits'
+      - 'Anne-Marie Radio'
+      - 'Brand New Chill'
+      - 'Coldplay Radio'
+      - 'Life is good!'
+      - 'Lugnt & Skönt'
+      - 'Maroon 5 Radio'
+      - 'Mood Booster'
+      - 'Musik för arbetsdagen'
+      - 'The Chainsmokers Radio'
+      - 'Topp 50 i Sverige'
+      - 'Topp 50 i världen'
+      - 'mixtape'
+      - 'none'
+    initial: 'none'

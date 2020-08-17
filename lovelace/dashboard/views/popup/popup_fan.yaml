@@ -1,0 +1,91 @@
+                action: call-service
+                service: browser_mod.popup
+                service_data:
+                  large: true
+                  title: Fläktar
+                  deviceID:
+                    - this
+                  style:
+                    border-radius: 12px
+                  card:
+                    type: vertical-stack
+                    cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: 'custom:button-card'
+                            color_type: blank-card
+                            styles:
+                              card:
+                                - width: 10px
+
+                          - type: custom:stack-in-card
+                            cards:
+                              - type: entities
+                                show_header_toggle: false
+                                entities:
+                                  - entity: fan.vardagsrum
+
+
+                              - type: conditional
+                                conditions:
+                                  - entity: fan.vardagsrum
+                                    state: "on"
+                                card:
+                                  type: entities
+                                  show_header_toggle: false
+
+                                  entities:
+                                    - entity: input_boolean.fan_vrum_wind
+
+                                    - type: custom:slider-entity-row
+                                      entity: input_select.fan_vrum_speed
+
+                                    - type: custom:text-divider-row
+                                      text: Rotation
+
+
+                                    - entity: input_boolean.fan_vrum_rotation
+                                    - entity: input_select.fan_vrum_rotation
+
+                          - type: 'custom:button-card'
+                            color_type: blank-card
+                            styles:
+                              card:
+                                - width: 10px
+
+
+
+
+                          - type: custom:stack-in-card
+                            style:
+                              border-radius: 12px
+
+                            cards:
+                              - type: entities
+                                show_header_toggle: false
+                                entities:
+                                  - entity: fan.xiaomi_smart_fan
+
+
+                              - type: conditional
+                                conditions:
+                                  - entity: fan.xiaomi_smart_fan
+                                    state: "on"
+                                card:
+                                  type: entities
+                                  show_header_toggle: false
+                                  entities:
+                                    - entity: input_boolean.fan_sovrum_wind
+                                    - type: custom:slider-entity-row
+                                      entity: input_select.fan_sovrum_speed
+                                    - type: custom:text-divider-row
+                                      text: Rotation
+                                    - entity: input_boolean.fan_sovrum_rotation
+                                    - entity: input_select.fan_sovrum_rotation
+                                      name: Grader
+
+                          - type: 'custom:button-card'
+                            color_type: blank-card
+                            styles:
+                              card:
+                                - width: 10px

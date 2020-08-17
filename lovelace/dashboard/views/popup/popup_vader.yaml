@@ -1,0 +1,27 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Väder
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:weather-card
+                      entity: weather.smhi_home
+                      name: Göteborg
+                      styles:
+                        card:
+                          - width: 50%
+                      current: true
+                      details: true
+                      forecast: true
+                      hourly_forecast: false
+                      number_of_forecasts: 7
+
+
+                    - type: picture-entity
+                      entity: camera.goteborg_meteogram

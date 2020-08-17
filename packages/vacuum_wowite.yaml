@@ -9,13 +9,7 @@ input_select:
      - 'Nej'
     initial: 'Ja'
     icon: mdi:robot-vacuum
-  vacuum_dailyreset:
-    name: 'Har Wowite städat idag:'
-    options:
-     - 'Ja'
-     - 'Nej'
-    initial: 'Nej'
-    icon: mdi:check-circle
+
   vacuum_zone:
     name: 'Zone städning:'
     options:
@@ -26,6 +20,7 @@ input_select:
       - 'Vardagsrummet'
       - 'Sovrummet'
       - 'Hallen'
+      - 'Stora hallen'
       - 'Kontoret'
     initial: 'Välj rum'
     icon: mdi:map-outline
@@ -110,7 +105,17 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[20484,17502,25584,21102,1]]
+          params: [[24121,17825,27471,19175,1]]
+
+  vacuum_matbord:
+    alias: "Dammsug runt matbordet"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.wowite
+          command: app_zoned_clean
+          params: [[18651,22821,21751,25471,1]]
+
 
   vacuum_kok:
     alias: "Dammsug köket"
@@ -119,7 +124,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[20501,21053,23151,27703,1]]
+          params: [[26237,25192,28537,31792,1]]
 
   vacuum_vardagsrum:
     alias: "Dammsug vardagsrummet"
@@ -128,7 +133,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[16302,19125,20452,27875,1]]
+          params: [[18446,17469,22346,26169,1]]
 
   vacuum_sovrum:
     alias: "Dammsug sovrummet"
@@ -137,7 +142,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[16393,12604,20443,17454,1]]
+          params: [[18464,11177,22514,15477,1]]
 
   vacuum_albins:
     alias: "Dammsug Albins rum"
@@ -146,7 +151,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[20554,13096,23354,17546,1]]
+          params: [[22552,11412,25152,15512,1]]
 
   vacuum_kontoret:
     alias: "Dammsug kontoret"
@@ -155,7 +160,7 @@ script:
         data:
           entity_id: vacuum.wowite
           command: app_zoned_clean
-          params: [[23116,23909,26116,27859,1]]
+          params: [[25157,22357,28257,26007,1]]
 
 #  vacuum_lgh:
 #    alias: "Hela lägenheten"

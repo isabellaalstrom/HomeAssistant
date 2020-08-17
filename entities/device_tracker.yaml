@@ -2,13 +2,12 @@
   - platform: nmap_tracker
     hosts: 192.168.156.0/24
     track_new_devices: true
-    interval_seconds: 60
+    interval_seconds: 120
     consider_home: 315
-    home_interval: 10
     exclude:
-      - 192.168.156.2
+      - 192.168.156.170
 
   - platform: bluetooth_tracker
-    interval_seconds: 20
-    consider_home: 60
-    track_new_devices: yes
+    interval_seconds: 120
+    consider_home: 315
+    track_new_devices: true

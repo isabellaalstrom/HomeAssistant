@@ -3,65 +3,44 @@ sensor:
     sensors:
       all_lights_check:
         value_template: >-
-          {{ (dict((states.light|list)|groupby('state' | lower))['unknown']| count) + (dict((states.light|list)|groupby('state' | lower))['unavailable']| count) }}
+          {{ states | selectattr('entity_id','in', ['light.albin_fonster','light.albin_hylla','light.bollarna','light.hall_vagglampa','light.hallen_tak','light.koksfonstret','light.kontor_banken','light.kontor_fatolj','light.kontor_hylla','light.kontor_skrivbordet','light.nattlampa','light.sovrum_fonster','light.sovrum_hoger','light.sovrum_vanster','light.vardagsrum_bokhyllan','light.vardagsrum_bord','light.vardagsrum_golvlampa','light.vardagsrum_hoga_hyllan','light.vardagsrum_tv_bank_vanster','light.vardagsrum_tvbank'] )|selectattr('state','eq','on') | list | count }}
         entity_id:
-          - sensor.time
           - light.albin_fonster
           - light.albin_hylla
-          - light.albins_rum
-          - light.garderoben
+          - light.bollarna
           - light.hall_vagglampa
-          - light.hallen_byra
-          - light.kok
-          - light.kok_banken
-          - light.kontoret
+          - light.hallen_tak
+          - light.koksfonstret
+          - light.kontor_banken
+          - light.kontor_fatolj
           - light.kontor_hylla
-          - light.kontoret_snehyllan
-          - light.sovrum
+          - light.kontor_skrivbordet
+          - light.nattlampa
           - light.sovrum_fonster
           - light.sovrum_hoger
           - light.sovrum_vanster
-          - light.vardagsrummet_golvlampa
-          - light.vardagsrum_lilla_bokhyllan
+          - light.vardagsrum_bokhyllan
+          - light.vardagsrum_bord
+          - light.vardagsrum_golvlampa
+          - light.vardagsrum_hoga_hyllan
+          - light.vardagsrum_tv_bank_vanster
           - light.vardagsrum_tvbank
-          - light.vardagsrummet
-          - light.vardagsrummet_bokhyllan
 
-      all_unknow_check:
-        value_template: >-
-          {{ (dict((states|list)|groupby('state' | lower))['unknown']| count) + (dict((states|list)|groupby('state' | lower))['unavailable']| count) }}
-        entity_id:
-          - sensor.frontdoor
-          - sensor.backdoor
-          - sensor.beedrom_window
-          - sensor.office_window
-          - sensor.albins_window
-          - sensor.kitchen_window
-          - sensor.kitchen_small_window
-          - sensor.franska_balkongen
 
-      nr_open_doors_and_windows:
+      nr_open_doors:
         value_template: >-
-          {% set opendoor= namespace(count=0)%}
-          {% for entity in states.binary_sensor %}
-            {% if is_state(entity.entity_id, 'on') and is_state_attr(entity.entity_id, 'device_class', 'opening') %}
-              {% set opendoor.count = opendoor.count +1 %}
-            {% endif %}
-          {% endfor %}
-          {{ opendoor.count }}
+          {{ states | selectattr('entity_id','in', ['binary_sensor.backdoor','binary_sensor.franska_balkongen','binary_sensor.frontdoor'] )|selectattr('state','eq','on') | list | count }}
         entity_id:
-          - sensor.frontdoor
-          - sensor.backdoor
-          - sensor.beedrom_window
-          - sensor.office_window
-          - sensor.albins_window
-          - sensor.kitchen_window
-          - sensor.kitchen_small_window
-          - sensor.franska_balkongen
+          - binary_sensor.backdoor
+          - binary_sensor.franska_balkongen
+          - binary_sensor.kladkammaren
+          - sensor.time
 
-      alarm_contolpanel_varning:
-        value_template: >-
-          {{ states('alarm_control_panel.aarlo_arlo') !=  states('alarm_control_panel.house') }}
-        entity_id:
-          - alarm_control_panel.aarlo_arlo
-          - alarm_control_panel.house
+
+
+#      alarm_contolpanel_varning:
+#        value_template: >-
+#          {{ states('alarm_control_panel.aarlo_arlo') !=  states('alarm_control_panel.house') }}
+#        entity_id:
+#          - alarm_control_panel.aarlo_arlo
+#          - alarm_control_panel.house

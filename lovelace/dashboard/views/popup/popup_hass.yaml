@@ -1,0 +1,40 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Home Assistant
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:layout-card
+                      column_num: 2
+                      max_columns: 2
+                      layout: vertical
+                      cards:
+                        - type: entities
+                          title: Home Assistant
+                          show_header_toggle: false
+                          entities:
+                            - entity: sensor.uptime
+                            - entity: sensor.hass_version_installed
+                            - entity: sensor.hass_version_latest
+                            - entity: binary_sensor.updater
+                            - entity: sensor.local_ip
+                            - entity: sensor.myip
+
+
+                        - break
+
+                        - type: entities
+                          show_header_toggle: false
+                          title: Kiosk
+                          entities:
+                            - entity: light.tablet
+                            - entity: script.reload_kiosk
+                            - entity: script.restart_kiosk
+                            - entity: script.motion_on_kiosk
+                            - entity: script.motion_off_kiosk

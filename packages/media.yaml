@@ -1,58 +1,58 @@
 
 
 
-automation:
-  - alias: 'TV off when sonos are started'
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: media_player.kok
-        to: 'playing'
-      - platform: state
-        entity_id: media_player.vardagsrum
-        to: 'playing'
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '10:00:00'
-          before: '23:00:00'
-        - condition: state
-          entity_id: input_boolean.media
-          state: 'off'
-    action:
-      - service: script.tv_off
+#automation:
+#  - alias: 'TV off when sonos are started'
+#    initial_state: 'on'
+#    trigger:
+#      - platform: state
+#        entity_id: media_player.kok
+#        to: 'playing'
+#      - platform: state
+#        entity_id: media_player.vardagsrum
+#        to: 'playing'
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          after: '10:00:00'
+#          before: '23:00:00'
+#        - condition: state
+#          entity_id: input_boolean.media
+#          state: 'off'
+#    action:
+#      - service: script.tv_off
 
-  - alias: 'Sonos off when TV are started'
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: remote.livingroom
-      to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '10:00:00'
-          before: '23:00:00'
-        - condition: state
-          entity_id: input_boolean.media
-          state: 'off'
-    action:
-      - service: script.stop_all_sonos
+#  - alias: 'Sonos off when TV are started'
+#    initial_state: 'on'
+#    trigger:
+#      platform: state
+#      entity_id: remote.livingroom
+#      to: 'on'
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          after: '10:00:00'
+#          before: '23:00:00'
+#        - condition: state
+#          entity_id: input_boolean.media
+#          state: 'off'
+#    action:
+#      - service: script.stop_all_sonos
 
-  - alias: 'Sonos - Stop when leaving home'
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: input_boolean.away_mode
-      from: 'off'
-      to: 'on'
-    action:
-      - service: script.stop_all_sonos
+#  - alias: 'Sonos - Stop when leaving home'
+#    initial_state: 'on'
+#    trigger:
+#      platform: state
+#      entity_id: input_boolean.away_mode
+#      from: 'off'
+#      to: 'on'
+#    action:
+#      - service: script.stop_all_sonos
 
 
-script:
+#script:
 #  morning_radio:
 #    alias: Morning Radio
 #    sequence:
@@ -72,11 +72,11 @@ script:
 #          source: 'RIX FM 107.1 (Populärmusik)'
 
 
-  stop_all_sonos:
-    alias: Stop playing all sonos
-    sequence:
+#  stop_all_sonos:
+#    alias: Stop playing all sonos
+#    sequence:
 
-      - service: media_player.media_stop
-        entity_id:
-          - media_player.kok
-          - media_player.vardagsrum
+#      - service: media_player.media_stop
+#        entity_id:
+#          - media_player.kok
+#          - media_player.vardagsrum

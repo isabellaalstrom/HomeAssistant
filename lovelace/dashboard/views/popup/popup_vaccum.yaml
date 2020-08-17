@@ -1,0 +1,425 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Robotdamsugaren
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+
+
+                    - type: custom:layout-card
+                      column_num: 2
+                      max_columns: 2
+                      layout: vertical
+                      cards:
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Kontroller
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              name: Städa
+                              label: Hela lägenheten
+                              icon: mdi:play-circle-outline
+                              tap_action:
+                                action: call-service
+                                service: vacuum.start
+                                service_data:
+                                  entity_id: vacuum.wowite
+                              haptic: light
+
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              icon: mdi:pause
+                              name: Pause
+                              label: Stanna
+                              tap_action:
+                                action: call-service
+                                service: vacuum.pause
+                                service_data:
+                                  entity_id: vacuum.wowite
+                                haptic: light
+
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              icon: mdi:stop
+                              name: Stop
+                              label: Sluta städa
+                              tap_action:
+                                action: call-service
+                                service: vacuum.stop
+                                service_data:
+                                  entity_id: vacuum.wowite
+                                haptic: light
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              icon: mdi:home-variant-outline
+                              label: Gå tillbaka
+                              tap_action:
+                                action: call-service
+                                service: vacuum.return_to_base
+                                service_data:
+                                  entity_id: vacuum.wowite
+                                haptic: light
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              icon: mdi:map-marker
+                              name: Lokalisera
+                              label: Var är den?
+                              tap_action:
+                                action: call-service
+                                service: vacuum.locate
+                                service_data:
+                                  entity_id: vacuum.wowite
+                                haptic: light
+
+                            - type: custom:button-card
+                              entity: input_boolean.vacuum
+                              template: script_button
+                              icon: mdi:hubspot
+                              name: Punkt städning
+                              label: Där den är
+                              tap_action:
+                                action: call-service
+                                service: vacuum.clean_spot
+                                service_data:
+                                  entity_id: vacuum.wowite
+                                haptic: light
+
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Schema
+
+
+                        - type: horizontal-stack
+                          cards:
+
+
+
+
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: conditional
+                              conditions:
+                                - entity: input_select.vacuum_mode
+                                  state: "Ja"
+                              card:
+                                type: custom:button-card
+                                entity: input_select.vacuum_mode
+                                template: script_button
+                                show_name: true
+                                show_state: true
+                                show_label: false
+                                name: Städa idag?
+                                icon: mdi:help-circle-outline
+                                tap_action:
+                                  action: call-service
+                                  service: input_select.select_option
+                                  service_data:
+                                    entity_id: input_select.vacuum_mode
+                                    option: Nej
+                            - type: conditional
+                              conditions:
+                                - entity: input_select.vacuum_mode
+                                  state: "Nej"
+                              card:
+                                type: custom:button-card
+                                entity: input_select.vacuum_mode
+                                template: script_button
+                                show_name: true
+                                show_state: true
+                                show_label: false
+                                name: Städa idag?
+                                icon: mdi:help-circle-outline
+                                tap_action:
+                                  action: call-service
+                                  service: input_select.select_option
+                                  service_data:
+                                    entity_id: input_select.vacuum_mode
+                                    option: Ja
+
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+
+
+
+
+
+                        - break
+
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Zone städning
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_albins
+                              icon: mdi:toy-brick-outline
+                              template: script_button
+                              name: Albins rum
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_hallen
+                              icon: mdi:door
+                              template: script_button
+                              name: Hallen
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_matbord
+                              icon: mdi:silverware-fork-knife
+                              template: script_button
+                              name: Matbordet
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_kok
+                              icon: mdi:fridge-outline
+                              template: script_button
+                              name: Köket
+
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_kontoret
+                              icon: mdi:desk
+                              template: script_button
+                              name: Kontoret
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_sovrum
+                              icon: mdi:bed-king-outline
+                              template: script_button
+                              name: Sovrummet
+
+
+                            - type: custom:button-card
+                              entity: script.vacuum_vardagsrum
+                              icon: mdi:sofa
+                              template: script_button
+                              name: Vardagsrum
+
+
+
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Status
+
+
+
+
+                        - type: entities
+                          show_header_toggle: false
+                          style: |
+                           ha-card {
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                           }
+
+                          entities:
+                            - entity: sensor.vacuum_battery
+                            - entity: sensor.vacuum_filter
+                            - entity: sensor.vacuum_main_brush
+                            - entity: sensor.vacuum_side_brush
+
+
+
+
+
+#                        - type: 'custom:button-card'
+#                          color_type: blank-card
+#                          styles:
+#                            card:
+#                              - width: 10px
+
+#
+#                    - type: horizontal-stack
+#                      cards:
+#                        - type: 'custom:button-card'
+#                          color_type: blank-card
+#                          styles:
+#                            card:
+#                              - width: 10px
+#
+#
+#                        - type: custom:button-card
+#                          entity: input_boolean.vacuum
+#                          template: script_button
+#                          icon: mdi:chat-sleep-outline
+#                          label: Gå tillbaka
+#                          tap_action:
+#                            action: call-service
+#                            service: vacuum.return_to_base
+#                            service_data:
+#                              entity_id: vacuum.wowite
+#                            haptic: light
+#
+#                        - type: custom:button-card
+#                          color_type: blank-card
+#                          aspect_ratio: 1/1
+#                        - type: custom:button-card
+#                          color_type: blank-card
+#                          aspect_ratio: 1/1
+#                        - type: 'custom:button-card'
+#                          color_type: blank-card
+#                          styles:
+#                            card:
+#                              - width: 10px
+#                    - type: 'custom:button-card'
+#                      color_type: blank-card
+#                      styles:
+#                        card:
+#                          - width: 10px
+#

@@ -1,0 +1,79 @@
+
+fan_button:
+  size: 25%
+  aspect_ratio: 1/1
+  show_name: true
+  show_state: true
+  show_label: false
+  show_last_changed: false
+
+  styles:
+    card:
+      - border-radius: 12px
+      - color: rgb(0, 0, 0)
+      - background-color: rgb(255, 255, 255)
+    icon:
+      - color: rgb(0,0,0)
+      - justify-self: left
+
+
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+
+    name:
+      - justify-self: start
+      - padding-left: 10px
+      - font-weight: bold
+      - font-family: Helvetica
+      - font-size: 13px
+    state:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - text-transform: capitalize
+      - font-weight: bold
+      - padding-left: 10px
+    label:
+      - font-size: 11px
+      - font-family: Helvetica
+      - padding: 0px 10px
+      - justify-self: start
+      - padding-left: 10px
+
+  state:
+    - value: 'Av'
+      styles:
+        icon:
+          - color: rgb(98, 98, 98)
+        card:
+          - color: rgb(98, 98, 98)
+          - background-color: rgb(202, 199, 193)
+
+
+    - value: 'off'
+      styles:
+        icon:
+          - color: rgb(98, 98, 98)
+        card:
+          - color: rgb(98, 98, 98)
+          - background-color: rgb(202, 199, 193)
+
+    - value: 'on'
+      styles:
+        icon:
+          - animation: rotating 2s linear infinite
+
+
+
+
+#    - value: 'off'
+#      icon: mdi:lightbulb-outline
+#      styles:
+#        icon:
+#          - color: rgb(98, 98, 98)
+#        card:
+#          - color: rgb(98, 98, 98)
+#          - background-color: rgb(202, 199, 193)

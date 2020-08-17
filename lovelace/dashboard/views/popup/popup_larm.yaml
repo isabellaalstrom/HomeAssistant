@@ -1,0 +1,57 @@
+                action: call-service
+                service: browser_mod.popup
+                service_data:
+                  title: Larmet
+                  deviceID:
+                    - this
+                  style:
+                    border-radius: 12px
+                  card:
+                    type: vertical-stack
+                    cards:
+                      - type: alarm-panel
+                        entity: alarm_control_panel.house
+                        name: Tegnérsgatan
+                        style: |
+                         ha-card {
+                           background: rgba(0,0,0,0.0);
+                         }
+
+
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.franska_balkongen
+                            state: "on"
+                        card:
+                          type: 'custom:button-text-card'
+                          title: Franska balkongen
+                          subtitle: är öppen
+                          icon: 'mdi:door-open'
+                          large: true
+                          font_color: '#fff'
+                          background_color: '#A81419'
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.backdoor
+                            state: "on"
+                        card:
+                          type: 'custom:button-text-card'
+                          title: Balkongdörren
+                          subtitle: är öppen
+                          icon: 'mdi:door-open'
+                          large: true
+                          font_color: '#fff'
+                          background_color: '#A81419'
+
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.frontdoor
+                            state: "on"
+                        card:
+                          type: 'custom:button-text-card'
+                          title: Ytterdörren
+                          subtitle: är öppen
+                          icon: 'mdi:door-open'
+                          large: true
+                          font_color: '#fff'
+                          background_color: '#A81419'

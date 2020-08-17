@@ -2,7 +2,7 @@
     domains:
       - group
       - updater
-      - automation
+#      - automation
       - device_tracker
       - script
 

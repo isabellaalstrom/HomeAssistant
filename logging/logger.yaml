@@ -1,35 +1,7 @@
 
 # Log levels: notset, debug, info, warn, warning, error, fatal, critical
 
-default: warning
+
+default: warn
 logs:
-  # homeassistant.core: warn
-  # homeassistant.components.automation: error
-  # homeassistant.components.switch.switchbot: debug
-  homeassistant.components.sensor: fatal
-  # homeassistant.components.sensor.imap_email_content: debug
-  # homeassistant.components.switch.rfxtrx: debug
-  # homeassistant.components.sensor.miflora: error
-  # # homeassistant.components.binary_sensor: debug
-  # # homeassistant.components.python_script: debug
-  # homeassistant.components.api: error
-  # homeassistant.components.device_tracker: warn
-  # homeassistant.components.discovery: warn
-  # homeassistant.components.http: error
-  # homeassistant.components.media_player: error
-  # homeassistant.components.sensor.darksky: error
-  # homeassistant.components.zwave: debug
-  # homeassistant.components.zwave.util: error
-  # homeassistant.components.rfxtrx: debug
-  # homeassistant.components.notify: error
-  # # homeassistant.helpers.script: info
-  # homeassistant.components.light: warn
-  # homeassistant.helpers.entity: error
-  # homeassistant.components.ffmpeg: debug
-  # homeassistant.components.FFMPEG_motion: debug
-  # homeassistant.components.xiaomi: debug
-  # homeassistant.components.device_tracker.owntracks: debug
-  # homeassistant.components.mqtt: debug
-  #pydeconz: debug
-  #homeassistant.components.deconz: debug
-  root: warning
+  homeassistant.mobile_app: critical

@@ -1,0 +1,45 @@
+
+
+
+rfxtrx:
+  device: !secret rfxtrx
+  devices:
+
+
+#Hallen Vägglämpan
+    0b11000287bc0cfe07020f70:
+      signal_repetitions: 2
+
+## sovrum
+# Niklas nattudksbord
+#    0b11000105bc0cfe04020f70:
+#      signal_repetitions: 3
+
+# Hannas nattduksbord
+#    0b11000667bc0cfe03020f70:
+#      signal_repetitions: 3
+
+## vardagsrummet
+# TV-bänken
+
+    0b11000323bc0cfe02020f70:
+      signal_repetitions: 2
+# Höga hyllan
+    0b11000532bc0cfe01020f70:
+      signal_repetitions: 2
+# Bokhyllan
+    0b11000682bc0cfe00020f70:
+      signal_repetitions: 2
+
+##### Switch
+
+# Laddare plattan
+#    0b11000653bc0cfe07010f70:
+#      signal_repetitions: 2
+
+## Sensor
+# Temp baksidan
+    08500704c300016969:
+
+## Framsidan
+    0850074b4100011c89:

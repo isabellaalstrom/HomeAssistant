@@ -1,27 +1,27 @@
 
 
-  - platform: rfxtrx
-    automatic_add: false
-    signal_repetitions: 2
-    devices:
+#  - platform: rfxtrx
+#    automatic_add: false
+#    signal_repetitions: 2
+#    devices:
 
-      0b110001020f452901020880:
-        name: hall_vagglampa
+#      0b110001020f452901020880:
+#        name: hall_vagglampa
 
-      0b110001008ff59101020880:
-        name: vardagsrum_hoga_hyllan
+#      0b110001008ff59101020880:
+#        name: vardagsrum_hoga_hyllan
 
-      0b11000202f1762101020880:
-        name: vardagsrum_lilla_bokhyllan
+#      0b11000202f1762101020880:
+#        name: vardagsrum_bokhyllan
 
-      0b11000273bc0cfe06010f70:
-        name: vardagsrum_tvbank
+#      0b11000273bc0cfe06010f70:
+#        name: vardagsrum_tvbank
 
-      0b1100000199444c01020c80:
-        name: sovrum_hoger
+#      0b1100000199444c01020c80:
+#        name: sovrum_hoger
 
-      0b110003024d53f201020880:
-        name: sovrum_vanster
+#      0b110003024d53f201020880:
+#        name: sovrum_vanster
 
 
   - platform: group
@@ -29,3 +29,13 @@
     entities:
       - light.vardagsrum_boll_hoger
       - light.vardagsrum_boll_vanster
+
+  - platform: switch
+    name: Nattlampa
+    entity_id: switch.albins_nattlampa
+
+  - platform: group
+    name: Byrån
+    entities:
+      - light.sovrum_byra1
+      - light.sovrum_byra2

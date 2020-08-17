@@ -1,40 +1,40 @@
 
 
-tts:
-  platform: google_translate
-  language: 'sv'
+#tts:
+#  platform: google_translate
+#  language: 'sv'
 
 
-script:
-  goodmorning:
-    alias: God morogn
-    sequence:
-      - service: sonos.snapshot
+#script:
+#  goodmorning:
+#    alias: God morogn
+#    sequence:
+#      - service: sonos.snapshot
 #       data_template:
 #         entity_id: media_player.kok
 
-      - service: media_player.media_stop
-        entity_id:
-         - media_player.kok
-         - media_player.vardagsrum
+#      - service: media_player.media_stop
+#        entity_id:
+#         - media_player.kok
+#         - media_player.vardagsrum
 
-      - service: sonos.unjoin
-        entity_id:
-         - media_player.kok
-         - media_player.vardagsrum
+#      - service: sonos.unjoin
+#        entity_id:
+#         - media_player.kok
+#         - media_player.vardagsrum
 
-      - service: media_player.volume_set
-        data_template:
-          entity_id: media_player.kok
-          volume_level: 0.2
+#      - service: media_player.volume_set
+#        data_template:
+#          entity_id: media_player.kok
+#          volume_level: 0.2
 
-      - service: tts.google_translate_say
-        data_template:
-          entity_id: media_player.kok
-          message: "Hej hur mår du?"
+#      - service: tts.google_translate_say
+#        data_template:
+#          entity_id: media_player.kok
+#          message: "Hej hur mår du?"
 
-      - delay: '00:00:10'
+#      - delay: '00:00:10'
 
-      - service: sonos.restore
-        data_template:
-          entity_id: media_player.kok
+#      - service: sonos.restore
+#        data_template:
+#          entity_id: media_player.kok

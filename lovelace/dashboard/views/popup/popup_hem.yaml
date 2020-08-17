@@ -1,0 +1,54 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Lägenheten
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:layout-card
+#                      max_width: [350px, 100%]
+                      column_num: 2
+                      max_columns: 2
+                      layout: vertical
+                      cards:
+                        - type: entities
+                          title: Rörelse
+                          show_header_toggle: false
+                          entities:
+                            - entity: binary_sensor.albins_motionsensor
+                              secondary_info: last-changed
+                            - entity: binary_sensor.hallen_presence
+                              secondary_info: last-changed
+
+                            - entity: binary_sensor.kontoret_motionsensor
+                              secondary_info: last-changed
+
+                            - entity: binary_sensor.sovrum_motion
+                              secondary_info: last-changed
+
+                            - entity: binary_sensor.vardagsrummet_motion
+                              secondary_info: last-changed
+
+                        - type: entities
+                          title: Ljusstyrka
+                          show_header_toggle: false
+                          entities:
+                            - entity: sensor.albins_lux
+                              secondary_info: last-changed
+
+                            - entity: sensor.hallen_lux_hue
+                              secondary_info: last-changed
+
+                            - entity: sensor.kontoret_lux
+                              secondary_info: last-changed
+
+                            - entity: sensor.sovrum_lux
+                              secondary_info: last-changed
+
+                            - entity: sensor.vardagsrum_lux
+                              secondary_info: last-changed

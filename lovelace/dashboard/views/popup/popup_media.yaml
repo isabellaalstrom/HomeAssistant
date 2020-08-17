@@ -1,0 +1,466 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Sonos
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:layout-card
+#                      max_width: [350px, 100%]
+                      column_num: 2
+                      max_columns: 2
+                      layout: vertical
+                      cards:
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - width: 10px
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Mediaspelare
+
+                        - type: entities
+                          style: |
+                           ha-card {
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                           }
+
+                          entities:
+                            - type: custom:mini-media-player
+                              entity: media_player.kok
+                              name: Köket
+                              artwork: cover
+                              hide:
+                                power: true
+                                icon: true
+                                source: true
+                              speaker_group:
+                                platform: sonos
+                                show_group_count: true
+                                entities:
+                                  - entity_id: media_player.kontor
+                                    name: Kontoret
+                                  - entity_id: media_player.vardagsrum
+                                    name: Vardagsrummet
+                                  - entity_id: media_player.tv
+                                    name: Soundbar
+                            - type: custom:mini-media-player
+                              entity: media_player.kontor
+                              name: Kontoret
+                              artwork: cover
+                              hide:
+                                power: true
+                                icon: true
+                                source: true
+
+                            - type: custom:mini-media-player
+                              entity: media_player.vardagsrum
+                              name: Vardagsrummet
+                              artwork: cover
+                              hide:
+                                power: true
+                                icon: true
+                                source: true
+
+                            - type: custom:mini-media-player
+                              entity: media_player.tv
+                              name: Soundbar
+                              artwork: cover
+                              hide:
+                                power: true
+                                icon: true
+                                source: true
+
+
+
+#                            - type: 'custom:button-card'
+#                              color_type: blank-card
+#                              styles:
+#                                card:
+#                                  - width: 10px
+
+
+
+
+
+
+                        - break
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+                             box-shadow: none;
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Radio
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              label: Radio
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/rixfm.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: RIX FM 107.1 (Populärmusik)
+
+
+
+
+                            - type: custom:button-card
+                              entity: script.event_nrj_radio
+                              template: script_button
+                              label: Radio
+                              show_icon: false
+                              show_name: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/nrj.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: NRJ Sweden
+
+
+                            - type: custom:button-card
+                              entity: script.event_mixmegapol_radio
+                              template: script_button
+                              label: Radio
+                              show_name: false
+                              show_label: false
+                              show_icon: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/mixmegapol.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Mix Megapol Göteborg 107.3 (Populärmusik)
+
+
+                            - type: custom:button-card
+                              color_type: blank-card
+                              aspect_ratio: 1/1
+
+
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              label: The Chainsmokers Radio
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/thecahainsmokers.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: The Chainsmokers Radio
+
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Anne-Marie
+                              show_name: true
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/annmarie.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Anne-Marie Radio
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Coldplay Radio
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/coldplay.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Coldplay Radio
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Maroon 5
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/maroon5.jpg")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Maroon 5 Radio
+
+
+                        - type: markdown
+                          style: |
+                           ha-card {
+                             margin-top: 10px;
+                             text-align: left;
+                             height: 40px;
+                             background: rgba(0,0,0,0.0);
+
+                             font-family: SF Display;
+                             font-size: 20px;
+                             font-weight: 900;
+                             opacity: 0.75;
+                             padding-left: 20px
+                           }
+                          content: >
+                            Spellistor
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Acoustic Hits
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/AcousticHits.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Acoustic Hits
+
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Brand New Chill
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/newchill.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Brand New Chill
+
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Life is good!
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/lifeisgood.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Life is good!
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Lugnt & Skönt
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/lugnt.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Lugnt & Skönt
+
+                        - type: horizontal-stack
+                          cards:
+                            - type: 'custom:button-card'
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - width: 10px
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Mood Booster
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/moodbooster.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Mood Booster
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Musik för arbetsdagen
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/arbetsdagen.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Musik för arbetsdagen
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Topp 50 i Sverige
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/top50swe.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Topp 50 i Sverige
+
+                            - type: custom:button-card
+                              entity: input_select.sonos
+                              template: script_button
+                              name: Topp 50 i världen
+                              show_name: false
+                              show_icon: false
+                              show_label: false
+                              styles:
+                                card:
+                                  - background-image: url("/local/top50glo.png")
+                                  - background-position: center
+                              tap_action:
+                                action: call-service
+                                service: input_select.select_option
+                                service_data:
+                                  entity_id: input_select.sonos
+                                  option: Topp 50 i världen
+
+                        - type: 'custom:button-card'
+                          color_type: blank-card
+                          styles:
+                            card:
+                              - height: 10px

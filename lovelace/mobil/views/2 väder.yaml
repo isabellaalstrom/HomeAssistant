@@ -1,0 +1,408 @@
+- title: Väder
+  icon: mdi:weather-sunny
+  path: vader
+  panel: false
+  cards:
+    - type: custom:stack-in-card
+      cards:
+
+        - type: custom:weather-card
+          entity: weather.smhi_home
+          name: Göteborg
+
+
+        - type: 'custom:bar-card'
+          entity: sensor.u_s_air_quality_index
+          positions:
+            indicator: off
+            icon: off
+            name: off
+            value: outside
+          width: 20%
+          height: 15px
+          decimal: 0
+          min: 0
+          max: 150
+          severity:
+            - color: rgb(26,204,147,0.33)
+              from: 0
+              to: 50
+            - color: rgb(163,163,0)
+              from: 50
+              to: 100
+            - color: rgb(218,160,22)
+              from: 100
+              to: 150
+            - color: rgb(187,0,0)
+              from: 150
+              to: 200
+            - color: rgb(117,25,163)
+              from: 200
+              to: 300
+            - color: rgb(139,25,57)
+              from: 300
+              to: 500
+          style: |
+            bar-card-card	 {
+              margin-right: auto;
+              margin-left: auto;
+              margin-bottom: auto;
+              margin-top: -20px;
+            }
+            bar-card-value   {
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            bar-card-backgroundbar  {
+              border-radius: 2.5px;
+            }
+            bar-card-currentbar  {
+              border-radius: 2.5px;
+            }
+
+
+
+
+
+
+    - type: vertical-stack
+      cards:
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:mini-graph-card
+#
+#              entities:
+#                - sensor.temp_inne_filtrerad
+#              name: Inne
+#              hours_to_show: 24
+#              points_per_hour: 0.25
+
+#            - type: custom:mini-graph-card
+#              entities:
+#                - sensor.temp_ute_filtrerad
+#              name: Ute
+#              hours_to_show: 24
+#              points_per_hour: 0.25
+
+        - type: custom:stack-in-card
+          cards:
+            - type: entities
+#              title: Utomhus
+              show_header_toggle: false
+              entities:
+                - entity: sensor.temp_inne_filtrerad
+
+                  secondary_info: last-changed
+                - entity: sensor.temp_ute_filtrerad
+                  secondary_info: last-changed
+
+            - type: custom:mini-graph-card
+              entities:
+#                - color: '#385581'
+#                  entity: sensor.temp_inne_filtrerad
+                - color: green
+                  entity: sensor.temp_ute_filtrerad
+              align_state: left
+              group: false
+              points_per_hour: 4
+              line_width: 1
+              hour24: true
+              hours_to_show: 24
+              show:
+                fill: fade
+                icon: false
+                name: false
+                state: false
+                name_adaptive_color: true
+                labels: hover
+                legend: false
+              style: |
+                ha-card {
+                  border-radius: 1em;
+                  background: none;
+                  box-shadow: none;
+                }
+              tap_action:
+                action: none
+
+
+
+
+
+
+        - type: custom:stack-in-card
+          cards:
+            - type: custom:stack-in-card
+              cards:
+                - type: entities
+                  title: Utomhus
+                  show_header_toggle: false
+                  entities:
+                    - entity: sensor.framsidan_temperature
+                      secondary_info: last-changed
+                    - entity: sensor.baksidan_temperature
+                      secondary_info: last-changed
+
+                - type: custom:mini-graph-card
+                  entities:
+                    - color: '#385581'
+                      entity: sensor.framsidan_temperature
+                    - color: green
+                      entity: sensor.baksidan_temperature
+                  align_state: left
+                  group: false
+                  points_per_hour: 4
+                  line_width: 1
+                  hour24: true
+                  hours_to_show: 24
+                  show:
+                    fill: fade
+                    icon: false
+                    name: false
+                    state: false
+                    name_adaptive_color: true
+                    labels: hover
+                    legend: false
+                  style: |
+                    ha-card {
+                      border-radius: 1em;
+                      background: none;
+                      box-shadow: none;
+                    }
+                  tap_action:
+                    action: none
+
+
+
+
+        - type: entities
+          title: Inomhus
+          show_header_toggle: false
+          entities:
+            - entity: sensor.albin_temp
+              secondary_info: last-changed
+
+            - entity: sensor.sovrum_temp_pir
+              secondary_info: last-changed
+
+            - entity: sensor.vardagsrum_temp
+              secondary_info: last-changed
+            - entity: sensor.kontoret_temp
+              secondary_info: last-changed
+            - entity: sensor.hallen_temp
+              secondary_info: last-changed
+
+
+        - type: custom:stack-in-card
+          cards:
+            - type: entities
+              title: Medel/Högsta/Lägsta
+              entities:
+                - type: custom:fold-entity-row
+                  head: sensor.influxdb_ute_medel_1_dygn
+                  entities:
+                    - sensor.influxdb_ute_medel_30dagar
+                    - sensor.influxdb_ute_medel_1_dygn
+            - type: entities
+              entities:
+                - type: custom:fold-entity-row
+                  head: sensor.influxdb_max_for_last_24h
+                  entities:
+                    - sensor.influxdb_max_for_last_week
+                    - sensor.influxdb_max_for_last_months
+                    - sensor.influxdb_max_temp
+            - type: entities
+              entities:
+                - type: custom:fold-entity-row
+                  head: sensor.influxdb_min_for_last_24h
+                  entities:
+                    - sensor.influxdb_min_for_last_week
+                    - sensor.influxdb_min_for_last_months
+                    - sensor.influxdb_min_temp
+
+
+        - type: entities
+          title: Kyl/Frys
+          show_header_toggle: false
+          entities:
+            - entity: sensor.frys_temp
+              secondary_info: last-changed
+
+
+
+
+
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Innomhus**
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.albin_temp
+#              template: sensor_button
+#              name: Albins rum
+#              show_last_changed: true
+#            - type: custom:button-card
+#              entity: sensor.sovrum_temp_pir
+#              template: sensor_button
+#              show_last_changed: true
+#
+#            - type: custom:button-card
+#              entity: sensor.kontoret_temp
+#              template: sensor_button
+#              show_last_changed: true
+#
+#            - type: custom:button-card
+#              entity: sensor.vardagsrum_temp
+#              template: sensor_button
+#              show_last_changed: true
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.sovrum_temp_pir
+#              template: sensor_button
+#              name: Hallen
+#              show_last_changed: true
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Utomhus**
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.baksidan_temperature
+#              template: sensor_button
+#              show_last_changed: true
+#
+#            - type: custom:button-card
+#              entity: sensor.framsidan_temperature
+#              template: sensor_button
+#              show_last_changed: true
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Medeltemperaturer**
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.influxdb_ute_medel_1_dygn
+#              template: sensor_button
+#
+#            - type: custom:button-card
+#              entity:  sensor.influxdb_ute_medel_7dagar
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              entity:  sensor.influxdb_ute_medel_30dagar
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Lägsta temperaturer**
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.influxdb_min_for_last_24h
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              entity: sensor.influxdb_min_for_last_week
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              entity: sensor.influxdb_min_for_last_months
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Högsta temperaturer**
+#
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: sensor.influxdb_max_for_last_24h
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              entity: sensor.influxdb_max_for_last_week
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              entity: sensor.influxdb_max_for_last_months
+#              template: sensor_button
+#
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#

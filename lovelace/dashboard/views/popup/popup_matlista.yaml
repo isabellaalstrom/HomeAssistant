@@ -1,0 +1,22 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: false
+                title: Veckans mat!
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: "custom:atomic-calendar-revive"
+                      entities:
+                        - entity: calendar.matlista
+                      maxDaysToShow: 7
+                      showWeekDay: true
+                      showMonth: false
+                      showLoader: true
+                      showDate: false
+                      firstDayOfWeek: 1
+                      calEventTime: false

@@ -1,0 +1,281 @@
+
+
+
+input_select:
+  fan_vrum_rotation:
+    name: Rotera
+    options:
+     - '30'
+     - '60'
+     - '90'
+     - '120'
+    initial: '90'
+    icon: mdi:rotate-3d-variant
+
+
+  fan_vrum_speed:
+    name: Hastighet
+    options:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '9'
+      - '10'
+      - '11'
+      - '12'
+      - '13'
+      - '14'
+      - '15'
+      - '16'
+      - '17'
+      - '18'
+      - '19'
+      - '20'
+      - '21'
+      - '22'
+      - '23'
+      - '24'
+      - '25'
+      - '26'
+      - '27'
+      - '28'
+      - '29'
+      - '30'
+      - '40'
+      - '41'
+      - '42'
+      - '43'
+      - '44'
+      - '45'
+      - '46'
+      - '47'
+      - '48'
+      - '49'
+      - '50'
+      - '51'
+      - '52'
+      - '53'
+      - '54'
+      - '55'
+      - '56'
+      - '57'
+      - '58'
+      - '59'
+      - '60'
+      - '61'
+      - '62'
+      - '63'
+      - '64'
+      - '65'
+      - '66'
+      - '67'
+      - '68'
+      - '69'
+      - '70'
+      - '71'
+      - '72'
+      - '73'
+      - '74'
+      - '75'
+      - '76'
+      - '77'
+      - '78'
+      - '79'
+      - '80'
+      - '81'
+      - '82'
+      - '83'
+      - '84'
+      - '85'
+      - '86'
+      - '87'
+      - '88'
+      - '89'
+      - '90'
+      - '91'
+      - '92'
+      - '93'
+      - '94'
+      - '95'
+      - '96'
+      - '97'
+      - '98'
+      - '99'
+      - '100'
+
+
+  fan_sovrum_rotation:
+    name: Rotera
+    options:
+     - '30'
+     - '60'
+     - '90'
+     - '120'
+    initial: '90'
+    icon: mdi:rotate-3d-variant
+
+
+  fan_sovrum_speed:
+    name: Hastighet
+    options:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      - '6'
+      - '7'
+      - '8'
+      - '9'
+      - '10'
+      - '11'
+      - '12'
+      - '13'
+      - '14'
+      - '15'
+      - '16'
+      - '17'
+      - '18'
+      - '19'
+      - '20'
+      - '21'
+      - '22'
+      - '23'
+      - '24'
+      - '25'
+      - '26'
+      - '27'
+      - '28'
+      - '29'
+      - '30'
+      - '40'
+      - '41'
+      - '42'
+      - '43'
+      - '44'
+      - '45'
+      - '46'
+      - '47'
+      - '48'
+      - '49'
+      - '50'
+      - '51'
+      - '52'
+      - '53'
+      - '54'
+      - '55'
+      - '56'
+      - '57'
+      - '58'
+      - '59'
+      - '60'
+      - '61'
+      - '62'
+      - '63'
+      - '64'
+      - '65'
+      - '66'
+      - '67'
+      - '68'
+      - '69'
+      - '70'
+      - '71'
+      - '72'
+      - '73'
+      - '74'
+      - '75'
+      - '76'
+      - '77'
+      - '78'
+      - '79'
+      - '80'
+      - '81'
+      - '82'
+      - '83'
+      - '84'
+      - '85'
+      - '86'
+      - '87'
+      - '88'
+      - '89'
+      - '90'
+      - '91'
+      - '92'
+      - '93'
+      - '94'
+      - '95'
+      - '96'
+      - '97'
+      - '98'
+      - '99'
+      - '100'
+
+
+input_boolean:
+  fan_vrum_rotation:
+    name: Rotation
+    icon: mdi:rotate-3d-variant
+
+  fan_sovrum_rotation:
+    name: Rotation
+    icon: mdi:rotate-3d-variant
+
+  fan_vrum_wind:
+    name: Vind
+    icon: mdi:weather-windy
+
+  fan_sovrum_wind:
+    name: Vind
+    icon: mdi:weather-windy
+
+
+sensor:
+  - platform: template
+    sensors:
+      fan_vrum_speed_attribut:
+        friendly_name: "Hastighet"
+        entity_id: fan.vardagsrum
+        value_template: "{{ states.fan.vardagsrum.attributes.direct_speed }}"
+
+      fan_vrum_angle_attribut:
+        friendly_name: "Vinkel"
+        entity_id: fan.vardagsrum
+        value_template: "{{ states.fan.vardagsrum.attributes.angle }}"
+
+      fan_vrum_oscillating_attribut:
+        friendly_name: "Rotation"
+        entity_id: fan.vardagsrum
+        value_template: "{{ states.fan.vardagsrum.attributes.oscillating }}"
+
+      fan_vrum_wind_attribut:
+        friendly_name: "Vind"
+        entity_id: fan.vardagsrum
+        value_template: "{{ states.fan.vardagsrum.attributes.natural_speed }}"
+
+
+#Sovrum
+
+      fan_sovrum_speed_attribut:
+        friendly_name: "Hastighet"
+        entity_id: fan.xiaomi_smart_fan
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.direct_speed }}"
+
+      fan_sovrum_angle_attribut:
+        friendly_name: "Vinkel"
+        entity_id: fan.xiaomi_smart_fan
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.angle }}"
+
+      fan_sovrum_oscillating_attribut:
+        friendly_name: "Rotation"
+        entity_id: fan.xiaomi_smart_fan
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.oscillating }}"
+
+      fan_sovrum_wind_attribut:
+        friendly_name: "Vind"
+        entity_id: fan.xiaomi_smart_fan
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.natural_speed }}"

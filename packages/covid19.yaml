@@ -1,0 +1,115 @@
+# **** OBS OBS OBS OBS ****
+# -- För der som kör MariaDB eller möjligen också mysql så columnen för state och event för liten i databasen, den är "TEXT" och den behöver vara minst "MEDIUMTEXT" för att kunna mellanlagra json informationen i sensorn
+
+######
+##
+##    Detta är en "package" fil som visar antal smittade i Sverige per län/region
+##    Datat kommer via SVTs api
+##    Automationen är ett exempel för att pusha ut en talad röst till en Google Home-enhet med antalet smittade i Sverige och i Värmland
+##
+##    Installation
+##    - Lägg till under "homeassistant:" i din configuration.yaml fil "packages: !include_dir_named packages" (utan "")
+##    - I /config/ skapa en mapp som heter "packages"
+##    - Lägg in nedan kod i en fil som förslagsvis heter covid19.yaml i den mappen
+##    - Kontrollera din konfiguration och starta om Home Assistant
+##
+######
+
+
+#sensor:
+### SVT´s source of the world numbers
+#  - platform: command_line
+#    scan_interval: 3600
+#    command: 'echo {\"data\": $(curl https://www.svt.se/special/articledata/2322/covid19.json) }'
+#    name: COVID-19-svt_world
+#    json_attributes:
+#      - data
+#    value_template:  >
+#      {% set value = value_json.data | list | last %}
+#      {{ value.date }}
+
+### SVT´s source for local Swedish regions, including the new measurement "per 100k" for regional comparison
+#  - platform: command_line
+#    scan_interval: 3600
+#    command: 'echo {\"data\": $(curl https://www.svt.se/special/articledata/2322/folkhalsomyndigheten.json) }'
+#    name: COVID-19-svt
+#    json_attributes:
+#      - data
+#    value_template:  >
+#      {% set value = value_json.data | list | last %}
+#      {{ value.date + ' ' + value.time }}
+
+### templatesensors for the world JSON file
+
+#  - platform: template
+#    sensors:
+#      covid_19_svt_world_confirmed_swe:
+#        unit_of_measurement: 'Personer'
+#        value_template: >
+#          {% set name = 'SWE' %}
+#          {% set value = state_attr('sensor.covid_19_svt_world', 'data') | selectattr('country','eq',name) | list | last %}
+#          {{ value.confirmed | int }}
+#      covid_19_svt_world_deaths_swe:
+#        unit_of_measurement: 'Personer'
+#        value_template: >
+#          {% set name = 'SWE' %}
+#          {% set value = state_attr('sensor.covid_19_svt_world', 'data') | selectattr('country','eq',name) | list | last %}
+#          {{ value.deaths | int }}
+#      covid_19_svt_world_recovered_swe:
+#        unit_of_measurement: 'Personer'
+#        value_template: >
+#          {% set name = 'SWE' %}
+#          {% set value = state_attr('sensor.covid_19_svt_world', 'data') | selectattr('country','eq',name) | list | last %}
+#          {{ value.recovered | int }}
+
+### templatesensors for each region based on SVT´s regional JSON file
+### Copy and add your region, take a look at the naming in the raw JSON file (the URL) above and format accordingly
+### Below follows examples of Värmland and Västra Götaland
+
+### This asumes that the newest data is the last
+# If you want to make sure to read the correct data you can change the code to:
+# {% set name = 'Västra Götaland' %}
+# {% set date = now() | as_timestamp() | timestamp_custom('%Y-%m-%d', 'true') %}
+# {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | selectattr('date','eq', date) | list | first %}
+
+#  - platform: template
+#    sensors:
+#      covid_19_svt_antal_smittade_vg:
+#        unit_of_measurement: 'Personer'
+#        value_template: >
+#          {% set name = 'Västra Götaland' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.fall | int }}
+#      covid_19_svt_antal_avlidna_vg:
+#        unit_of_measurement: 'Personer'
+
+#        value_template: >
+#          {% set name = 'Västra Götaland' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.avlidna | int }}
+#      covid_19_svt_antal_vardas_vg:
+#        unit_of_measurement: 'Personer'
+
+#        value_template: >
+#          {% set name = 'Västra Götaland' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.vardas | int }}
+#      covid_19_svt_antal_smittade_per_100k_vg:
+
+#        value_template: >
+#          {% set name = 'Västra Götaland' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.fall_100k | round(2) }}
+#      covid_19_svt_antal_smittade_per_100k_stockholm:
+
+#        value_template: >
+#          {% set name = 'Stockholm' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.fall_100k | round(2) }}
+
+#      covid_19_svt_antal_smittade_per_100k_skane:
+
+#        value_template: >
+#          {% set name = 'Skåne' %}
+#          {% set value = state_attr('sensor.covid_19_svt', 'data') | selectattr('region','eq',name) | list | last %}
+#          {{ value.fall_100k | round(2) }}

@@ -1,0 +1,283 @@
+- title: Lampor
+  icon: mdi:lightbulb-group-outline
+  path: lampors
+  panel: false
+  cards:
+    - type: vertical-stack
+      cards:
+            - type: entities
+              title: Albins rum
+              show_header_toggle: false
+              entities:
+                - entity: light.albin_fonster
+                - entity: light.albin_hylla
+                - entity: light.nattlampa
+
+            - type: entities
+              title: Hallen
+              show_header_toggle: false
+              entities:
+                - entity: light.hallen_tak
+                - entity: light.hall_vagglampa
+
+
+            - type: entities
+              title: Kontoret
+              show_header_toggle: false
+              entities:
+                - entity: light.kontor_banken
+                - entity: light.kontor_fatolj
+                - entity: light.kontor_hylla
+                - entity: light.kontor_skrivbordet
+
+
+            - type: entities
+              title: Köket
+              show_header_toggle: false
+              entities:
+                - entity: light.koksfonstret
+
+            - type: entities
+              title: Sovrummet
+              show_header_toggle: false
+              entities:
+                - entity: input_boolean.dark_bedroom
+                - entity: light.byran
+                - entity: light.sovrum_hanna
+                - entity: light.sovrum_niklas
+
+            - type: entities
+              title: Vardagsrummet
+              show_header_toggle: false
+              entities:
+                - entity: light.vardagsrum_bokhyllan
+                - entity: light.vardagsrum_bord
+                - entity: light.vardagsrum_golvlampa
+                - entity: light.vardagsrum_hoga_hyllan
+                - entity: light.vardagsrum_tv_bank_vanster
+                - entity: light.vardagsrum_tvbank
+                - entity: light.bollarna
+
+
+
+
+#              entity: light.koksfonstret
+
+
+
+#            - type: custom:button-card
+#              entity: script.nr_light_on
+#              template: script_button
+#              label: alla lampor
+#            - type: custom:button-card
+#              entity: script.nr_light_off
+#              template: script_button
+#              label: alla lampor
+#
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#
+#
+##################################
+###                             ##
+###     Albins rum              ##
+###                             ##
+##################################
+#
+#
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Albins rum**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.albin_fonster
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.albin_hylla
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.nattlampa
+#              template: light_button
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#
+##################################
+###                             ##
+###    Hallen                   ##
+###                             ##
+##################################
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Hallen**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.hallen_tak
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.hall_vagglampa
+#              template: light_button
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+##################################
+###                             ##
+###    Kontoret                 ##
+###                             ##
+##################################
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Kontoret**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.kontor_banken
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.kontor_fatolj
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.kontor_hylla
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.kontor_skrivbordet
+#              template: light_button
+#
+##################################
+###                             ##
+###    Köket                    ##
+###                             ##
+##################################
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Köket**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.koksfonstret
+#              template: light_button
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#
+#
+##################################
+###                             ##
+###    Sovrumet                 ##
+###                             ##
+##################################
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Sovrummet**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: input_boolean.dark_bedroom
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.sovrum_fonster
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.sovrum_hoger
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.sovrum_vanster
+#              template: light_button
+#
+##################################
+###                             ##
+###    Vardagsrummet            ##
+###                             ##
+##################################
+#
+#        - type: markdown
+#          style: |
+#            ha-card {
+#              box-shadow: none;
+#              height: 40px;
+#              background: rgba(0,0,0,0.0);
+#              padding: 0px 0px;
+#          content: |
+#            **Vardagsrummet**
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.vardagsrum_bokhyllan
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.vardagsrum_bord
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.vardagsrum_golvlampa
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.vardagsrum_hoga_hyllan
+#              template: light_button
+#        - type: horizontal-stack
+#          cards:
+#            - type: custom:button-card
+#              entity: light.vardagsrum_tv_bank_vanster
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.vardagsrum_tvbank
+#              template: light_button
+#            - type: custom:button-card
+#              entity: light.bollarna
+#              template: light_button
+#            - type: custom:button-card
+#              color_type: blank-card
+#              aspect_ratio: 1/1
+#

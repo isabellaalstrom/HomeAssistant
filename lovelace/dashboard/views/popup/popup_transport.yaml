@@ -1,0 +1,37 @@
+              action: call-service
+              service: browser_mod.popup
+              service_data:
+                large: true
+                title: Transporter
+                deviceID:
+                  - this
+                style:
+                  border-radius: 12px
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: custom:stack-in-card
+                      mode: horizontal
+                      cards:
+                        - type: entities
+                          title: Waze
+                          show_header_toggle: false
+                          entities:
+                            - sensor.waze_hem_marmorvagen
+                            - sensor.waze_hem_thorne
+
+
+                        - type: entities
+                          title: Västtrafik
+                          show_header_toggle: false
+                          entities:
+                            - sensor.linje_52
+
+                        - type: custom:gap-card
+#                          height: 50
+                          size: 25px
+
+
+                    - type: iframe
+                      url: https://embed.waze.com/iframe
+                      aspect_ratio: 40%

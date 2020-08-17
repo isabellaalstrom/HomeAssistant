@@ -52,37 +52,28 @@
 
   dark_bedroom:
     name: Automatik
-    initial: on
     icon: mdi:close-circle-outline
+
+  nasta_buss:
+    name: Visa nästa buss i UI
 
 
   vacuum:
+#  nasta_buss:
 
 
   lovelace_maintenance:
+  lovelace_ui:
   hass_update:
   lovelace_hemmet:
+  lovelace_lampor:
+    name: Lampor
+    initial: off
+    icon: mdi:lightbulb-multiple-outline
+
 
 
 # Test
 
   test:
     name: Test 1
-  #  initial: off
-
-
-  test2:
-    name: Test 2
-  #  initial: off
-    icon: mdi:test-tube
-
-
-#  test1:
-#    name: Test
-#    initial: off
-#    icon: mdi:test-tube
-
-#  test2:
-#    name: Test
-#    initial: off
-#    icon: mdi:test-tube

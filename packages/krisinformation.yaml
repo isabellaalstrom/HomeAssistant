@@ -3,7 +3,14 @@ sensor:
     name: Krisinformation
     latitude: !secret latitude
     longitude: !secret longitude
-    radius: 50
+    radius: 200
+
+  - platform: krisinformation
+    name: Krisinformation_swe
+    latitude: !secret latitude
+    longitude: !secret longitude
+    country: true
+
 
 
 automation:

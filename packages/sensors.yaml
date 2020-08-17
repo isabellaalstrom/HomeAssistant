@@ -1,0 +1,269 @@
+
+
+
+##################################################
+## Sensors
+##################################################
+
+
+sensor:
+  - platform: filter
+    name: "Outside filtered realistic temperature"
+    entity_id: sensor.temp_ute
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 2.0
+      - filter: lowpass
+        time_constant: 10
+      - filter: time_simple_moving_average
+        window_size: 00:05
+        precision: 2
+
+
+  - platform: filter
+    name: "Inside filtered realistic temperature"
+    entity_id: sensor.temp_inne
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 2.0
+      - filter: lowpass
+        time_constant: 10
+      - filter: time_simple_moving_average
+        window_size: 00:05
+        precision: 2
+
+
+  - platform: template
+    sensors:
+      temp_inne_filtrerad:
+        friendly_name: "Inomhus"
+        value_template: "{{ states.sensor.inside_filtered_realistic_temperature.state | round(1) }}"
+        unit_of_measurement: '°C'
+        icon_template: mdi:thermometer
+        entity_id: sensor.inside_filtered_realistic_temperature
+
+
+  - platform: template
+    sensors:
+      temp_ute_filtrerad:
+        friendly_name: "Utomhus"
+        value_template: "{{ states.sensor.outside_filtered_realistic_temperature.state | round(1) }}"
+        unit_of_measurement: '°C'
+        icon_template: mdi:thermometer
+        entity_id: sensor.outside_filtered_realistic_temperature
+
+  - platform: template
+    sensors:
+      greeting:
+        entity_id: sensor.time
+        value_template: >-
+          {% set t = now().hour %}
+          {% if t <= 1 %} God natt
+          {% elif t <= 3 %} God natt
+          {% elif t <= 5 %} God natt
+          {% elif t <= 7 %} God morgon
+          {% elif t <= 9 %} God morgon
+          {% elif t <= 10.5 %} God morgon
+          {% elif t <= 13 %} God dag
+          {% elif t <= 15 %} God dag
+          {% elif t <= 17 %} God dag
+          {% elif t <= 19 %} God kväll
+          {% elif t <= 22 %} God kväll
+          {% elif t <= 23 %} God kväll
+          {% else %} God kväll
+          {% endif %}
+
+  - platform: template
+    sensors:
+      vader_nu_text:
+        entity_id: sensor.time
+        value_template: >-
+         {% if states('sensor.temp_ute_filtrerad') == 'unknown' %}
+         Kan inte läsa in väderinformation...
+         {% else %}
+           {% if states('sensor.temp_ute_filtrerad') | float <= 0.0 %}
+           Det är {{states.sensor.dark_sky_summary.state}} och känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för snö
+           {% elif states('sensor.temp_ute_filtrerad') | float > 0.0 %}
+           Det är {{states.sensor.dark_sky_summary.state}} och känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn
+           {%- if states('sensor.dark_sky_precip_probability') | float > 30.0 %}
+           {% endif %}
+           {% elif states('sensor.temp_ute_filtrerad') | float > 19.0 and
+           states('sensor.dark_sky_precip_probability') | float < 5.0 %}
+           Det är {{states.sensor.dark_sky_summary.state}} och änns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn
+           {% endif %}
+         {% endif %}
+
+  - platform: template
+    sensors:
+      vader_prognos_text:
+        entity_id: sensor.time
+        value_template: >-
+          {% if states('sensor.temp_ute_filtrerad') == 'unknown' %}
+          Kan inte läsa in väderinformation...
+          {% else %}
+          Prognosen för idag är {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, som varmast kommer det bli {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round}} grader och som lägst {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round}} grader.
+          {% endif %}
+
+
+  - platform: template
+    sensors:
+      vader_prognos_text_imorgon:
+        entity_id: sensor.time
+        value_template: >-
+          {% if states('sensor.temp_ute_filtrerad') == 'unknown' %}
+          Kan inte läsa in väderinformation...
+          {% else %}
+          Prognosen för imorgon är {{states.sensor.dark_sky_summary_1d.state|replace(".", "")}}, som varmast kommer det bli {{states.sensor.dark_sky_daytime_high_temperature_1d.state|round}} grader och som lägst {{states.sensor.dark_sky_overnight_low_temperature_1d.state|round}} grader.
+          {% endif %}
+
+      dag:
+        entity_id: sensor.date
+        icon_template: mdi:calendar
+        value_template: >
+          {% set days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
+          {{ days[now().weekday()] }}
+      datum:
+        icon_template: mdi:calendar
+        value_template: >
+          {% set months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
+          'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
+          {{ strptime(states('sensor.date'), '%Y-%m-%d').day }}
+          {{ months[now().month-1] }}
+
+
+      tvatta_countdown:
+        entity_id: sensor.time
+        friendly_name: Tvätta
+        icon_template: mdi:calendar
+        value_template: >-
+          {% if state_attr('calendar.tvatta', 'start_time') ==  null or
+          state_attr('calendar.tvatta', 'start_time') == None %}
+          {% else %}
+            {% set calendar_tvattid = state_attr('calendar.tvatta', 'start_time') %}
+            {% set nu_tid = now() %}
+            {% set dag = strptime(calendar_tvattid, '%Y-%m-%d %H:%M:%S').strftime('%A')
+            | replace('Monday', 'Måndag') | replace('Tuesday', 'Tisdag')
+            | replace('Wednesday', 'Onsdag') | replace('Thursday', 'Torsdag')
+            | replace('Friday', 'Fredag') | replace('Saturday', 'Lördag') | replace('Sunday', 'Söndag') %}
+            {% set tid = as_timestamp(calendar_tvattid) | timestamp_custom('%H:%M') %}
+            {% set sub_timmar = as_timestamp(calendar_tvattid) | timestamp_custom('%H') | int / 24 %}
+            {% set count = (as_timestamp(calendar_tvattid) - as_timestamp(nu_tid)) / 86400 - sub_timmar %}
+            {% if count <= 0.0 %}
+              Tvätt idag {{ tid }}
+            {% elif count <= 1.0 %}
+              Tvätt imorgon klockan {{ tid }}
+            {% elif count <= 2.0 %}
+              Tvätt i övermorgon klockan {{ tid }}
+            {% else %}
+              Tvätt om {{ (count + sub_timmar) | round }} dagar på {{ dag }} kl {{ tid }}
+            {% endif %}
+          {% endif %}
+
+      tvatt_countdown_les_then_4_days:
+        entity_id: sensor.time
+        icon_template: mdi:alert
+        value_template: >-
+          {% if state_attr('calendar.tvatta', 'start_time') ==  null or
+          state_attr('calendar.tvatta', 'start_time') == None %}
+            false
+          {% else %}
+            {% set calendar_tvatta = state_attr('calendar.tvatta', 'start_time') %}
+            {% if ((as_timestamp(calendar_tvatta) - as_timestamp(now())) / 86400) <= 4 %}
+            true {% else %} false {% endif %}
+          {% endif %}
+
+
+      mat_countdown:
+        entity_id: sensor.time
+        friendly_name: Matleverans
+        icon_template: mdi:calendar
+        value_template: >-
+          {% if state_attr('calendar.mat', 'start_time') ==  null or
+          state_attr('calendar.mat', 'start_time') == None %}
+          {% else %}
+            {% set mat = state_attr('calendar.mat', 'start_time') %}
+            {% set nu_tid = now() %}
+            {% set dag = strptime(mat, '%Y-%m-%d %H:%M:%S').strftime('%A')
+            | replace('Monday', 'Måndag') | replace('Tuesday', 'Tisdag')
+            | replace('Wednesday', 'Onsdag') | replace('Thursday', 'Torsdag')
+            | replace('Friday', 'Fredag') | replace('Saturday', 'Lördag') | replace('Sunday', 'Söndag') %}
+            {% set tid = as_timestamp(mat) | timestamp_custom('%H:%M') %}
+            {% set tid_end = as_timestamp(state_attr('calendar.mat', 'end_time')) | timestamp_custom('%H:%M') %}
+            {% set sub_timmar = as_timestamp(mat) | timestamp_custom('%H') | int / 24 %}
+            {% set count = (as_timestamp(mat) - as_timestamp(nu_tid)) / 86400 - sub_timmar %}
+            {% if count <= 0.0 %}
+              Matleverans idag mellan {{ tid }}-{{ tid_end }}
+            {% elif count <= 1.0 %}
+              Matleverans imorgon mellan {{ tid }}-{{ tid_end }}
+            {% elif count <= 2.0 %}
+              Matleverans i övermorgon mellan {{ tid }}-{{ tid_end }}
+            {% else %}
+              Matleverans om {{ (count + sub_timmar) | round }} dagar på {{ dag }} mellan {{ tid }}-{{ tid_end }}
+            {% endif %}
+          {% endif %}
+
+      mat_countdown_les_then_3_days:
+        entity_id: sensor.time
+        icon_template: mdi:alert
+        value_template: >-
+          {% if state_attr('calendar.mat', 'start_time') ==  null or
+          state_attr('calendar.mat', 'start_time') == None %}
+            false
+          {% else %}
+            {% set calendar_mat = state_attr('calendar.mat', 'start_time') %}
+            {% if ((as_timestamp(calendar_mat) - as_timestamp(now())) / 86400) <= 3 %}
+            true {% else %} false {% endif %}
+          {% endif %}
+
+
+
+      stadning_countdown:
+        entity_id: sensor.time
+        friendly_name: Städning
+        icon_template: mdi:calendar
+        value_template: >-
+          {% if state_attr('calendar.stad', 'start_time') ==  null or
+          state_attr('calendar.stad', 'start_time') == None %}
+          {% else %}
+            {% set calendar_stad = state_attr('calendar.stad', 'start_time') %}
+            {% set nu_tid = now() %}
+            {% set dag = strptime(calendar_stad, '%Y-%m-%d %H:%M:%S').strftime('%A')
+            | replace('Monday', 'Måndag') | replace('Tuesday', 'Tisdag')
+            | replace('Wednesday', 'Onsdag') | replace('Thursday', 'Torsdag')
+            | replace('Friday', 'Fredag') | replace('Saturday', 'Lördag') | replace('Sunday', 'Söndag') %}
+            {% set tid = as_timestamp(calendar_stad) | timestamp_custom('%H:%M') %}
+            {% set sub_timmar = as_timestamp(calendar_stad) | timestamp_custom('%H') | int / 24 %}
+            {% set count = (as_timestamp(calendar_stad) - as_timestamp(nu_tid)) / 86400 - sub_timmar %}
+            {% if count <= 0.0 %}
+              Städning idag {{ tid }}
+            {% elif count <= 1.0 %}
+              Städning imorgon klockan {{ tid }}
+            {% elif count <= 2.0 %}
+              Städning i övermorgon klockan {{ tid }}
+            {% else %}
+              Städning om {{ (count + sub_timmar) | round }} dagar på {{ dag }} kl {{ tid }}
+            {% endif %}
+          {% endif %}
+
+      stadning_countdown_les_then_4_days:
+        entity_id: sensor.time
+        icon_template: mdi:alert
+        value_template: >-
+          {% if state_attr('calendar.stad', 'start_time') ==  null or
+          state_attr('calendar.stad', 'start_time') == None %}
+            false
+          {% else %}
+            {% set calendar_stad = state_attr('calendar.stad', 'start_time') %}
+            {% if ((as_timestamp(calendar_stad) - as_timestamp(now())) / 86400) <= 4 %}
+            true {% else %} false {% endif %}
+          {% endif %}
+
+
+      tablet_battery:
+        friendly_name: "Batteri"
+        value_template: "{{ states.binary_sensor.tablet.attributes.battery_level }}"
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+        entity_id: sensor.time
