@@ -11,5 +11,6 @@
 !screenshots/
 !themes/
 !ui-lovelace.yaml
+!ui-dashboard.yaml
 !README.md
 rss_read.yaml

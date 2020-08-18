@@ -1,0 +1,9 @@
+
+custom_header:
+  !include lovelace/dashboard/custom_header/configuration.yaml
+
+button_card_templates:
+  !include_dir_merge_named lovelace/dashboard/templates/button-card
+
+views:
+  !include_dir_merge_list lovelace/dashboard/views
