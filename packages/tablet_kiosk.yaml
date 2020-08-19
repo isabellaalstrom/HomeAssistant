@@ -1,6 +1,4 @@
 rest_command:
-#  kiosk_command:
-#    url: !secret rest_url_kiosk_command
   reload_kiosk:
     url: !secret reload_kiosk
   restart_kiosk:

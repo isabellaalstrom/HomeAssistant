@@ -1,5 +1,6 @@
 - title: Lampor
   icon: mdi:lightbulb-group-outline
+  theme: oxfordblue
   path: lampors
   panel: false
   cards:

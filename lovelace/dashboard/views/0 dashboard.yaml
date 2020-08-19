@@ -425,7 +425,7 @@
 ## Varnigar
 
         - type: custom:button-card
-          entity: input_boolean.lovelace_hemmet
+          entity: sensor.smhi_wma_varningar
           style:
             top: 82.1%
             left: 66.14%
@@ -593,4 +593,18 @@
           name: Gäst Wi-Fi
           label: H&N-guest
           tap_action: !include popup/popup_wifi.yaml
-          
+
+
+#        - type: custom:hui-markdown-card
+#          class: coronavirus
+#          style:
+#            {top: 93.65%, left: 70.2%}
+#          content: >
+#            {{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['event'] }}{{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('Intensitet: |När:.*|Var:.*|Kommentar:.*') }}
+
+#
+
+
+#
+
+# {{  states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('När: |Intensitet:.*|Var:.*|Kommentar:.*') }}

@@ -1,3 +1,13 @@
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+
+airvisual:
+    api_key: !secret airvisual
+    geographies:
+      city: Goeteborg
+      state: Västra Götalands län
+      country: Sweden
 
 
 sensor:
@@ -8,52 +18,87 @@ sensor:
       - 'time_date'
       - 'time_utc'
 
-#  - platform: template
-#    sensors:
-#      dag:
-#        entity_id: sensor.date
-#        icon_template: mdi:calendar
-#        value_template: >
-#          {% set days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
-#          {{ days[now().weekday()] }}
-
-#  - platform: template
-#    sensors:
-#      datum:
-#        icon_template: mdi:calendar
-#        value_template: >
-#          {% set months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
-#          'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
-#          {{ strptime(states('sensor.date'), '%Y-%m-%d').day }}
-#          {{ months[now().month-1] }}
+#######################
+#                     #
+# SENSORER            #
+#                     #
+#######################
 
 
+sensor:
+  - platform: darksky
+    api_key: !secret darksky
+    language: sv
+    forecast:
+      - 0
+      - 1
+    scan_interval:
+      minutes: 15
+    monitored_conditions:
+      - summary
+      - hourly_summary
+      - temperature_low
+      - temperature_high
+      - precip_probability
+      - precip_type
+      - apparent_temperature
+      - icon
 
-  - platform: template
-    sensors:
-      sunset_time:
-        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting)  | timestamp_custom("%H:%M") }}'
-        entity_id: sun.sun
+  - platform: moon
+  - platform: season
 
-  - platform: template
-    sensors:
-      sunrise_time:
-        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising)  | timestamp_custom("%H:%M") }}'
-        entity_id: sun.sun
+  - platform: yr
+    monitored_conditions:
+      - symbol
+      - dewpointTemperature
+      - cloudiness
+      - precipitation
 
-      time_at_day:
-        entity_id: sensor.time
-        value_template: >-
-          {% if now().strftime("%H")|int < 5 %}
-          natt
-          {% elif now().strftime("%H")|int < 10 %}
-          morgon
-          {% elif now().strftime("%H")|int < 16 %}
-          dag
-          {% elif now().strftime("%H")|int < 20 %}
-          eftermiddag
-          {% elif now().strftime("%H")|int < 23 %}
-          kväll
-          {% else %}
-          natt
-          {% endif %}
+  - platform: yr
+    name: YR 9h
+    forecast: 9
+    monitored_conditions:
+      - temperature
+      - dewpointTemperature
+      - precipitation
+
+  - platform: min_max
+    name: temp_inne
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.albin_temp
+      - sensor.sovrum_temp_pir
+      - sensor.vardagsrum_temp
+      - sensor.kontoret_temp
+      - sensor.hallen_temp
+
+  - platform: min_max
+    name: temp_ute
+    type: min
+    round_digits: 1
+    entity_ids:
+      - sensor.baksidan_temperature
+      - sensor.framsidan_temperature
+
+
+
+camera:
+  - platform: generic
+    name: "Göteborg meteogram"
+    still_image_url: https://www.yr.no/sted/Sverige/V%C3%A4stra_G%C3%B6taland/G%C3%B6teborg/meteogram.svg
+    content_type: 'image/svg+xml'
+
+
+automation:
+  - alias: 'SMHI Alert'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id:  sensor.smhialert
+        to: "Alert"
+    action:
+      - service: notify.alla
+        data_template:
+          message: >
+            {{states.sensor.smhi_event.state}}

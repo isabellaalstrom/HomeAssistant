@@ -1,34 +1,10 @@
 
-##################################################
-## Customize
-##################################################
-
-#homeassistant:
-#  customize:
-#    sensor.mot_goteborg_line_and_time:
-#      icon: mdi:bus-side
-#    sensor.mot_goteborg_line_and_time_10min:
-#      icon: mdi:clock
-#    sensor.tag_molnlycke_goteborg:
-#      icon: train-variant
 
 
 ##################################################
-## Group
-##################################################
-
-#group:
-#  commute:
-#    name: Commute
-#    view: no
-#    control: hidden
-#    entities:
-#      - sensor.mot_goteborg_line_and_time
-#      - sensor.mot_goteborg_line_and_time_10min
-
-
-##################################################
+##
 ## Sensors
+##
 ##################################################
 
 sensor:
@@ -41,13 +17,6 @@ sensor:
         heading: Linnéplatsen
         lines:
           - 52
-
-#      - name: Linje 2
-#        from: Scandinavium
-#        heading: Högsbotorp
-#        lines:
-#          - 2
-
 
 
   - platform: waze_travel_time
@@ -67,97 +36,3 @@ sensor:
     origin: 57.698551, 11.98511
     destination: 58.333225, 12.680733
     region: 'EU'
-
-
-
-
-
-#  - platform: template
-#    sensors:
-#      mot_goteborg_line_and_time:
-#        friendly_name_template: "{{ states.sensor.mot_goteborg.attributes.line }} mot {{ states.sensor.mot_goteborg.attributes.direction }}"
-#        value_template: "{{ states.sensor.mot_goteborg.state }}"
-#        entity_id: sensor.mot_goteborg
-#
-#  - platform: template
-#    sensors:
-#      mot_goteborg_line_and_time_10min:
-#        friendly_name_template: "{{ states.sensor.mot_goteborg_10min.attributes.line }} mot {{ states.sensor.mot_goteborg_10min.attributes.direction }}"
-#        value_template: "{{ states.sensor.mot_goteborg_10min.state }}"
-#        entity_id: sensor.mot_goteborg_10min
-#
-#  - platform: template
-#    sensors:
-#      mot_goteborg_tag:
-#        friendly_name_template: "{{ states.sensor.tag_molnlycke_goteborg.attributes.line }} mot {{ states.sensor.tag_molnlycke_goteborg.attributes.direction }},P{{ states.sensor.tag_molnlycke_goteborg.attributes.track }}"
-#        value_template: "{{ states.sensor.tag_molnlycke_goteborg.state }}"
-#        entity_id: sensor.tag_molnlycke_goteborg
-#
-#  - platform: template
-#    sensors:
-#      601_mot_goteborg:
-#        friendly_name_template: "{{ states.sensor.bus_601_mot_goteborg.attributes.line }} mot {{ states.sensor.bus_601_mot_goteborg.attributes.direction }}"
-#        value_template: "{{ states.sensor.bus_601_mot_goteborg.state }}"
-#        entity_id: sensor.bus_601_mot_goteborg
-#
-#  - platform: template
-#    sensors:
-#      mot_molnlycke_tag:
-#        friendly_name_template: "{{ states.sensor.tag_goteborg_molnlycke.attributes.line }} mot {{ states.sensor.tag_goteborg_molnlycke.attributes.direction }}"
-#        value_template: "{{ states.sensor.tag_goteborg_molnlycke.state }}"
-#        entity_id: sensor.tag_goteborg_molnlycke
-#
-#  - platform: template
-#    sensors:
-#      601_mot_molnlycke:
-#        friendly_name_template: "{{ states.sensor.buss_601_mot_molnlycke.attributes.line }} mot {{ states.sensor.buss_601_mot_molnlycke.attributes.direction }}"
-#        value_template: "{{ states.sensor.buss_601_mot_molnlycke.state }}"
-#        entity_id: sensor.buss_601_mot_molnlycke
-#
-#
-#
-#script:
-#  commute_notify:
-#    alias: Commute notify
-#    sequence:
-#      - service: notify.niklas
-#        data_template:
-#          message: >
-#            {% if now().strftime("%H")|int < 12 %}
-#            Good morgon, klockan är nu {{ states.sensor.time.state }}
-#            {% elif now().strftime("%H")|int < 18 %}
-#            God dag, klockan är nu {{ states.sensor.time.state }}
-#            {% else %}
-#            God kväll, klockan är nu {{ states.sensor.time.state }}
-#            {% endif %}
-#
-#            {{ states.sensor.tag_molnlycke_goteborg.attributes.line }} kl {{ states.sensor.tag_molnlycke_goteborg.state }}  mot {{ states.sensor.tag_molnlycke_goteborg.attributes.direction }}
-#
-#            {{ states.sensor.bus_601_mot_goteborg.attributes.line }} kl {{ states. sensor.bus_601_mot_goteborg.state }}  mot {{ states. sensor.bus_601_mot_goteborg.attributes.direction }}
-#
-#            {{ states.sensor.mot_goteborg.attributes.line }} kl {{ states.sensor.mot_goteborg.state }}  mot {{ states.sensor.mot_goteborg.attributes.direction }}
-#
-#            {{ states.sensor.mot_goteborg_10min.attributes.line }} kl {{ states.sensor.mot_goteborg_10min.state }}  mot {{ states.sensor.mot_goteborg_10min.attributes.direction }}
-#
-#
-#
-##automation:
-##  - alias: 'Commute - Notify'
-##    initial_state: 'on'
-##    trigger:
-##      - platform: state
-##        entity_id: alarm_control_panel.house
-##        to: disarmed
-##        for:
-##          minutes: 60
-##    condition:
-##      condition: and
-##      conditions:
-##        - condition: state
-##          entity_id: 'binary_sensor.workday_today'
-##          state: 'on'
-##        - condition: time
-##          after: '05:00:00'
-##          before: '10:00:00'
-#    action:
-#      - service: script.commute_notify

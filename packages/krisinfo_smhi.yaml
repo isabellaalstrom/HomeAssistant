@@ -1,15 +1,19 @@
 sensor:
   - platform: krisinformation
     name: Krisinformation
+    county: "Västra Götalands län"
     latitude: !secret latitude
     longitude: !secret longitude
     radius: 200
 
   - platform: krisinformation
     name: Krisinformation_swe
-    latitude: !secret latitude
-    longitude: !secret longitude
-    country: true
+    country: 'Sverige'
+
+  - platform: smhialert
+    district: '007'
+    language: 'sv'
+
 
 
 

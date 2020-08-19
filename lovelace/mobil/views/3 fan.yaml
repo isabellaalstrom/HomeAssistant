@@ -1,5 +1,6 @@
 - title: Fläktar
   icon: mdi:fan
+  theme: oxfordblue
   path: fan
   panel: false
   cards:

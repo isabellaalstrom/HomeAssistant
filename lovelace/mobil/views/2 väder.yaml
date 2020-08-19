@@ -1,5 +1,6 @@
 - title: Väder
   icon: mdi:weather-sunny
+  theme: oxfordblue
   path: vader
   panel: false
   cards:
@@ -201,8 +202,8 @@
                 - type: custom:fold-entity-row
                   head: sensor.influxdb_ute_medel_1_dygn
                   entities:
+                    - sensor.influxdb_ute_medel_7dagar
                     - sensor.influxdb_ute_medel_30dagar
-                    - sensor.influxdb_ute_medel_1_dygn
             - type: entities
               entities:
                 - type: custom:fold-entity-row

@@ -41,29 +41,12 @@ script_button:
       - padding-left: 10px
     icon:
       - color: rgb(0, 0, 0)
+  state:
 
-
-#      - padding-left: 10px
-
-
-
-#  state:
-#    - value: 'on'
-#      icon: mdi:lightbulb-on-outline
-#      styles:
-#        icon:
-#          - color: rgb(116, 91, 31)
-#        card:
-#          - color: rgb255, 255, 255)
-#          - background-color: rgb(255, 255, 255)
-
-
-
-#    - value: 'off'
-#      icon: mdi:lightbulb-outline
-#      styles:
-#        icon:
-#          - color: rgb(98, 98, 98)
-#        card:
-#          - color: rgb(98, 98, 98)
-#          - background-color: rgb(202, 199, 193)
+    - value: 'True'
+      styles:
+        icon:
+          - color: red
+          - animation: blink 2s ease infinite
+          - width: 40px
+          - height: 40px

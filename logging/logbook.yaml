@@ -2,7 +2,6 @@
     domains:
       - group
       - updater
-#      - automation
       - device_tracker
       - script
 
@@ -35,14 +34,3 @@
       - sensor.niklas_birthday_days
       - sensor.last_seen_motion
       - alarm_control_panel.arlo
-      - binary_sensor.vardagsrummet_motionsensor
-      - sensor.bus_601_mot_goteborg
-      - sensor.buss_601_mot_molnlycke
-      - sensor.mot_goteborg
-      - sensor.mot_goteborg_10min
-      - sensor.mot_goteborg_line_and_time
-      - sensor.mot_goteborg_tag
-      - sensor.mot_molnlycke_tag
-      - sensor.601_mot_goteborg
-      - sensor.601_mot_molnlycke
-      - sensor.tag_goteborg_molnlycke

@@ -54,8 +54,34 @@ sensor:
         icon_template: mdi:thermometer
         entity_id: sensor.outside_filtered_realistic_temperature
 
-  - platform: template
-    sensors:
+      smhi_event:
+        value_template: "{{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['event'] }}  {{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('Intensitet: |När:.*|Var:.*|Kommentar:.*', '') }}{{ states.sensor.smhialert.attributes.messages['007']['msgs'][0]['description'] | regex_replace('När: |Intensitet:.*|Var:.*|Kommentar:.*', '') }}"
+
+      sunset_time:
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting)  | timestamp_custom("%H:%M") }}'
+        entity_id: sun.sun
+
+      sunrise_time:
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising)  | timestamp_custom("%H:%M") }}'
+        entity_id: sun.sun
+
+      time_at_day:
+        entity_id: sensor.time
+        value_template: >-
+          {% if now().strftime("%H")|int < 5 %}
+          natt
+          {% elif now().strftime("%H")|int < 10 %}
+          morgon
+          {% elif now().strftime("%H")|int < 16 %}
+          dag
+          {% elif now().strftime("%H")|int < 20 %}
+          eftermiddag
+          {% elif now().strftime("%H")|int < 23 %}
+          kväll
+          {% else %}
+          natt
+          {% endif %}
+
       greeting:
         entity_id: sensor.time
         value_template: >-
@@ -75,28 +101,25 @@ sensor:
           {% else %} God kväll
           {% endif %}
 
-  - platform: template
-    sensors:
-      vader_nu_text:
-        entity_id: sensor.time
-        value_template: >-
-         {% if states('sensor.temp_ute_filtrerad') == 'unknown' %}
-         Kan inte läsa in väderinformation...
-         {% else %}
-           {% if states('sensor.temp_ute_filtrerad') | float <= 0.0 %}
-           Det är {{states.sensor.dark_sky_summary.state}} och känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för snö
-           {% elif states('sensor.temp_ute_filtrerad') | float > 0.0 %}
-           Det är {{states.sensor.dark_sky_summary.state}} och känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn
-           {%- if states('sensor.dark_sky_precip_probability') | float > 30.0 %}
-           {% endif %}
-           {% elif states('sensor.temp_ute_filtrerad') | float > 19.0 and
-           states('sensor.dark_sky_precip_probability') | float < 5.0 %}
-           Det är {{states.sensor.dark_sky_summary.state}} och änns som {{ states('sensor.dark_sky_apparent_temperature') | round }}° med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn
-           {% endif %}
-         {% endif %}
 
-  - platform: template
-    sensors:
+      vader_text:
+        value_template:  >-
+          {% if states('sensor.temp_ute_filtrerad') == 'unknown' %}
+          Kan inte läsa in väderinformation...
+          {% else %}
+            {% if states('sensor.temp_ute_filtrerad') | float <= 0.0 %}
+            Det är {{ states('sensor.temp_ute_filtrerad') | round }}°, känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}°, med
+            {{ states('sensor.dark_sky_precip_probability') | round }}% risk för snö {{'\u2744\uFE0F'}}
+            {% elif states('sensor.temp_ute_filtrerad') | float > 0.0 %}
+            Det är {{ states('sensor.temp_ute_filtrerad') | round }}°, känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}°, med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn {%- if states('sensor.dark_sky_precip_probability') | float > 30.0 %}
+            {% endif %}
+            {% elif states('sensor.temp_ute_filtrerad') | float > 19.0 and
+            states('sensor.dark_sky_precip_probability') | float < 5.0 %}
+            Det är {{ states('sensor.temp_ute_filtrerad') | round }}°, känns som {{ states('sensor.dark_sky_apparent_temperature') | round }}°, med {{ states('sensor.dark_sky_precip_probability') | round }}% risk för regn
+            {% endif %}
+          {% endif %}
+
+
       vader_prognos_text:
         entity_id: sensor.time
         value_template: >-
@@ -107,8 +130,6 @@ sensor:
           {% endif %}
 
 
-  - platform: template
-    sensors:
       vader_prognos_text_imorgon:
         entity_id: sensor.time
         value_template: >-
@@ -267,3 +288,46 @@ sensor:
         unit_of_measurement: '%'
         icon_template: mdi:battery-outline
         entity_id: sensor.time
+
+      smhi_wma_varningar:
+        value_template: "{{ is_state('sensor.krisinformation', 'Alert') or is_state('sensor.smhialert', 'Alert') }}"
+        entity_id: sensor.time
+
+
+## VARNING
+
+      all_lights_check:
+        value_template: >-
+          {{ states | selectattr('entity_id','in', ['light.albin_fonster','light.albin_hylla','light.bollarna','light.hall_vagglampa','light.hallen_tak','light.koksfonstret','light.kontor_banken','light.kontor_fatolj','light.kontor_hylla','light.kontor_skrivbordet','light.nattlampa','light.sovrum_fonster','light.sovrum_hoger','light.sovrum_vanster','light.vardagsrum_bokhyllan','light.vardagsrum_bord','light.vardagsrum_golvlampa','light.vardagsrum_hoga_hyllan','light.vardagsrum_tv_bank_vanster','light.vardagsrum_tvbank'] )|selectattr('state','eq','on') | list | count }}
+        entity_id:
+          - light.albin_fonster
+          - light.albin_hylla
+          - light.bollarna
+          - light.hall_vagglampa
+          - light.hallen_tak
+          - light.koksfonstret
+          - light.kontor_banken
+          - light.kontor_fatolj
+          - light.kontor_hylla
+          - light.kontor_skrivbordet
+          - light.nattlampa
+          - light.sovrum_fonster
+          - light.sovrum_hoger
+          - light.sovrum_vanster
+          - light.vardagsrum_bokhyllan
+          - light.vardagsrum_bord
+          - light.vardagsrum_golvlampa
+          - light.vardagsrum_hoga_hyllan
+          - light.vardagsrum_tv_bank_vanster
+          - light.vardagsrum_tvbank
+
+
+      nr_open_doors:
+        value_template: >-
+          {{ states | selectattr('entity_id','in', ['binary_sensor.backdoor','binary_sensor.franska_balkongen','binary_sensor.frontdoor'] )|selectattr('state','eq','on') | list | count }}
+        entity_id:
+          - binary_sensor.backdoor
+          - binary_sensor.franska_balkongen
+          - binary_sensor.kladkammaren
+          - sensor.time
+       

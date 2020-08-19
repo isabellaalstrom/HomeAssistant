@@ -1,13 +1,4 @@
-
-    ####################################################
-    #                                                  #
-    #                      THEME                       #
-    #                                                  #
-    ####################################################
-
-    # Based on https://github.com/seangreen2/slate_theme
-
-slate:
+tablet:
   # Main colors
   primary-color: '#434b4d'
   accent-color: '#b4b6b630'

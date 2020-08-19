@@ -41,50 +41,8 @@ sensor:
 
 
 
-#      all_doors_check:
-#        value_template: >-
-#          {{ is_state('binary_sensor.frontdoor', 'off')
-#             and is_state('binary_sensor.backdoor', 'off')
-#             and is_state('binary_sensor.sovrums_fonstret', 'off')
-#             and is_state('binary_sensor.kontoret_fonster', 'off')
-#             and is_state('binary_sensor.albins_fonster', 'off')
-#             and is_state('binary_sensor.kok_fonster', 'off')
-#             and is_state('binary_sensor.franska_balkongen', 'off') }}
-#        friendly_name: 'Alla Dörrar och Fönster'
-#        entity_id:
-#          - sensor.frontdoor
-#          - sensor.backdoor
-#          - sensor.beedrom_window
-#          - sensor.office_window
-#          - sensor.albins_window
-#          - sensor.kitchen_window
-#          - sensor.franska_balkongen
-#          - sensor.time
 
 
-
-
-#      all_doors_status:
-#        value_template: '{% if states.sensor.all_doors_check %}
-#          {% if states.sensor.all_doors_check.state == "False" %}
-#
-#          {% else %}
-#            Stängda
-#          {% endif %}
-#          {% else %}
-#            Öppna
-#          {% endif %}'
-#        friendly_name: 'Dörrar & Fönster'
-#        entity_id:
-#          - sensor.frontdoor
-#          - sensor.backdoor
-#          - sensor.beedrom_window
-#          - sensor.office_window
-#          - sensor.albins_window
-#          - sensor.kitchen_window
-#          - sensor.kitchen_small_window
-#          - sensor.franska_balkongen
-#          - sensor.time
 
 
 
@@ -155,49 +113,3 @@ script:
             {%- if loop.first %}VARNING! {% elif loop.last %}, {% else %}, {% endif -%}
             {{ state.name | lower }}
             {%- endfor %}
-
-#  unlock:
-#      alias: "Unlock frontdoor"
-#      sequence:
-#        - service: notify.mobile_app_niklas_iphone_8
-#          data:
-#            message: 'Larm av kl {{now().strftime("%H:%M")}}'
-#            data:
-#              url: "shortcuts://run-shortcut?name=unlock"
-#              push:
-#                badge: 0
-##              attachment:
-  #              url: ""
-  #              content-type: jpg
-  #              hide-thumbnail: false
-
-  #      - service: notify.mobile_app_hannas_iphone
-  #        data:
-  #          message: 'Larm av kl {{now().strftime("%H:%M")}}'
-  #          data:
-  #            url: "shortcuts://run-shortcut?name=unlock"
-  #            push:
-  #              badge: 0
-  #            attachment:
-  #              url: ""
-  #              content-type: jpg
-  #              hide-thumbnail: false
-
-
-
-##################################################
-## Alerts
-##################################################
-
-#alert:
-#  front_door:
-#    name: Ytterdörren är öppen
-#    done_message: Ytterdörren har stängts!
-#    entity_id: binary_sensor.frontdoor
-#    state: 'on'
-#    repeat: 2
-#    can_acknowledge: True
-#    skip_first: True
-#      - notify.mobile_app_niklas_iphone_8
-#      - notify.mobile_app_hannas_iphone
-#      - slack

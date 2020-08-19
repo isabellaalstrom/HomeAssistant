@@ -1,5 +1,12 @@
 
 
+speedtestdotnet:
+  server_id: 6062
+  scan_interval:
+    minutes: 30
+    hours: 6
+
+
 
 ##################################################
 ## Sensors
